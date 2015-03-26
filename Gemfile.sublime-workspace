@@ -1,0 +1,511 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"log",
+				"login_url"
+			],
+			[
+				"fo",
+				"fowarding_url"
+			],
+			[
+				"del",
+				"delete"
+			],
+			[
+				"edit",
+				"edit_user_path"
+			],
+			[
+				"log_in",
+				"log_in_as"
+			],
+			[
+				"logg",
+				"logged_in"
+			],
+			[
+				"redirect",
+				"redirect_to"
+			],
+			[
+				"diges",
+				"digest('password"
+			],
+			[
+				"pass",
+				"password_digest"
+			],
+			[
+				"em",
+				"empty"
+			],
+			[
+				"login",
+				"login_url"
+			],
+			[
+				"asser",
+				"assert_redirected_to"
+			],
+			[
+				"user",
+				"user"
+			],
+			[
+				"pas",
+				"password_confirmation"
+			],
+			[
+				"password",
+				"password_confirmation"
+			],
+			[
+				"new",
+				"new_token"
+			],
+			[
+				"di",
+				"digest"
+			],
+			[
+				"reme",
+				"remember"
+			],
+			[
+				"rem",
+				"remember_token"
+			],
+			[
+				"assert",
+				"assert_not"
+			],
+			[
+				"remember",
+				"remember_me"
+			],
+			[
+				"logout",
+				"logout_path"
+			],
+			[
+				"current",
+				"current_user"
+			],
+			[
+				"remb",
+				"remember_digest"
+			],
+			[
+				"authe",
+				"authenticated"
+			],
+			[
+				"find",
+				"find_by"
+			],
+			[
+				"remem",
+				"remember_token"
+			],
+			[
+				"logi",
+				"login"
+			],
+			[
+				"ass",
+				"assert_template"
+			],
+			[
+				"users",
+				"users_path"
+			],
+			[
+				"do",
+				"do"
+			],
+			[
+				"En",
+				"end"
+			],
+			[
+				"messa",
+				"message"
+			],
+			[
+				"message",
+				"message_type"
+			],
+			[
+				"grava",
+				"gravatar"
+			],
+			[
+				"gravatar",
+				"gravatar_id"
+			],
+			[
+				"conta",
+				"contact_path"
+			],
+			[
+				"about",
+				"about_path"
+			],
+			[
+				"help",
+				"help_path"
+			],
+			[
+				"root",
+				"root_path"
+			],
+			[
+				"full",
+				"full_title"
+			],
+			[
+				"artic",
+				"article"
+			],
+			[
+				"article",
+				"article_path"
+			],
+			[
+				"coment",
+				"comments"
+			],
+			[
+				"end",
+				"end"
+			],
+			[
+				"tex",
+				"text_area"
+			],
+			[
+				"text",
+				"text_field"
+			],
+			[
+				"u",
+				"ul	Tag"
+			],
+			[
+				"err",
+				"errors_explanation"
+			],
+			[
+				"param",
+				"article_params"
+			],
+			[
+				"arti",
+				"article"
+			],
+			[
+				"sub",
+				"submit"
+			],
+			[
+				"ti",
+				"title"
+			],
+			[
+				"erro",
+				"errors"
+			],
+			[
+				"error",
+				"errors_explanation"
+			],
+			[
+				"art",
+				"article"
+			],
+			[
+				"articl",
+				"article_params"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 319.0,
+		"selected_items":
+		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"package control:",
+				"Package Control: Disable Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packagecontrolinsta",
+				"Package Control: Install Package"
+			],
+			[
+				"packagecontrolinsa",
+				"Package Control: Install Package"
+			],
+			[
+				"packacontrolins",
+				"Package Control: Install Package"
+			],
+			[
+				"packagecontrolins",
+				"Package Control: Install Package"
+			],
+			[
+				"packagecontrolin",
+				"Package Control: Install Package"
+			],
+			[
+				"pack control:in",
+				"Package Control: Install Package"
+			],
+			[
+				"paack ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 538.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2deb499853c4371624f5a07e27c334aa' + 'bf8c4e67d14fb0525ba4f89698a6d7e1'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/maxime/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/views/users/edit.html.erb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/test/fixtures/users.yml",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/test/integration/users_edit_test.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/models/user.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/controllers/sessions_controller.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/views/layouts/_header.html.erb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/assets/stylesheets/custom.css.scss",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/helpers/users_helper.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/views/users/index.html.erb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/controllers/users_controller.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/test/controllers/users_controller_test.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/helpers/sessions_helper.rb",
+		"/home/maxime/.config/sublime-text-3/Packages/User/ThemrFavorites.sublime-settings",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/test/helpers/sessions_helper_test.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/helpers/static_pages_helper.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/test/test_helper.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/test/models/user_test.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/views/sessions/new.html.erb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/test/integration/users_login_test.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/test/integration/users_signup_test.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/config/routes.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/controllers/application_controller.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/assets/javascripts/application.js",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/test/helpers/application_helper_test.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/helpers/application_helper.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/test/integration/site_layout_test.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/Procfile",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/config/puma.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/Gemfile",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/config/environments/production.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/config/application.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/db/migrate/20150225011343_add_password_digest_to_users.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/views/shared/_error_messages.html.erb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/views/users/new.html.erb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/views/layouts/application.html.erb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/views/users/show.html.erb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/db/migrate/20150225010400_add_index_to_users_email.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/views/static_pages/home.html.erb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/views/static_pages/contact.html.erb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/test/controllers/static_pages_controller_test.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/views/layouts/_footer.html.erb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/controllers/static_pages_controller.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/views/layouts/_shim.html.erb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/exemple_user.rb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/views/static_pages/about.html.erb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/app/views/static_pages/help.html.erb",
+		"/home/maxime/Workspace/RailsTutorial/sample_app/README.md",
+		"/home/maxime/Workspace/RailsTutorial/toy_app/app/models/micropost.rb",
+		"/home/maxime/Workspace/RailsTutorial/toy_app/app/models/user.rb",
+		"/home/maxime/Workspace/RailsTutorial/toy_app/config/routes.rb",
+		"/home/maxime/Workspace/RailsTutorial/toy_app/app/controllers/application_controller.rb",
+		"/home/maxime/Workspace/RailsTutorial/toy_app/Gemfile",
+		"/home/maxime/Workspace/RailsTutorial/hello_app/README.md",
+		"/home/maxime/Workspace/RailsTutorial/hello_app/config/routes.rb",
+		"/home/maxime/Workspace/RailsTutorial/hello_app/app/controllers/application_controller.rb",
+		"/home/maxime/Workspace/RailsTutorial/hello_app/Gemfile",
+		"/home/maxime/Workspace/TestRails1/Test/app/models/comment.rb",
+		"/home/maxime/Workspace/TestRails1/Test/app/controllers/welcome_controller.rb",
+		"/home/maxime/Workspace/TestRails1/Test/app/views/welcome/index.html.erb",
+		"/home/maxime/Workspace/TestRails1/Test/config/routes.rb",
+		"/home/maxime/Workspace/TestRails1/Test/app/controllers/articles_controller.rb",
+		"/home/maxime/Workspace/TestRails1/Test/app/views/articles/_form.html.erb",
+		"/home/maxime/Workspace/TestRails1/Test/app/views/articles/edit.html.erb",
+		"/home/maxime/Workspace/TestRails1/Test/app/views/articles/index.html.erb",
+		"/home/maxime/Workspace/TestRails1/Test/app/views/articles/show.html.erb",
+		"/home/maxime/Workspace/TestRails1/Test/app/views/comments/_form.html.erb",
+		"/home/maxime/Workspace/TestRails1/Test/app/views/comments/_comment.html.erb",
+		"/home/maxime/Workspace/TestRails1/Test/app/controllers/comments_controller.rb",
+		"/home/maxime/Workspace/TestRails1/Test/app/controllers/application_controller.rb",
+		"/home/maxime/Workspace/TestRails1/Test/app/models/article.rb",
+		"/home/maxime/Workspace/TestRails1/Test/app/views/articles/new.html.erb",
+		"/home/maxime/.config/sublime-text-3/Packages/User/GutterColor.sublime-settings"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"}\n",
+			"contact_path"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "Gemfile.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"users_sign",
+				"test/integration/users_signup_test.rb"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 320.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
