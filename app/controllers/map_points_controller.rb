@@ -29,6 +29,7 @@ class MapPointsController < ApplicationController
   end
 
   def edit
+    @map_point = MapPoint.find(params[:id])
   end
 
   def update
