@@ -1,4 +1,4 @@
-class MapPointController < ApplicationController
+class MapPointsController < ApplicationController
 
   def index
     @map_points = MapPoint.all
