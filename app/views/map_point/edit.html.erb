@@ -1,0 +1,19 @@
+<h1>Update Point on the map</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@map_point) do |f| %>
+
+      <%= f.label :x %>
+      <%= f.text_field :x, class: 'form-control' %>
+
+      <%= f.label :y %>
+      <%= f.text_field :y, class: 'form-control' %>
+
+      <%= f.label :zone %>
+      <%= f.text_field :zone, class: 'form-control' %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

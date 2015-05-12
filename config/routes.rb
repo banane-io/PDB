@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'grid/show'
+
+  get 'grid/move'
+  resources :map_points
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
