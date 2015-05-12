@@ -1,5 +1,5 @@
 class MapPointsController < ApplicationController
-
+  before_action :set_map_point, only: [:show, :edit, :update, :destroy]
   def index
     @map_points = MapPoint.all
   end
@@ -9,7 +9,6 @@ class MapPointsController < ApplicationController
   end
 
   def show
-    @map_point = MapPoint.find(params[:id])
   end
 
   def create
@@ -29,7 +28,6 @@ class MapPointsController < ApplicationController
   end
 
   def edit
-    @map_point = MapPoint.find(params[:id]) #Should delete this
   end
 
   def update
@@ -45,5 +43,9 @@ class MapPointsController < ApplicationController
 
     def map_point_params
       params.require(:map_point).permit(:x, :y)
+    end
+
+    def set_map_point
+      @map_point = MapPoint.find(params[:id])
     end
 end
