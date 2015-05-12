@@ -29,7 +29,7 @@ class MapPointsController < ApplicationController
   end
 
   def edit
-    @map_point = MapPoint.find(params[:id])
+    @map_point = MapPoint.find(params[:id]) #Should delete this
   end
 
   def update
