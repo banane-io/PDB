@@ -1,12 +1,12 @@
 <h1>Grid system</h1>
 <table>
-<% @map_points.each do |key, array| %>
-<tr>
-  <% array.each do |map_point| %>
-  <td><%= label map_point.x, map_point.x %></td>
-  <td><%= label map_point.y, map_point.y %></td>
-  <td><%= label map_point.zone, map_point.zone %></td>
+  <% @map_points.each do |key, array| %>
+    <tr>
+      <% array.each do |map_point| %>
+      <td><%= label map_point.x, map_point.x %></td>
+      <td><%= label map_point.y, map_point.y %></td>
+      <td><%= label map_point.zone, map_point.zone %></td>
+      <% end %>
+    </tr>
   <% end %>
-</tr>
-<% end %>
 <table>
