@@ -42,7 +42,7 @@ class MapPointsController < ApplicationController
   private
 
     def map_point_params
-      params.require(:map_point).permit(:x, :y)
+      params.require(:map_point).permit(:x, :y, :zone)
     end
 
     def set_map_point
