@@ -5,7 +5,7 @@
     <% @map_points.each do |key, array| %>
       <tr>
         <% array.each do |map_point| %>
-          <td><%= radio_button_tag(:id,map_point.id) %></td>
+          <td><%= radio_button_tag(:id,map_point.id, false, class: "test") %></td>
         <% end %>
       </tr>
     <% end %>
