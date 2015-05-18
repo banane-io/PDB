@@ -3,6 +3,7 @@ class CreateEntities < ActiveRecord::Migration
     create_table :entities do |t|
       t.string :name
       t.string :description
+      t.references :map_point, index: true, foreign_key: true
 
       t.timestamps
     end

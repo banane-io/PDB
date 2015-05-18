@@ -16,9 +16,13 @@ ActiveRecord::Schema.define(version: 20150513005106) do
   create_table "entities", force: true do |t|
     t.string   "name"
     t.string   "description"
+    t.integer  "map_point_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "entities", ["map_point_id", "created_at"], name: "index_entities_on_map_point_id_and_created_at"
+  add_index "entities", ["map_point_id"], name: "index_entities_on_map_point_id"
 
   create_table "map_points", force: true do |t|
     t.integer  "x"

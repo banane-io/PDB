@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get 'grid/move'
   root 'map_points#index'
   resources :map_points
+  resources :entities
 end
