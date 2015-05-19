@@ -1,0 +1,29 @@
+<h1>Grid system</h1>
+<%= form_tag do %>
+<div class="float">
+  <table class="table-bordered">
+    <% @map_points.each do |key, array| %>
+      <tr>
+        <% array.each do |map_point| %>
+          <td><%= radio_button_tag(:id,map_point.id, false, class: "grid_point") %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<% end %>
+<div>
+  <p>
+    <strong>X:</strong>
+    <input type="text" id="text_x" />
+  </p>
+
+  <p>
+    <strong>Y:</strong>
+    <input type="text" id="text_y"/>
+  </p>
+  <p>
+    <strong>Zone:</strong>
+    <input type="text" id="text_zone"/>
+  </p>
+</div>

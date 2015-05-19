@@ -2,18 +2,23 @@
 <html>
 <head>
   <title>PDB</title>
+  <%= include_gon %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="container">
   <nav>
     <ul>
-      <li><a href="#">Home</a></li>
+      <li><%= link_to "Home", root_path %></li>
       <li><a href="#">Help</a></li>
+      <li> <%= link_to "MapPoints", map_points_path %> </li>
+      <li> <%= link_to "Entity", entities_path %> </li>
+      <li> <%= link_to "Grid", grid_show_path %> </li>
     </ul>
   </nav>
-<%= yield %>
-
+  <%= yield %>
+</div>
 </body>
 </html>
