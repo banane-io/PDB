@@ -3,7 +3,9 @@
 one:
   name: MyString
   description: MyString
+  map_point_id: 1
 
 two:
   name: MyString
   description: MyString
+  map_point_id: 1
