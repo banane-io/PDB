@@ -18,7 +18,7 @@ class EntitiesControllerTest < ActionController::TestCase
 
   test "should create entity" do
     assert_difference('Entity.count') do
-      post :create, entity: {  }
+      post :create, entity: { name: "test", description: "description", map_point_id: 1 }
     end
 
     assert_redirected_to entity_path(assigns(:entity))
@@ -35,7 +35,7 @@ class EntitiesControllerTest < ActionController::TestCase
   end
 
   test "should update entity" do
-    patch :update, id: @entity, entity: {  }
+    patch :update, id: @entity, entity: { name: "test", description: "description", map_point_id: 1 }
     assert_redirected_to entity_path(assigns(:entity))
   end
 
