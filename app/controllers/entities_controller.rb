@@ -24,7 +24,8 @@ class EntitiesController < ApplicationController
   # POST /entities
   # POST /entities.json
   def create
-    @entity = Entity.new(entity_params)
+    map_point = MapPoint.find(entity_params[:map_point_id])
+    @entity = map_point.entities.build(entity_params)
 
     respond_to do |format|
       if @entity.save

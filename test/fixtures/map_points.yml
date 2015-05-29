@@ -4,6 +4,7 @@ one:
   x: 1
   'y': 1
   zone: MyString
+  id: 1
 
 two:
   x: 2
