@@ -1,7 +1,10 @@
 class GridController < ApplicationController
   def show
     @map_points = MapPoint.includes(:entities).all.group_by(&:x)
-    gon.map_points = Hash[*MapPoint.all.map{ |p| [p.id, p] }.flatten]
+    @map_point = MapPoint.includes(:entities).first
+  end
+
+  def point
 
   end
 
