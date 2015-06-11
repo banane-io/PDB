@@ -13,4 +13,4 @@
 </div>
 <% end %>
 
-<%= render @map_point %>
+<%= render @map_point ||= MapPoint.new %>

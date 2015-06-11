@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520005636) do
+ActiveRecord::Schema.define(version: 20150611000231) do
 
   create_table "entities", force: true do |t|
     t.string   "name"
@@ -33,6 +33,12 @@ ActiveRecord::Schema.define(version: 20150520005636) do
   end
 
   add_index "map_points", ["x", "y"], name: "index_map_points_on_x_and_y", unique: true
+
+  create_table "players", force: true do |t|
+    t.string   "username"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
