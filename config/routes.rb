@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'player/new'
-
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks"}
   root 'static_pages#home'
   get 'static_pages/home'
@@ -8,7 +6,9 @@ Rails.application.routes.draw do
   get 'grid/show'
   get 'grid/point/:id', to: 'grid#point'
   get 'grid/move'
+  get 'players/new'
   resources :map_points
   resources :entities
+  resources :players
 
 end

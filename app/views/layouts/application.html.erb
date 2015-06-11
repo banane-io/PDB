@@ -16,6 +16,7 @@
       <li> <%= link_to "MapPoints", map_points_path %> </li>
       <li> <%= link_to "Entity", entities_path %> </li>
       <li> <%= link_to "Grid", grid_show_path %> </li>
+      <li> <%= link_to "Player", players_path %> </li>
       <% if !user_signed_in? %>
         <li> <%= link_to "Sign In", new_user_session_path %> </li>
       <% else %>
