@@ -1,4 +1,4 @@
 class Player < ActiveRecord::Base
   has_one :user
-  has_one :entity
+  belongs_to :entity
 end
