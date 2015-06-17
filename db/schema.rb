@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611000231) do
+ActiveRecord::Schema.define(version: 20150612030525) do
 
   create_table "entities", force: true do |t|
     t.string   "name"
@@ -38,7 +38,10 @@ ActiveRecord::Schema.define(version: 20150611000231) do
     t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "entity_id"
   end
+
+  add_index "players", ["entity_id"], name: "index_players_on_entity_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
