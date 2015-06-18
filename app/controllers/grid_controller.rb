@@ -2,6 +2,9 @@ class GridController < ApplicationController
   before_action :set_map_point, only: [:point]
   def show
     @map_points = MapPoint.includes(:entities).all.group_by(&:x)
+
+    me = current_user
+    me.create_player
   end
 
   def point

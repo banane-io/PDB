@@ -13,8 +13,8 @@ class PlayersController < ApplicationController
   end
 
   def create
-    @player = Player.new(player_params)
-    @player.build_user = current_user
+    me = current_user
+    @player = me.build_player(player_params)
     if @player.save
       #flash[:info] = "Point on the map created"
       redirect_to root_url

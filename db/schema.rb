@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150612030525) do
+ActiveRecord::Schema.define(version: 20150618001545) do
 
   create_table "entities", force: true do |t|
     t.string   "name"
@@ -58,9 +58,11 @@ ActiveRecord::Schema.define(version: 20150612030525) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.integer  "player_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["player_id"], name: "index_users_on_player_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
