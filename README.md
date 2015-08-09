@@ -1,7 +1,23 @@
-[![Stories in Ready](https://badge.waffle.io/banane-io/PDB.png?label=ready&title=Ready)](https://waffle.io/banane-io/PDB)
+
 PDB
 ===
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/banane-io/PDB?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/banane-io/PDB?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Stories in Ready](https://badge.waffle.io/banane-io/PDB.png?label=ready&title=Ready)](https://waffle.io/banane-io/PDB)
 
-Small rails game
+This is a small web application to create a web engine for browser games. The goal of the engine is to create games similar to Ogame, in which you can host and create the story by yourself.
+
+
+How to Help
+===
+
+If you want to help, here's what you can do to contribute to the project :
+
+* Download and install Ruby on Rails here : http://rubyonrails.org/download/
+* Clone or fork the project.
+* Go to our Waffle project and assign yourself a task or create one and work on it.
+
+What We Need
+===
+We would currently need someone to tutor us in the best practices for Rails. We both are new to the framework and language so our code is still not clean enough. We do not have good tests and we're still in the learning curve.
+
+We will need help with the layout and look of the site. We're both programmers so ou forte is not design. Feel free to propose some improvements desgins wise.
