@@ -14,10 +14,10 @@ If you want to help, here's what you can do to contribute to the project :
 
 * Download and install Ruby on Rails here : http://rubyonrails.org/download/
 * Clone or fork the project.
-* Go to our Waffle project and assign yourself a task or create one and work on it.
+* Go to our Waffle project and assign yourself a task, or create one and work on it.
 
 What We Need
 ===
-We would currently need someone to tutor us in the best practices for Rails. We both are new to the framework and language so our code is still not clean enough. We do not have good tests and we're still in the learning curve.
+We currently need someone to tutor us in the best practices for Rails. We are both new to the framework and the language, so our code still isn't clean enough. We do not have good tests and we're still in the learning curve.
 
-We will need help with the layout and look of the site. We're both programmers so ou forte is not design. Feel free to propose some improvements desgins wise.
+We will need help with the layout and the aesthetics of the site. We're both programmers so our forte is not design. Feel free to suggest some improvements design wise.
