@@ -4,13 +4,23 @@
       <h2><%= pluralize(@entity.errors.count, "error") %> prohibited this entity from being saved:</h2>
       <ul>
       <% @player.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li> <%= message %> </li>
       <% end %>
       </ul>
     </div>
   <% end %>
   <%= f.label :username %>
   <%= f.text_field :username, class: 'form-control' %>
+
+  <%= fields_for @entity do |fe| %>
+    <%= fe.collection_select(:map_point_id, MapPoint.all, :id, :zone) %>
+
+    <%= fe.label :name %>
+    <%= fe.text_field :name, class: 'form-control' %>
+
+    <%= fe.label :description %>
+    <%= fe.text_field :description, class: 'form-control' %>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>

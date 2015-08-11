@@ -15,7 +15,7 @@ class MapPointsController < ApplicationController
     @map_point = MapPoint.new(map_point_params)
     if @map_point.save
       #flash[:info] = "Point on the map created"
-      redirect_to root_url
+      redirect_to map_points_path
     else
       render 'new'
     end
@@ -24,7 +24,7 @@ class MapPointsController < ApplicationController
   def destroy
     MapPoint.find(params[:id]).destroy
     #flash[:success] = "Point deleted"
-    redirect_to root_url
+    redirect_to map_points_path
   end
 
   def edit

@@ -4,7 +4,7 @@ class GridController < ApplicationController
     @map_points = MapPoint.includes(:entities).all.group_by(&:x)
 
     me = current_user
-    me.create_player
+    @player = me.player
   end
 
   def point

@@ -7,6 +7,7 @@ class PlayersController < ApplicationController
 
   def new
     @player = Player.new
+    @entity = Entity.new
   end
 
   def show
@@ -15,9 +16,10 @@ class PlayersController < ApplicationController
   def create
     me = current_user
     @player = me.build_player(player_params)
-    if @player.save
+    @entity = @player.build_entity(entity_params)
+    if @player.save && @entity.save
       #flash[:info] = "Point on the map created"
-      redirect_to root_url
+      redirect_to players_path
     else
       render 'new'
     end
@@ -26,7 +28,7 @@ class PlayersController < ApplicationController
   def destroy
     Player.find(params[:id]).destroy
     #flash[:success] = "Point deleted"
-    redirect_to root_url
+    redirect_to players_path
   end
 
   def edit
@@ -46,6 +48,11 @@ class PlayersController < ApplicationController
     def player_params
       params.require(:player).permit(:username)
     end
+
+    def entity_params
+      params.require(:entity).permit(:map_point_id, :name, :description)
+    end
+
 
     def set_player
       @player = Player.find(params[:id])
