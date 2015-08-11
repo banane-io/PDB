@@ -5,6 +5,7 @@ class GridController < ApplicationController
 
     me = current_user
     @player = me.player
+    @map_point = me.player.entity.map_point
   end
 
   def point

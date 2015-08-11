@@ -1,20 +1,30 @@
 <h1>Grid system</h1>
-<%= form_tag do %>
-<div class="float">
-  <table class="table-bordered">
-    <% @map_points.each do |key, array| %>
-      <tr>
-        <% array.each do |map_point| %>
-          <td> <%= radio_button_tag(:id,map_point.id, false, class: "grid_point") %> </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </table>
+<div class="row">
+  <%= form_tag do %>
+
+    <table class="table-bordered centered">
+      <% @map_points.each do |key, array| %>
+        <tr>
+          <% array.each do |map_point| %>
+            <td>
+              <% if map_point.id == @map_point.id %>
+                <%= radio_button_tag(:id,map_point.id, true, class: "grid_point") %>
+              <% else %>
+               <%= radio_button_tag(:id,map_point.id, false, class: "grid_point") %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+
+  <% end %>
 </div>
-<% end %>
-<div class="float">
-  <%= render @map_point ||= MapPoint.new %>
-</div>
-<div class="float">
-  <%= render @player %>
+<div class="row">
+  <div class="float">
+    <%= render @player %>
+  </div>
+  <div class="float">
+    <%= render @map_point ||= MapPoint.new %>
+  </div>
 </div>
