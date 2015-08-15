@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'static_pages/help'
   get 'grid/show'
   get 'grid/point/:id', to: 'grid#point'
-  get 'grid/move'
+  get 'grid/move/:map_point_id', to: 'grid#move', as: 'grid_move'
   get 'players/new'
   resources :map_points
   resources :entities
