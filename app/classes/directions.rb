@@ -10,7 +10,7 @@ class Directions
   NORTHEAST = new(1, -1)
   EAST = new(1, 0)
   SOUTHEAST = new(1, 1)
-  SOUTH = new(0, -1)
+  SOUTH = new(0, 1)
   SOUTHWEST = new(-1, 1)
   WEST = new(-1, 0)
 

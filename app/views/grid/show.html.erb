@@ -30,10 +30,18 @@
   <div class="float">
 
     <div class="btn-group" role="group" aria-label="...">
-      <%= link_to '', grid_move_path(@map_points[0][1]), :class => "btn glyphicon glyphicon-arrow-left"  %>
-      <%= link_to '', grid_move_path(@map_points[1][1]), :class => "btn glyphicon glyphicon-arrow-up"  %>
-      <%= link_to '', grid_move_path(@map_points[2][1]), :class => "btn glyphicon glyphicon-arrow-right"  %>
-      <%= link_to '', grid_move_path(@map_points[3][1]), :class => "btn glyphicon glyphicon-arrow-down"  %>
+      <% unless @neighbors[Directions::WEST].nil? %>
+        <%= link_to '', grid_move_path(@neighbors[Directions::WEST]), :class => "btn glyphicon glyphicon-arrow-left"  %>
+      <% end %>
+      <% unless @neighbors[Directions::NORTH].nil? %>
+        <%= link_to '', grid_move_path(@neighbors[Directions::NORTH]), :class => "btn glyphicon glyphicon-arrow-up"  %>
+      <% end %>
+      <% unless @neighbors[Directions::EAST].nil? %>
+        <%= link_to '', grid_move_path(@neighbors[Directions::EAST]), :class => "btn glyphicon glyphicon-arrow-right"  %>
+      <% end %>
+      <% unless @neighbors[Directions::SOUTH].nil? %>
+        <%= link_to '', grid_move_path(@neighbors[Directions::SOUTH]), :class => "btn glyphicon glyphicon-arrow-down"  %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -2,11 +2,12 @@ class GridController < ApplicationController
   before_action :set_map_point, only: [:point]
   before_action :set_map_point_to_move_to, only: [:move]
   def show
-    @map_points = MapPoint.includes(:entities).all.group_by(&:x)
+    @map_points = MapPoint.includes(:entities).all.group_by(&:y)
 
     me = current_user
     @player = me.player
     @map_point = me.player.entity.map_point
+    @neighbors = @map_point.neighbors
   end
 
   def point
