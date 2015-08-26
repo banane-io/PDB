@@ -1,0 +1,21 @@
+<div id="current_map_point" class="map_point float">
+  <p>
+    <strong>X:</strong>
+    <%= @map_point.x %>
+  </p>
+
+  <p>
+    <strong>Y:</strong>
+    <%= @map_point.y %>
+  </p>
+  <p>
+    <strong>Zone:</strong>
+    <%= @map_point.zone %>
+  </p>
+  <p>
+    <strong>Entities:</strong>
+    <ul class="microposts">
+      <%= render @map_point.entities unless @map_point.entities.empty? %>
+    </ul>
+  </p>
+</div>

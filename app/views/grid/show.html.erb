@@ -1,0 +1,47 @@
+<h1>Grid system</h1>
+<div class="row">
+  <%= form_tag do %>
+
+    <table class="table-bordered centered">
+      <% @map_points.each do |key, array| %>
+        <tr>
+          <% array.each do |map_point| %>
+            <td>
+              <% if map_point.id == @map_point.id %>
+                <%= radio_button_tag(:id,map_point.id, true, class: "grid_point") %>
+              <% else %>
+               <%= radio_button_tag(:id,map_point.id, false, class: "grid_point") %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+
+  <% end %>
+</div>
+<div class="row">
+  <div class="float">
+    <%= render @player %>
+  </div>
+  <div class="float">
+    <%= render @map_point ||= MapPoint.new %>
+  </div>
+  <div class="float">
+
+    <div class="btn-group" role="group" aria-label="...">
+      <% unless @neighbors[Directions::WEST].nil? %>
+        <%= link_to '', grid_move_path(@neighbors[Directions::WEST]), :class => "btn glyphicon glyphicon-arrow-left"  %>
+      <% end %>
+      <% unless @neighbors[Directions::NORTH].nil? %>
+        <%= link_to '', grid_move_path(@neighbors[Directions::NORTH]), :class => "btn glyphicon glyphicon-arrow-up"  %>
+      <% end %>
+      <% unless @neighbors[Directions::EAST].nil? %>
+        <%= link_to '', grid_move_path(@neighbors[Directions::EAST]), :class => "btn glyphicon glyphicon-arrow-right"  %>
+      <% end %>
+      <% unless @neighbors[Directions::SOUTH].nil? %>
+        <%= link_to '', grid_move_path(@neighbors[Directions::SOUTH]), :class => "btn glyphicon glyphicon-arrow-down"  %>
+      <% end %>
+    </div>
+  </div>
+</div>

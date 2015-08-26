@@ -2,13 +2,33 @@
 <html>
 <head>
   <title>PDB</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= include_gon %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+<div class="container">
+  <nav>
+    <ul>
+      <li> <%= link_to "Home", root_path %> </li>
+      <li> <a href="#">Help</a> </li>
+      <li> <%= link_to "MapPoints", map_points_path %> </li>
+      <li> <%= link_to "Entity", entities_path %> </li>
+      <li> <%= link_to "Grid", grid_show_path %> </li>
+      <li> <%= link_to "Player", players_path %> </li>
+      <% if !user_signed_in? %>
+        <li> <%= link_to "Sign In", new_user_session_path %> </li>
+      <% else %>
+        <li> <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %> </li>
+      <% end %>
+    </ul>
+  </nav>
+  <% if !notice.nil?||!alert.nil? %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  <% end %>
+  <%= yield %>
+</div>
 </body>
 </html>

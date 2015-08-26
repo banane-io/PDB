@@ -1,0 +1,17 @@
+<h1>All points</h1>
+<ul>
+  <% @map_points.each do |map_point| %>
+    <li>
+      <%= label map_point.x, map_point.x %>
+      <%= label map_point.y, map_point.y %>
+      <%= label map_point.zone, map_point.zone %>
+      <%= link_to map_point.id, map_point %>
+      <%= link_to 'edit', edit_map_point_path(map_point) %>
+      <%= link_to "delete", map_point, method: :delete,
+                                      data: { confirm: "You sure?" } %>
+    </li>
+  <% end %>
+</ul>
+
+<hr/>
+<%= link_to 'New Point', new_map_point_path %>

@@ -1,0 +1,15 @@
+<h1>All points</h1>
+<ul>
+  <% @players.each do |player| %>
+    <li>
+      <%= label player.username, player.username %>
+      <%= link_to player.id, player %>
+      <%= link_to 'edit', edit_player_path(player) %>
+      <%= link_to "delete", player, method: :delete,
+                                      data: { confirm: "You sure?" } %>
+    </li>
+  <% end %>
+</ul>
+
+<hr/>
+<%= link_to 'Player', new_player_path %>

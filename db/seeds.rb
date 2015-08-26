@@ -1,7 +1,9 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+i = 0
+5.times do |x|
+  5.times do |y|
+    map_point = MapPoint.create(x: x, y: y, zone: "Zone#{i}")
+    map_point.entities.build(name: "Test#{i}", description: "This is a simple description", map_point_id: map_point)
+    map_point.save
+    i += 1
+  end
+end
