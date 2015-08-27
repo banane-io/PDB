@@ -18,7 +18,9 @@ gem 'foreigner'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
-gem 'gon'
+#gem 'gon'
+
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'
