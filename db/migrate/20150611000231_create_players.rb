@@ -5,12 +5,5 @@ class CreatePlayers < ActiveRecord::Migration
 
       t.timestamps
     end
-    change_table :users do |t|
-      t.foreign_key :players
-    end
-
-    change_table :entities do |t|
-      t.foreign_key :players
-    end
   end
 end
