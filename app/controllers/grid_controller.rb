@@ -1,12 +1,12 @@
 class GridController < ApplicationController
   before_action :set_map_point, only: [:point]
   before_action :set_map_point_to_move_to, only: [:move]
+  
   def show
     @map_points = MapPoint.includes(:entities).all.group_by(&:y)
 
-    me = current_user
-    @player = me.player
-    @map_point = me.player.entity.map_point
+    @player = current_player
+    @map_point = @player.entity.map_point
     @neighbors = @map_point.neighbors
   end
 
@@ -15,9 +15,8 @@ class GridController < ApplicationController
   end
 
   def move
-    me = current_user
-    @player = me.player
-    me.player.entity.move(MapPoint.find(params[:map_point_id]))
+    @player = current_player
+    @player.entity.move(MapPoint.find(params[:map_point_id]))
     redirect_to grid_show_path
   end
 
@@ -30,6 +29,4 @@ class GridController < ApplicationController
     def set_map_point_to_move_to
       @map_point = MapPoint.find(params[:map_point_id])
     end
-
-
 end
