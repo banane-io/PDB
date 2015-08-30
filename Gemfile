@@ -21,6 +21,7 @@ gem 'foreigner'
 #gem 'gon'
 
 gem 'dotenv-rails'
+gem 'rails_12factor'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'
