@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.margin-bottom {
+  margin-bottom: 15px;
+}
