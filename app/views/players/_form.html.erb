@@ -13,8 +13,6 @@
   <%= f.text_field :username, class: 'form-control' %>
 
   <%= fields_for @entity do |fe| %>
-    <%= fe.collection_select(:map_point_id, MapPoint.all, :id, :zone) %>
-
     <%= fe.label :name %>
     <%= fe.text_field :name, class: 'form-control' %>
 
