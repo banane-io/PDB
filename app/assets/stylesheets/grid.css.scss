@@ -11,3 +11,22 @@ td {
   margin-left: auto ;
   margin-right: auto ;
 }
+
+.inline {
+  display: inline;
+}
+
+fieldset {
+    margin: 8px;
+    border: 1px solid silver;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.arrow {
+  height: 35px;
+}
+
+.current_zone {
+  outline: thin solid green;
+}
