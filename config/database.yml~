@@ -14,18 +14,16 @@ development:
   encoding: unicode
   database: pdb_development
   pool: 5
-  host: localhost
   username: pdb
-  password: 135246
+  password: <%= ENV["PASSWORD_PG"] %>
 
 test:
   adapter: postgresql
   encoding: unicode
   database: pdb_test
   pool: 5
-  host: localhost
   username: pdb
-  password: 135246
+  password: <%= ENV["PASSWORD_PG"] %>
 
 production:
   <<: *default
