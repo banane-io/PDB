@@ -8,8 +8,9 @@ td {
   float: left;
 }
 .centered {
-  margin-left: auto ;
-  margin-right: auto ;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .inline {
@@ -29,4 +30,8 @@ fieldset {
 
 .current_zone {
   outline: thin solid green;
+}
+
+.clicked_zone {
+  outline: thin solid blue;
 }

@@ -23,9 +23,9 @@
     </table>
   <% end %>
   <fieldset class="float inline">
-    <div class="row arrow">
+    <div class="row arrow centered">
     <% unless @neighbors[Directions::NORTH].nil? %>
-      <%= link_to '', grid_move_path(@neighbors[Directions::NORTH]), :class => "btn glyphicon glyphicon-arrow-up"  %>
+      <%= link_to '', grid_move_path(@neighbors[Directions::NORTH]), :class => "btn glyphicon glyphicon-arrow-up centered"  %>
     <% end %>
   </div>
     <div class="row arrow">
@@ -36,9 +36,9 @@
       <%= link_to '', grid_move_path(@neighbors[Directions::EAST]), :class => "btn glyphicon glyphicon-arrow-right"  %>
     <% end %>
   </div>
-    <div class="row arrow">
+    <div class="row arrow centered">
     <% unless @neighbors[Directions::SOUTH].nil? %>
-      <%= link_to '', grid_move_path(@neighbors[Directions::SOUTH]), :class => "btn glyphicon glyphicon-arrow-down"  %>
+      <%= link_to '', grid_move_path(@neighbors[Directions::SOUTH]), :class => "btn glyphicon glyphicon-arrow-down centered"  %>
     <% end %>
   </div>
   </fieldset>
