@@ -22,7 +22,7 @@
       <% end %>
     </table>
   <% end %>
-  <fieldset class="float inline">
+  <fieldset class="float inline square">
     <div class="row arrow centered">
     <% unless @neighbors[Directions::NORTH].nil? %>
       <%= link_to '', grid_move_path(@neighbors[Directions::NORTH]), :class => "btn glyphicon glyphicon-arrow-up centered"  %>
