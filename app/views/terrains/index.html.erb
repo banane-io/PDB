@@ -14,7 +14,8 @@
       <tr>
         <td><%= terrain.name %></td>
         <td><%= terrain.colour %></td>
-        <td><%= link_to 'Edit', edit_terrain_path(terrain) %></td>
+        <td><%= link_to 'Edit', edit_terrain_path(terrain) %> |</td>
+        <td><%= link_to 'Show', terrain %> |</td>
         <td><%= link_to 'Delete', terrain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
