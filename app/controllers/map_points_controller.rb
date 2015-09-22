@@ -9,6 +9,7 @@ class MapPointsController < ApplicationController
   end
 
   def show
+    @current_terrain = Terrain.find_by_id(@map_point.terrain_id)
   end
 
   def create
@@ -42,7 +43,7 @@ class MapPointsController < ApplicationController
   private
 
     def map_point_params
-      params.require(:map_point).permit(:x, :y, :zone)
+      params.require(:map_point).permit(:x, :y, :zone, :terrain_id)
     end
 
     def set_map_point

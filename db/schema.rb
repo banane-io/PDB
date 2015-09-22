@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916180647) do
+ActiveRecord::Schema.define(version: 20150922170846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150916180647) do
     t.string   "zone"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "terrain_id"
   end
 
   add_index "map_points", ["x", "y"], name: "index_map_points_on_x_and_y", unique: true, using: :btree
