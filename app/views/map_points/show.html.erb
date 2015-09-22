@@ -14,7 +14,11 @@
   </p>
   <p>
     <strong>Terrain:</strong>
-    <%= @current_terrain.name %>
+    <% if @current_terrain %>
+      <%= @current_terrain.name %>
+    <% else %>
+      No terrain for this map point.
+    <% end %>
   </p>
 
   <%= link_to 'Edit', edit_map_point_path(@map_point) %> |
