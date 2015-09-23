@@ -37,7 +37,7 @@ class PlayersController < ApplicationController
   end
 
   def update
-    if @player.update_attributes(player_params)
+    if @player.update_attributes(player_params) && @player.entity.update_attributes(entity_params)
       #flash[:success] = "Point updated"
       redirect_to @player
     else

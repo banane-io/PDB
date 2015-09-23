@@ -12,7 +12,7 @@
   <%= f.label :username %>
   <%= f.text_field :username, class: 'form-control' %>
 
-  <%= fields_for @entity do |fe| %>
+  <%= fields_for @player.entity do |fe| %>
     <%= fe.label :name %>
     <%= fe.text_field :name, class: 'form-control' %>
 
