@@ -32,6 +32,11 @@ class GridController < ApplicationController
     end
 
     def redirect_if_no_player
+      if not user_signed_in?
+        redirect_to root_path
+        return
+      end
+
       if current_user.player.nil?
          redirect_to new_player_path
       end
