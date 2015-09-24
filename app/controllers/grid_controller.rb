@@ -4,11 +4,10 @@ class GridController < ApplicationController
   before_action :redirect_if_no_player, only: [:show]
 
   def show
-    @map_points = MapPoint.includes(:entities).all.group_by(&:y)
-
     @player = current_player
     @map_point = @player.entity.map_point
     @neighbors = @map_point.neighbors
+    @map_points = @map_point.load_grid(5)
   end
 
   def point
