@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @terrain.name %>
+</p>
+
+<p>
+  <strong>Colour:</strong>
+  <%= @terrain.colour %>
+</p>
+
+<%= link_to 'Edit', edit_terrain_path(@terrain) %> |
+<%= link_to 'Back', terrains_path %>
