@@ -9,7 +9,6 @@ class MapPointsController < ApplicationController
   end
 
   def show
-    @current_terrain = Terrain.find_by_id(@map_point.terrain_id)
   end
 
   def create

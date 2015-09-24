@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922170846) do
+ActiveRecord::Schema.define(version: 20150924144119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150922170846) do
     t.integer  "terrain_id"
   end
 
+  add_index "map_points", ["terrain_id"], name: "index_map_points_on_terrain_id", using: :btree
   add_index "map_points", ["x", "y"], name: "index_map_points_on_x_and_y", unique: true, using: :btree
 
   create_table "players", force: true do |t|
@@ -48,8 +49,8 @@ ActiveRecord::Schema.define(version: 20150922170846) do
   add_index "players", ["entity_id"], name: "index_players_on_entity_id", using: :btree
 
   create_table "terrains", force: true do |t|
-    t.string   "name"
-    t.string   "colour"
+    t.text     "name"
+    t.text     "colour"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

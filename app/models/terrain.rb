@@ -1,5 +1,3 @@
 class Terrain < ActiveRecord::Base
-  belongs_to :map_point
-  validates :name, presence: true
-  validates :colour, presence: true
+  has_many :map_point
 end

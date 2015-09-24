@@ -1,6 +1,6 @@
 class MapPoint < ActiveRecord::Base
   has_many :entities
-  has_one :terrain
+  belongs_to :terrain
   validates :x, presence: true
   validates :y, presence: true
 

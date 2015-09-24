@@ -14,8 +14,11 @@
   </p>
   <p>
     <strong>Terrain:</strong>
-    <% if @current_terrain %>
-      <%= @current_terrain.name %>
+    <% if @map_point.terrain %>
+      <strong>Name:</strong>
+      <%= @map_point.terrain.name %>
+      <strong>Colour:</strong>
+      <%= @map_point.terrain.colour %>
     <% else %>
       No terrain for this map point.
     <% end %>
