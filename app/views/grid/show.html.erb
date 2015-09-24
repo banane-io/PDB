@@ -7,6 +7,7 @@
         <tr>
           <% array.each do |map_point| %>
             <td bgcolor= "<%= @map_point.terrain.colour %>">
+              <%= @map_point.terrain.colour %>
               <% if map_point.id == @map_point.id %>
                 <%= radio_button_tag(:id,map_point.id, true, class: "grid_point") %>
               <% else %>
