@@ -5,17 +5,16 @@
     <table class="table-bordered float inline">
       <% @map_points.each do |key, array| %>
       <tr>
-        <% array.each do |map_point| %>        
+        <% array.each do |map_point| %>
           <% if map_point.id == @map_point.id %>
-          <td class="current_zone" bgcolor= "<%= @map_point.terrain.colour %>">
-            <%= radio_button_tag(:id,map_point.id, true, class: "grid_point") %>
-          </td>
+            <td class="current_zone" bgcolor="<%= map_point.terrain.colour %>">
+              <%= radio_button_tag(:id,map_point.id, true, class: "grid_point") %>
+            </td>
           <% else %>
-          <td>
-            <%= radio_button_tag(:id,map_point.id, false, class: "grid_point") %>
-          </td>
-        <% end %>
-
+            <td bgcolor="<%= map_point.terrain.colour %>">
+              <%= radio_button_tag(:id,map_point.id, false, class: "grid_point") %>
+            </td>
+          <% end %>
         <% end %>
       </tr>
       <% end %>
