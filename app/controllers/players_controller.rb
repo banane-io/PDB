@@ -16,7 +16,9 @@ class PlayersController < ApplicationController
   def create
     me = current_user
     @player = me.build_player(player_params)
-    @entity = @player.build_entity(entity_params)
+    entity_params_with_default = entity_params
+    entity_params_with_default[:map_point_id] = MapPoint.first.id
+    @entity = @player.build_entity(entity_params_with_default)
     if @player.save && @entity.save
       #flash[:info] = "Point on the map created"
       redirect_to players_path
@@ -35,7 +37,7 @@ class PlayersController < ApplicationController
   end
 
   def update
-    if @player.update_attributes(player_params)
+    if @player.update_attributes(player_params) && @player.entity.update_attributes(entity_params)
       #flash[:success] = "Point updated"
       redirect_to @player
     else
@@ -50,7 +52,7 @@ class PlayersController < ApplicationController
     end
 
     def entity_params
-      params.require(:entity).permit(:map_point_id, :name, :description)
+      params.require(:entity).permit(:name, :description)
     end
 
 
