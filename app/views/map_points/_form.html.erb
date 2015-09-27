@@ -18,5 +18,8 @@
   <%= f.label :zone %>
   <%= f.text_field :zone, class: 'form-control' %>
 
+  <%= f.label :terrain_id %>
+  <%= f.collection_select(:terrain_id, Terrain.all, :id, :name) %>
+
   <%= f.submit class: "btn btn-primary" %>
 <% end %>

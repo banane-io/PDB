@@ -7,7 +7,7 @@ class GridController < ApplicationController
     @player = current_player
     @map_point = @player.entity.map_point
     @neighbors = @map_point.neighbors
-    @map_points = @map_point.load_grid(5)
+    @map_points = @map_point.load_grid(10)
   end
 
   def point
