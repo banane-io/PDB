@@ -13,10 +13,28 @@ class MapPoint < ActiveRecord::Base
 
   def load_grid(range)
     range_map = range / 2
-    min_x = [0, self.x - range_map].max
-    max_x = [25, self.x + range_map].min
-    min_y = [0, self.y - range_map].max
-    max_y = [25, self.y + range_map].min
-    MapPoint.includes(:entities).where(:x => min_x..max_x).where(:y => min_y..max_y).order(x: :asc, y: :asc).group_by(&:y)
+    minMaxX = calculateMinMax(range_map, MapPoint.minimum("x"), MapPoint.maximum("x"), self.x)
+    minMaxY = calculateMinMax(range_map, MapPoint.minimum("y"), MapPoint.maximum("y"), self.y)
+    MapPoint.includes(:entities).where(:x => minMaxX[0]..minMaxX[1]).where(:y => minMaxY[0]..minMaxY[1]).order(x: :asc, y: :asc).group_by(&:y)
   end
+
+  private
+    def calculateMinMax(range_map, minMap, maxMap, position)
+      overflow = 0
+      underflow = 0
+      borderLeft = position - range_map
+      borderRight = position + range_map
+      if(borderLeft < minMap)
+        overflow = borderLeft.abs
+      end
+      if(borderRight > maxMap)
+        underflow = maxMap - borderRight
+      end
+
+      min = [minMap, borderLeft].max
+      min = min - underflow
+      max = [maxMap, borderRight].min
+      max = max + overflow
+      return [min,max]
+    end
 end
