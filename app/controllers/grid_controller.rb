@@ -1,5 +1,7 @@
 class GridController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :check_if_login, only: [:index, :show]
+  before_action :check_if_admin, only: [:edit, :update, :destroy]
+
   before_action :set_map_point, only: [:point]
   before_action :set_map_point_to_move_to, only: [:move]
   before_action :redirect_if_no_player, only: [:show]

@@ -1,5 +1,7 @@
 class PlayersController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :check_if_login, only: [:new, :index, :show]
+  #before_action :authenticate_user!, only: [:edit, :update, :destroy]
+
   before_action :set_player, only: [:show, :edit, :update, :destroy]
   def index
     @players = Player.all

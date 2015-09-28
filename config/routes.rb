@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks"}
   root 'static_pages#home'
   get 'static_pages/home'
+  get 'static_pages/unauthorized', :as => :unauthorized_redirect_path
+  get 'static_pages/login_required', :as => :login_required_path
   get 'static_pages/help'
   get 'grid/show'
   get 'grid/point/:id', to: 'grid#point'

@@ -11,5 +11,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_if_admin
+    if not current_user.nil?
+      if current_user.role.downcase != "admin".downcase
+        redirect_to :unauthorized_redirect_path
+      end
+    else
+      redirect_to :login_required_path
+    end
+  end
+
+  def check_if_login
+    if current_user.nil?
+      redirect_to :login_required_path
+    end
+  end
+
   include ApplicationHelper
 end

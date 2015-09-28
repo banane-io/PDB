@@ -1,5 +1,6 @@
 class EntitiesController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :check_if_login, only: [:index, :show]
+  before_action :check_if_admin, only: [:new, :edit, :update, :destroy]
   before_action :set_entity, only: [:show, :edit, :update, :destroy]
 
   # GET /entities
@@ -73,4 +74,5 @@ class EntitiesController < ApplicationController
     def entity_params
       params.require(:entity).permit(:name, :description, :map_point_id)
     end
+
 end
