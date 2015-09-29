@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924220257) do
+ActiveRecord::Schema.define(version: 20150928234036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20150924220257) do
 
   add_index "entities", ["map_point_id", "created_at"], name: "index_entities_on_map_point_id_and_created_at", using: :btree
   add_index "entities", ["map_point_id"], name: "index_entities_on_map_point_id", using: :btree
+
+  create_table "identities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "map_points", force: true do |t|
     t.integer  "x"
@@ -71,6 +81,7 @@ ActiveRecord::Schema.define(version: 20150924220257) do
     t.string   "provider"
     t.string   "uid"
     t.integer  "player_id"
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

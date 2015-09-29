@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :terrains
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks"}
+  devise_for :users, :controllers => { omniauth_callbacks: 'callbacks' }
   root 'static_pages#home'
   get 'static_pages/home'
   get 'static_pages/help'
