@@ -36,6 +36,7 @@ class PlayersController < ApplicationController
   end
 
   def edit
+    @player = Player.find_by_id(current_user.player_id)
   end
 
   def update
