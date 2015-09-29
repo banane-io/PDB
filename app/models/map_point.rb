@@ -29,9 +29,8 @@ class MapPoint < ActiveRecord::Base
         overflow = borderLeft.abs
       end
       if(borderRight > maxMap)
-        underflow = maxMap - borderRight
+        underflow = borderRight - maxMap
       end
-
       min = [minMap, borderLeft].max
       min = min - underflow
       max = [maxMap, borderRight].min
