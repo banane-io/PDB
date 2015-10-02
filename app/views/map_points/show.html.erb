@@ -24,6 +24,8 @@
     <% end %>
   </p>
 
-  <%= link_to 'Edit', edit_map_point_path(@map_point) %> |
+  <% if can? :edit, @map_point %>
+    <%= link_to 'Edit', edit_map_point_path(@map_point) %> |
+  <% end %>
   <%= link_to 'Back', map_points_path %>
 </div>

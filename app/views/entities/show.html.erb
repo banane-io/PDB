@@ -10,5 +10,8 @@
 <p>
   <strong>Map Point:</strong>
 </p>
-<%= link_to 'Edit', edit_entity_path(@entity) %> |
+
+<% if can? :edit, @entity %>
+  <%= link_to 'Edit', edit_entity_path(@entity) %> |
+<% end %>
 <%= link_to 'Back', entities_path %>
