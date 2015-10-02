@@ -40,6 +40,7 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
+    cancancan (1.12.0)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     coderay (1.1.0)
@@ -230,6 +231,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (= 3.2.0.0)
   byebug (= 3.4.0)
+  cancancan (~> 1.10)
   coffee-rails (~> 4.0.0)
   devise
   dotenv-rails

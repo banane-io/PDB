@@ -1,6 +1,8 @@
 class TerrainsController < ApplicationController
-  before_action :check_if_login, only: [:index, :show]
-  before_action :check_if_admin, only: [:new, :edit, :update, :destroy]
+  #before_action :check_if_login, only: [:index, :show]
+  #before_action :check_if_admin, only: [:new, :edit, :update, :destroy]
+
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   before_action :set_terrain, only: [:show, :edit, :update, :destroy]
 
