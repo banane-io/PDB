@@ -4,9 +4,14 @@
     <li>
       <%= label player.username, player.username %>
       <%= link_to player.id, player %>
-      <%= link_to 'edit', edit_player_path(player) %>
-      <%= link_to "delete", player, method: :delete,
-                                      data: { confirm: "You sure?" } %>
+
+      <% if can? :edit, player %>
+        <td><%= link_to 'Edit', edit_player_path(player) %></td>
+      <% end %>
+      <% if can? :destroy, player %>
+        <td><%= link_to "Delete", player, method: :delete,
+                                        data: { confirm: "You sure?" } %></td>
+      <% end %>
     </li>
   <% end %>
 </ul>

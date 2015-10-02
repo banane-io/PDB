@@ -5,16 +5,14 @@ class Ability
 
     user ||= User.new
     if user.role == "admin"
-      can :index, :all
-      can :show, :all
-      can :edit, :all
-      can :destroy, :all
-      can :create, :all
-      can :update, :all
+      can :manage, :all
     elsif user.role == "normal"
       can :show, :all
       can :index, :all
-      can :edit, Player
+      can :edit, Player do |player|
+        user.player_id == player.id
+      end
+      can :create, Player
     end
     # Define abilities for the passed in user here. For example:
     #
