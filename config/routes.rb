@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :map_points
   resources :entities
   resources :players
+  resources :users
 end

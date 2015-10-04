@@ -13,8 +13,14 @@ class Ability
         user.player_id == player.id
       end
       can :create, Player
+      can :edit, User do |param_user|
+        user.id == param_user.id
+      end
     else
       cannot :manage, :all
+      can :manage, Player do |player|
+        user.player_id == player.id
+      end
     end
     # Define abilities for the passed in user here. For example:
     #

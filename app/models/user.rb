@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  ROLES = %w[admin user]
+  ROLES = %w[admin normal nonuser]
 
   belongs_to :player
   devise :database_authenticatable, :registerable,
