@@ -1,9 +1,9 @@
 class TerrainsController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
 
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_terrain, only: [:show, :edit, :update, :destroy]
-  
+
   respond_to :html
 
   def index

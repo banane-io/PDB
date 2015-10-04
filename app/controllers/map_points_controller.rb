@@ -1,7 +1,9 @@
 class MapPointsController < ApplicationController
-  load_and_authorize_resource
-  #before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  authorize_resource
+
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_map_point, only: [:show, :edit, :update, :destroy]
+
   def index
     @map_points = MapPoint.all
   end
