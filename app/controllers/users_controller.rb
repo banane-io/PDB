@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  authorize_resource
+
   before_action :set_user, only: [:update, :destroy]
 
   # GET /users/1
@@ -34,6 +36,15 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  # DELETE /users/1
+  # DELETE /users/1.json
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 =end
   # GET /users/1/edit
   def edit
@@ -51,16 +62,6 @@ class UsersController < ApplicationController
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

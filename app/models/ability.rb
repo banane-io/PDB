@@ -3,6 +3,8 @@ class Ability
 
   def initialize(user)
 
+    alias_action :update, :edit, :show, :to => :modify
+
     user ||= User.new
     if user.role == "admin"
       can :manage, :all
@@ -13,11 +15,14 @@ class Ability
         user.player_id == player.id
       end
       can :create, Player
-      can :edit, User do |param_user|
+      can :modify, User do |param_user|
         user.id == param_user.id
       end
     else
       cannot :manage, :all
+      can :modify, User do |param_user|
+        user.id == param_user.id
+      end
       can :manage, Player do |player|
         user.player_id == player.id
       end
