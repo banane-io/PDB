@@ -1,0 +1,4 @@
+<h1>Sign in</h1>
+<p>Use your facebook or Google account to log in the game<p>
+<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %><br>
+<%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>

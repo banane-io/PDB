@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'static_pages/home'
   get 'static_pages/help'
+  get 'static_pages/signin'
   get 'grid/show'
   get 'grid/point/:id', to: 'grid#point'
   get 'grid/move/:map_point_id', to: 'grid#move', as: 'grid_move'
