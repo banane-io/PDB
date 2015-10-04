@@ -7,11 +7,11 @@
       <tr>
         <% array.each do |map_point| %>
           <% if map_point.id == @map_point.id %>
-            <td class="current_zone" bgcolor="<%= map_point.terrain.colour %>">
+            <td class="current_zone" bgcolor="<%= map_point.terrain.colour if !map_point.terrain.nil? %>">
               <%= radio_button_tag(:id,map_point.id, true, class: "grid_point") %>
             </td>
           <% else %>
-            <td bgcolor="<%= map_point.terrain.colour %>">
+              <td bgcolor="<%= map_point.terrain.colour if !map_point.terrain.nil? %>">
               <%= radio_button_tag(:id,map_point.id, false, class: "grid_point") %>
             </td>
           <% end %>
