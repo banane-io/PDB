@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20151002231519) do
     t.string   "provider"
     t.string   "uid"
     t.integer  "player_id"
-    t.string   "role"
+    t.string   "role",                    default: "non-user"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

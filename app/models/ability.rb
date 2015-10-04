@@ -13,6 +13,8 @@ class Ability
         user.player_id == player.id
       end
       can :create, Player
+    else
+      cannot :manage, :all
     end
     # Define abilities for the passed in user here. For example:
     #
