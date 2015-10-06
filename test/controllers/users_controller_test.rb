@@ -2,7 +2,8 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   setup do
-    @user = users(:normal)
+    @user = users(:admin)
+    sign_in @user
   end
 
   test "should show user" do
