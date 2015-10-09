@@ -11,3 +11,45 @@ two:
   'y': 1
   zone: MyString
   id: 2
+
+three:
+  x: 3
+  'y': 1
+  zone: MyString
+  id: 3
+
+four:
+  x: 1
+  'y': 2
+  zone: MyString
+  id: 4
+
+five:
+  x: 2
+  'y': 2
+  zone: MyString
+  id: 5
+
+six:
+  x: 3
+  'y': 2
+  zone: MyString
+  id: 6
+
+seven:
+  x: 1
+  'y': 3
+  zone: MyString
+  id: 7
+
+eight:
+  x: 2
+  'y': 3
+  zone: MyString
+  id: 8
+
+nine:
+  x: 3
+  'y': 3
+  zone: MyString
+  id: 9
