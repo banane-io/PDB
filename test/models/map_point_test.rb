@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MapPointTest < ActiveSupport::TestCase
   def setup
-    @map_point = MapPoint.new(x: 5, y: 6)
+    @map_point = MapPoint.new(x:115, y: 116)
   end
 
   test "should be valid" do
@@ -20,7 +20,7 @@ class MapPointTest < ActiveSupport::TestCase
   end
 
   test "complete grid of neighbors" do
-    neighbors = map_points(:five).neighbors
+    neighbors = map_points(:point_28).neighbors
     assert_equal 8, neighbors.length
     Directions::DIRECTIONS.each{ |direction|
       assert_not neighbors[direction].nil?
@@ -28,7 +28,7 @@ class MapPointTest < ActiveSupport::TestCase
   end
 
   test "imcomplete grid of neighbors" do
-    neighbors = map_points(:one).neighbors
+    neighbors = map_points(:point_1).neighbors
     assert_equal 8, neighbors.length
     assert neighbors[Directions::NORTHWEST].nil?
     assert neighbors[Directions::NORTH].nil?
@@ -52,4 +52,45 @@ class MapPointTest < ActiveSupport::TestCase
     assert neighbors[Directions::SOUTH].nil?
     assert neighbors[Directions::SOUTHEAST].nil?
   end
+
+  test "range of map" do
+    grid = map_points(:point_261).load_grid(2)
+    assert_equal 3, grid.length
+    grid.each do |key, array|
+      assert_equal 3, array.length
+    end
+  end
+
+  test "top-left corner of a map" do
+    grid = map_points(:point_1).load_grid(2)
+    assert_equal 3, grid.length
+    grid.each do |key, array|
+      assert_equal 3, array.length
+    end
+  end
+
+  test "top-right corner of a map" do
+    grid = map_points(:point_601).load_grid(2)
+    assert_equal 3, grid.length
+    grid.each do |key, array|
+      assert_equal 3, array.length
+    end
+  end
+
+  test "bottom-left corner of a map" do
+    grid = map_points(:point_25).load_grid(2)
+    assert_equal 3, grid.length
+    grid.each do |key, array|
+      assert_equal 3, array.length
+    end
+  end
+
+  test "bottom-right corner of a map" do
+    grid = map_points(:point_625).load_grid(2)
+    assert_equal 3, grid.length
+    grid.each do |key, array|
+      assert_equal 3, array.length
+    end
+  end
+
 end

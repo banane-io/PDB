@@ -1,55 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  x: 1
-  'y': 1
+<% i = 1 %>
+<% 0.upto(24) do |x| %>
+  <% 0.upto(24) do |y| %>
+point_<%= i %>:
+  x: <%= x %>
+  'y': <%= y %>
   zone: MyString
-  id: 1
-
-two:
-  x: 2
-  'y': 1
-  zone: MyString
-  id: 2
-
-three:
-  x: 3
-  'y': 1
-  zone: MyString
-  id: 3
-
-four:
-  x: 1
-  'y': 2
-  zone: MyString
-  id: 4
-
-five:
-  x: 2
-  'y': 2
-  zone: MyString
-  id: 5
-
-six:
-  x: 3
-  'y': 2
-  zone: MyString
-  id: 6
-
-seven:
-  x: 1
-  'y': 3
-  zone: MyString
-  id: 7
-
-eight:
-  x: 2
-  'y': 3
-  zone: MyString
-  id: 8
-
-nine:
-  x: 3
-  'y': 3
-  zone: MyString
-  id: 9
+  id: <%= i %>
+  <% i += 1 %>
+  <% end %>
+<% end %>
