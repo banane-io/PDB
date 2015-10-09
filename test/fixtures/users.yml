@@ -5,15 +5,15 @@
 # below each fixture, per the syntax in the comments below
 #
 
-#nonuser:
-#  email: "nonuser@hotmail.com"
-#  role: "nonuser"
-#  player_id: 1
+nonuser:
+  email: "nonuser@hotmail.com"
+  role: "nonuser"
+  player_id: 1
 
-#normal:
-#  email: "normal@hotmail.com"
-#  role: "normal"
-#  player_id: 1
+normal:
+  email: "normal@hotmail.com"
+  role: "normal"
+  player_id: 1
 
 admin:
   email: "admin@hotmail.com"
