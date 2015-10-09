@@ -3,7 +3,6 @@ require 'test_helper'
 class EntitiesControllerTest < ActionController::TestCase
   setup do
     @entity = entities(:one)
-    sign_in User.first
   end
 
   test "should get index if normal or admin user" do
