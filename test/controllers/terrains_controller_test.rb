@@ -3,6 +3,8 @@ require 'test_helper'
 class TerrainsControllerTest < ActionController::TestCase
   setup do
     @terrain = terrains(:one)
+    sign_in users(:admin)
+
   end
 
   test "should get index" do

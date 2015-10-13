@@ -3,6 +3,7 @@
 one:
   id: 1
   username: MyString
+  entity_id: 1
 
 two:
   username: MyString
