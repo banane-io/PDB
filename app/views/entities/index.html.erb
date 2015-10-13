@@ -12,8 +12,12 @@
       <tr>
         <td><%= entity.name %></td>
         <td><%= link_to 'Show', entity %></td>
-        <td><%= link_to 'Edit', edit_entity_path(entity) %></td>
-        <td><%= link_to 'Destroy', entity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :edit, entity %>
+          <td><%= link_to 'Edit', edit_entity_path(entity) %></td>
+        <% end %>
+        <% if can? :destroy, entity %>
+          <td><%= link_to 'Destroy', entity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
