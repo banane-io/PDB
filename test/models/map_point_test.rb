@@ -93,4 +93,9 @@ class MapPointTest < ActiveSupport::TestCase
     end
   end
 
+  test "create list of entities" do
+     point = map_points(:point_1)
+     
+  end
+
 end
