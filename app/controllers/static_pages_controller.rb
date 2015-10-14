@@ -7,4 +7,10 @@ class StaticPagesController < ApplicationController
 
   def signin
   end
+
+  def login_required
+  end
+
+  def unauthorized
+  end
 end

@@ -9,3 +9,9 @@ two:
   name: MyString
   description: MyString
   map_point_id: 1
+
+player:
+    id: 1
+    name: MyString
+    description: MyString
+    map_point_id: 1

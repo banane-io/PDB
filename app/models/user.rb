@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_REGEX = /\Anot@this/
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  ROLES = %w[admin normal nonuser]
+
   belongs_to :player
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,

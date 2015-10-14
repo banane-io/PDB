@@ -6,9 +6,14 @@
       <%= label map_point.y, map_point.y %>
       <%= label map_point.zone, map_point.zone %>
       <%= link_to map_point.id, map_point %>
-      <%= link_to 'edit', edit_map_point_path(map_point) %>
-      <%= link_to "delete", map_point, method: :delete,
-                                      data: { confirm: "You sure?" } %>
+
+      <% if can? :edit, map_point %>
+        <td><%= link_to 'Edit', edit_map_point_path(map_point) %></td>
+      <% end %>
+      <% if can? :destroy, map_point %>
+        <td><%= link_to "Delete", map_point, method: :delete,
+                                        data: { confirm: "You sure?" } %></td>
+      <% end %>
     </li>
   <% end %>
 </ul>

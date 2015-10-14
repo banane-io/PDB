@@ -3,9 +3,10 @@ require 'test_helper'
 class EntitiesControllerTest < ActionController::TestCase
   setup do
     @entity = entities(:one)
+    sign_in users(:admin)
   end
 
-  test "should get index" do
+  test "should get index if normal or admin user" do
     get :index
     assert_response :success
     assert_not_nil assigns(:entities)
@@ -46,4 +47,5 @@ class EntitiesControllerTest < ActionController::TestCase
 
     assert_redirected_to entities_path
   end
+
 end
