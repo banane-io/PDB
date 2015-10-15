@@ -1,4 +1,7 @@
 class EntitiesController < ApplicationController
+  authorize_resource
+
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_entity, only: [:show, :edit, :update, :destroy]
 
   # GET /entities
@@ -72,4 +75,5 @@ class EntitiesController < ApplicationController
     def entity_params
       params.require(:entity).permit(:name, :description, :map_point_id)
     end
+
 end

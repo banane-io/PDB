@@ -11,4 +11,14 @@ class StaticPagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get unauthorized" do
+    get :unauthorized
+    assert_response :success
+  end
+
+  test "should get login required" do
+    get :login_required
+    assert_response :success
+  end
+
 end

@@ -1,6 +1,9 @@
 class PlayersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_player, only: [:show, :edit, :update, :destroy]
+  authorize_resource
+
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+
+  before_action :set_player, only: [:show, :update, :destroy]
   def index
     @players = Player.all
   end
@@ -34,6 +37,9 @@ class PlayersController < ApplicationController
   end
 
   def edit
+    if not params[:id] == current_user.player_id
+      @player = Player.find_by_id(current_user.player_id)
+    end
   end
 
   def update

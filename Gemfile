@@ -23,6 +23,8 @@ gem 'foreigner'
 gem 'dotenv-rails'
 gem 'rails_12factor'
 
+gem 'cancancan', '~> 1.10'
+
 group :development, :test do
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
@@ -48,6 +50,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

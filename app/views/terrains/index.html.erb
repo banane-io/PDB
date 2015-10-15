@@ -15,8 +15,14 @@
         <td><%= terrain.name %></td>
         <td><%= terrain.colour %></td>
         <td><%= link_to 'Show', terrain %></td>
-        <td><%= link_to 'Edit', edit_terrain_path(terrain) %></td>
-        <td><%= link_to 'Destroy', terrain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :edit, terrain %>
+          <td><%= link_to 'Edit', edit_terrain_path(terrain) %></td>
+        <% end %>
+        <% if can? :destroy, terrain %>
+          <td><%= link_to 'Destroy', terrain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+
+
       </tr>
     <% end %>
   </tbody>

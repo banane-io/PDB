@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
-  username: MyString
-  entity_id: 1
+  user_id: 
+  provider: MyString
+  uid: MyString
 
 two:
-  username: MyString
+  user_id: 
+  provider: MyString
+  uid: MyString
