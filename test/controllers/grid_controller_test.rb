@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class GridControllerTest < ActionController::TestCase
-
   setup do
     sign_in users(:admin)
   end
@@ -10,11 +9,4 @@ class GridControllerTest < ActionController::TestCase
     get :show
     assert_response :success
   end
-
-  #I don't think this can be tested.
-  test "should get move" do
-    get :move
-    assert_response :success
-  end
-
 end
