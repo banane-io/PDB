@@ -3,6 +3,7 @@ PDB
 ===
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/banane-io/PDB?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Stories in Ready](https://badge.waffle.io/banane-io/PDB.png?label=ready&title=Ready)](https://waffle.io/banane-io/PDB)
+[![Build Status](https://travis-ci.org/banane-io/PDB.svg)](https://travis-ci.org/banane-io/PDB)
 
 This is a small web application to create a web engine for browser games. The goal of the engine is to create games similar to Ogame, in which you can host and create the story by yourself.
 
