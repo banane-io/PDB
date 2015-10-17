@@ -1,0 +1,8 @@
+# PostgreSQL
+#   Ensure the PostgreSQL gem is defined in your Gemfile
+#   gem 'pg'
+
+test:
+  adapter: postgresql
+  database: pdb_test
+  username: postgres
