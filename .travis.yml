@@ -15,3 +15,4 @@ before_script:
   - psql -U postgres -c "create extension postgis"
 
 bundler_args: --binstubs=./bundler_stubs
+sudo: false
