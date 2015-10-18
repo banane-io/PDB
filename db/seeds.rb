@@ -1,25 +1,19 @@
-plain = Terrain.create(name: "plain", colour: "green")
-swamp = Terrain.create(name: "swamp", colour: "DarkGreen")
-beach = Terrain.create(name: "beach", colour: "yellow")
-mountain = Terrain.create(name: "mountain", colour: "gray")
+plain = Terrain.create(name: "Plain", colour: "green")
+swamp = Terrain.create(name: "Swamp", colour: "DarkGreen")
+beach = Terrain.create(name: "Beach", colour: "yellow")
+mountain = Terrain.create(name: "Mountain", colour: "gray")
+water =  Terrain.create(name: "Water", colour: "blue")
+bridge =  Terrain.create(name: "Bridge", colour: "SaddleBrown")
 
 plain.save
 swamp.save
 beach.save
 mountain.save
+water.save
+bridge.save
 
-terrains = Array.new
-terrains.push plain
-terrains.push swamp
-terrains.push beach
-terrains.push mountain
+map = ActiveSupport::JSON.decode(File.read('db/map.json'))
 
-i = 0
-25.times do |x|
-  25.times do |y|
-    map_point = MapPoint.create(x: x, y: y, zone: "Zone#{i}", terrain_id: terrains[rand(terrains.length)].id)
-    map_point.entities.build(name: "Test#{i}", description: "This is a simple description", map_point_id: map_point)
-    map_point.save
-    i += 1
-  end
+map.each do |point|
+  MapPoint.create!(point)
 end
