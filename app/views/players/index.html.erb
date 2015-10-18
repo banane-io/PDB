@@ -1,4 +1,7 @@
-<h1>All points</h1>
+<h1>Listing players</h1>
+
+<%= link_to 'Create player', new_player_path %>
+<hr/>
 <ul>
   <% @players.each do |player| %>
     <li>
@@ -15,6 +18,3 @@
     </li>
   <% end %>
 </ul>
-
-<hr/>
-<%= link_to 'Create player', new_player_path %>
