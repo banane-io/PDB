@@ -1,6 +1,10 @@
 <h1>Listing mapPoints</h1>
+
 <%= link_to 'New Point', new_map_point_path %>
 <hr/>
+
+<%= will_paginate %>
+
 <ul>
   <% @map_points.each do |map_point| %>
     <li>
@@ -19,3 +23,5 @@
     </li>
   <% end %>
 </ul>
+
+<%= will_paginate %>

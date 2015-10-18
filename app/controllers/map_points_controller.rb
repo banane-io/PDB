@@ -5,7 +5,7 @@ class MapPointsController < ApplicationController
   before_action :set_map_point, only: [:show, :edit, :update, :destroy]
 
   def index
-    @map_points = MapPoint.all
+    @map_points = MapPoint.paginate(:page => params[:page])
   end
 
   def new

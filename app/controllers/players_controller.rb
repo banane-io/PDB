@@ -2,10 +2,10 @@ class PlayersController < ApplicationController
   authorize_resource
 
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
-
   before_action :set_player, only: [:show, :update, :destroy]
+
   def index
-    @players = Player.all
+    @players = Player.paginate(:page => params[:page])
   end
 
   def new

@@ -1,6 +1,9 @@
 <h1>Listing terrains</h1>
 <%= link_to 'New Terrain', new_terrain_path %>
 <hr>
+
+<%= will_paginate %>
+
 <table>
   <thead>
     <tr>
@@ -28,3 +31,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate %>

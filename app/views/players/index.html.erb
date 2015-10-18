@@ -2,6 +2,9 @@
 
 <%= link_to 'Create player', new_player_path %>
 <hr/>
+
+<%= will_paginate %>
+
 <ul>
   <% @players.each do |player| %>
     <li>
@@ -18,3 +21,5 @@
     </li>
   <% end %>
 </ul>
+
+<%= will_paginate %>

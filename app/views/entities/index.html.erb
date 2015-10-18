@@ -1,13 +1,15 @@
 <h1>Listing entities</h1>
 <%= link_to 'New Entity', new_entity_path %>
 <hr>
+
+<%= will_paginate %>
+
 <table>
   <thead>
     <tr>
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @entities.each do |entity| %>
       <tr>
@@ -23,3 +25,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate %>

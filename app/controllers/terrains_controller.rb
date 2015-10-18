@@ -7,7 +7,7 @@ class TerrainsController < ApplicationController
   respond_to :html
 
   def index
-    @terrains = Terrain.all
+    @terrains = Terrain.paginate(:page => params[:page])
     respond_with(@terrains)
   end
 
