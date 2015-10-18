@@ -5,21 +5,31 @@
 
 <%= will_paginate %>
 
-<ul>
-  <% @players.each do |player| %>
-    <li>
-      <%= label player.username, player.username %>
-      <%= link_to player.id, player %>
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-      <% if can? :edit, player %>
-        <td><%= link_to 'Edit', edit_player_path(player) %></td>
-      <% end %>
-      <% if can? :destroy, player %>
-        <td><%= link_to "Delete", player, method: :delete,
-                                        data: { confirm: "You sure?" } %></td>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.username %></td>
+        <td><%= link_to 'Show', player %></td>
+        <% if can? :edit, player %>
+          <td><%= link_to 'Edit', edit_player_path(player) %></td>
+        <% end %>
+        <% if can? :destroy, player %>
+          <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 
 <%= will_paginate %>

@@ -5,23 +5,32 @@
 
 <%= will_paginate %>
 
-<ul>
-  <% @map_points.each do |map_point| %>
-    <li>
-      <%= label map_point.x, map_point.x %>
-      <%= label map_point.y, map_point.y %>
-      <%= label map_point.zone, map_point.zone %>
-      <%= link_to map_point.id, map_point %>
+<table>
+  <thead>
+    <tr>
+      <th>Zone name</th>
+      <th>X</th>
+      <th>Y</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-      <% if can? :edit, map_point %>
-        <td><%= link_to 'Edit', edit_map_point_path(map_point) %></td>
-      <% end %>
-      <% if can? :destroy, map_point %>
-        <td><%= link_to "Delete", map_point, method: :delete,
-                                        data: { confirm: "You sure?" } %></td>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+  <tbody>
+    <% @map_points.each do |map_point| %>
+      <tr>
+        <td><%= map_point.zone %></td>
+        <td><%= map_point.x %></td>
+        <td><%= map_point.y %></td>
+        <td><%= link_to 'Show', map_point %></td>
+        <% if can? :edit, map_point %>
+          <td><%= link_to 'Edit', edit_map_point_path(map_point) %></td>
+        <% end %>
+        <% if can? :destroy, map_point %>
+          <td><%= link_to 'Destroy', map_point, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= will_paginate %>
