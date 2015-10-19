@@ -16,3 +16,6 @@ before_script:
 
 bundler_args: --binstubs=./bundler_stubs
 sudo: false
+branches:
+  only:
+    - develop
