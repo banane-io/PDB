@@ -19,3 +19,10 @@ sudo: false
 branches:
   only:
     - develop
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/ae13683afba4204b2afe
+    on_success: always  
+    on_failure: always  
+    on_start: never     
