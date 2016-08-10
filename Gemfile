@@ -1,10 +1,8 @@
 source 'https://rubygems.org'
-
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
 # Use sqlite3 as the database for Active Record
-gem 'pg'
+gem 'activerecord-jdbcpostgresql-adapter'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use bootstrap as the css template
@@ -24,12 +22,6 @@ gem 'dotenv-rails'
 gem 'rails_12factor'
 gem 'cancancan', '~> 1.10'
 gem 'will_paginate', '~> 3.0.6'
-
-group :development, :test do
-  gem 'byebug',      '3.4.0'
-  gem 'web-console', '2.0.0.beta3'
-  gem 'spring',      '1.1.3'
-end
 
 group :test do
   gem 'minitest-reporters', '1.0.5'
@@ -60,9 +52,5 @@ gem 'omniauth-google-oauth2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin]
+gem 'tzinfo'
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :jruby]
