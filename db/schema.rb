@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20151004205252) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "entities", force: true do |t|
+  create_table "entities", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.integer  "map_point_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20151004205252) do
   add_index "entities", ["map_point_id", "created_at"], name: "index_entities_on_map_point_id_and_created_at", using: :btree
   add_index "entities", ["map_point_id"], name: "index_entities_on_map_point_id", using: :btree
 
-  create_table "identities", force: true do |t|
+  create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20151004205252) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
-  create_table "map_points", force: true do |t|
+  create_table "map_points", force: :cascade do |t|
     t.integer  "x"
     t.integer  "y"
     t.string   "zone"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20151004205252) do
   add_index "map_points", ["terrain_id"], name: "index_map_points_on_terrain_id", using: :btree
   add_index "map_points", ["x", "y"], name: "index_map_points_on_x_and_y", unique: true, using: :btree
 
-  create_table "players", force: true do |t|
+  create_table "players", force: :cascade do |t|
     t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -58,14 +58,14 @@ ActiveRecord::Schema.define(version: 20151004205252) do
 
   add_index "players", ["entity_id"], name: "index_players_on_entity_id", using: :btree
 
-  create_table "terrains", force: true do |t|
+  create_table "terrains", force: :cascade do |t|
     t.text     "name"
     t.text     "colour"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",        null: false
     t.string   "encrypted_password",     default: "",        null: false
     t.string   "reset_password_token"
@@ -89,4 +89,10 @@ ActiveRecord::Schema.define(version: 20151004205252) do
   add_index "users", ["player_id"], name: "index_users_on_player_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "entities", "map_points", name: "entities_map_point_id_fk"
+  add_foreign_key "players", "entities", name: "players_entity_id_fk"
+  add_foreign_key "users", "players", name: "users_player_id_fk"
+  add_foreign_key "entities", "map_points", name: "entities_map_point_id_fk"
+  add_foreign_key "players", "entities", name: "players_entity_id_fk"
+  add_foreign_key "users", "players", name: "users_player_id_fk"
 end
