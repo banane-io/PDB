@@ -14,8 +14,9 @@ How to Help
 If you want to help, here's what you can do to contribute to the project :
 
 * Download and install Ruby on Rails here : http://rubyonrails.org/download/
-* Clone or fork the project.
-* Go to our Waffle project and assign yourself a task, or create one and work on it.
+* Clone or fork the project
+* Read the contribution page - https://github.com/banane-io/PDB/wiki/Contributing
+* Go to our Waffle project and assign yourself a task, or create one and work on it
 
 What We Need
 ===
