@@ -12,6 +12,7 @@ rerun.txt
 pickle-email-*.html
 Gemfile.sublime-workspace
 
+# Dotenv's root file
 .env
 
 *.iml
@@ -32,3 +33,15 @@ Gemfile.sublime-workspace
 /vendor/assets/bower_components
 *.bowerrc
 bower.json
+
+#
+#
+### My personal to avoid messing project up
+#
+#
+
+# setup for all of the irregular config stuff cloud9 needed / mini documentation
+/tmp/mirvs/*  
+config/database.yml
+Gemfile
+Gemfile.lock
