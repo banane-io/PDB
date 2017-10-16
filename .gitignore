@@ -42,6 +42,9 @@ bower.json
 
 # setup for all of the irregular config stuff cloud9 needed / mini documentation
 /tmp/mirvs/*  
+.bashrc
+
+# Just to be safe
 config/database.yml
 Gemfile
 Gemfile.lock
