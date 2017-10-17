@@ -17,3 +17,8 @@ map = ActiveSupport::JSON.decode(File.read('db/map.json'))
 map.each do |point|
   MapPoint.create!(point)
 end
+
+
+User.create!(email: "test_normal@test.com", password: "test_normal", role: "normal")
+User.create!(email: "test_nonuser@test.com", password: "test_nonuser", role: "nonuser")
+User.create!(email: "test_admin@test.com", password: "test_admin", role: "admin")

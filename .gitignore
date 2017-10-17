@@ -12,6 +12,7 @@ rerun.txt
 pickle-email-*.html
 Gemfile.sublime-workspace
 
+# Dotenv's root file
 .env
 
 *.iml
@@ -32,3 +33,4 @@ Gemfile.sublime-workspace
 /vendor/assets/bower_components
 *.bowerrc
 bower.json
+
