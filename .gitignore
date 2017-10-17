@@ -34,17 +34,3 @@ Gemfile.sublime-workspace
 *.bowerrc
 bower.json
 
-#
-#
-### My personal to avoid messing project up
-#
-#
-
-# setup for all of the irregular config stuff cloud9 needed / mini documentation
-/tmp/mirvs/*  
-.bashrc
-
-# Just to be safe
-config/database.yml
-Gemfile
-Gemfile.lock
