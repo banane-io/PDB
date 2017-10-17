@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  authorize_resource :only => [:edit, :destroy, :update]
+  authorize_resource :except => [:new, :create]
   # load_and_authorize_resource :only => [:index, :show]
 
   before_action :set_user, only: [:update, :destroy]
