@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
-  authorize_resource
+  authorize_resource :only => [:edit, :destroy, :update]
+  # load_and_authorize_resource :only => [:index, :show]
 
   before_action :set_user, only: [:update, :destroy]
+
+  def new
+    @user = User.new  
+  end
 
   # GET /users/1
   # GET /users/1.json
