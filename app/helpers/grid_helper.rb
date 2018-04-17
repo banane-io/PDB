@@ -1,2 +1,0 @@
-module GridHelper
-end
