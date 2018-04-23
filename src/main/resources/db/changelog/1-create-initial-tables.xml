@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="role table creation" author="magirard">
+        <createTable tableName="role">
+            <column name="id" autoIncrement="true" type="">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_role"/>
+            </column>
+            <column name="name" type="varchar(40)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="user_table_creation" author="magirard">
+        <createTable tableName="user">
+            <column name="id" autoIncrement="true" type="">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user"/>
+            </column>
+            <column name="username" type="varchar(40)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="user_role_table_creation" author="magirard">
+        <createTable tableName="user_role">
+            <column name="user_id" type="bigint"/>
+            <column name="role_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint
+                baseColumnNames="user_id"
+                baseTableName="user_role"
+                constraintName="fk_user_role_users"
+                referencedColumnNames="id"
+                referencedTableName="user"
+                baseTableSchemaName="identity"
+                referencedTableSchemaName="identity"/>
+        <addForeignKeyConstraint
+                baseColumnNames="role_id"
+                baseTableName="user_role"
+                constraintName="fk_user_role_role"
+                referencedColumnNames="id"
+                referencedTableName="role"
+                baseTableSchemaName="identity"
+                referencedTableSchemaName="identity"/>
+    </changeSet>
+</databaseChangeLog>
