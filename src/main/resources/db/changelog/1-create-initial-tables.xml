@@ -7,7 +7,7 @@
 
     <changeSet id="role table creation" author="magirard">
         <createTable tableName="role">
-            <column name="id" autoIncrement="true" type="">
+            <column name="id" autoIncrement="true" type="bigserial">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_role"/>
             </column>
             <column name="name" type="varchar(40)">
@@ -18,7 +18,7 @@
 
     <changeSet id="user_table_creation" author="magirard">
         <createTable tableName="user">
-            <column name="id" autoIncrement="true" type="">
+            <column name="id" autoIncrement="true" type="bigserial">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user"/>
             </column>
             <column name="username" type="varchar(40)">
@@ -38,15 +38,15 @@
                 constraintName="fk_user_role_users"
                 referencedColumnNames="id"
                 referencedTableName="user"
-                baseTableSchemaName="identity"
-                referencedTableSchemaName="identity"/>
+                baseTableSchemaName="public"
+                referencedTableSchemaName="public"/>
         <addForeignKeyConstraint
                 baseColumnNames="role_id"
                 baseTableName="user_role"
                 constraintName="fk_user_role_role"
                 referencedColumnNames="id"
                 referencedTableName="role"
-                baseTableSchemaName="identity"
-                referencedTableSchemaName="identity"/>
+                baseTableSchemaName="public"
+                referencedTableSchemaName="public"/>
     </changeSet>
 </databaseChangeLog>
