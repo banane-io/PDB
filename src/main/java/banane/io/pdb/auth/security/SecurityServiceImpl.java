@@ -1,4 +1,4 @@
-package banane.io.pdb.auth.service;
+package banane.io.pdb.auth.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

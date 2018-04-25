@@ -1,5 +1,6 @@
 package banane.io.pdb.auth;
 
+import banane.io.pdb.auth.security.LoggingAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,12 +11,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private LoggingAccessDeniedHandler accessDeniedHandler;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -30,9 +35,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity security) throws Exception {
-        /*security
+        security
                     .authorizeRequests()
-                        .antMatchers("/resources/**", "/registration").permitAll()
+                        .antMatchers("/",
+                                "/js/**",
+                                "/css/**",
+                                "/img/**",
+                                "/webjars/**",
+                                "/registration").permitAll()
                         .anyRequest().authenticated()
                         .and()
                     .formLogin()
@@ -40,8 +50,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .permitAll()
                         .and()
                     .logout()
-                        .permitAll();*/
-        security.authorizeRequests().antMatchers("/").permitAll();
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/login?logout")
+                        .permitAll()
+                        .and()
+                    .exceptionHandling()
+                        .accessDeniedHandler(accessDeniedHandler);
     }
 
     @Autowired

@@ -1,4 +1,4 @@
-package banane.io.pdb.auth.service;
+package banane.io.pdb.auth.security;
 
 public interface SecurityService {
     String findLoggedInUsername();

@@ -1,7 +1,7 @@
 package banane.io.pdb.auth.web;
 
 import banane.io.pdb.auth.model.User;
-import banane.io.pdb.auth.service.SecurityService;
+import banane.io.pdb.auth.security.SecurityService;
 import banane.io.pdb.auth.service.UserService;
 import banane.io.pdb.auth.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +25,13 @@ public class UserController {
 
     @GetMapping(value = "/registration")
     public String registration(Model model) {
-        model.addAttribute("userForm", new User());
+        model.addAttribute("user", new User());
 
         return "registration";
     }
 
     @PostMapping(value = "/registration")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+    public String registration(@ModelAttribute("user") User userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
