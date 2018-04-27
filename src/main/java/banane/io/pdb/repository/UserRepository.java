@@ -1,6 +1,6 @@
-package banane.io.pdb.auth.repository;
+package banane.io.pdb.repository;
 
-import banane.io.pdb.auth.model.User;
+import banane.io.pdb.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

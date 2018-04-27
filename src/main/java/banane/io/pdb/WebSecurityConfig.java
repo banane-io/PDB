@@ -1,6 +1,6 @@
-package banane.io.pdb.auth;
+package banane.io.pdb;
 
-import banane.io.pdb.auth.security.LoggingAccessDeniedHandler;
+import banane.io.pdb.security.LoggingAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

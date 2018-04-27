@@ -1,4 +1,4 @@
-package banane.io.pdb.auth.web;
+package banane.io.pdb.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

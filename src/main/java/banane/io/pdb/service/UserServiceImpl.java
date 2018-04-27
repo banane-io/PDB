@@ -1,8 +1,8 @@
-package banane.io.pdb.auth.service;
+package banane.io.pdb.service;
 
-import banane.io.pdb.auth.model.User;
-import banane.io.pdb.auth.repository.RoleRepository;
-import banane.io.pdb.auth.repository.UserRepository;
+import banane.io.pdb.model.User;
+import banane.io.pdb.repository.RoleRepository;
+import banane.io.pdb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

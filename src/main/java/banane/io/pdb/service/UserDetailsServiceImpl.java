@@ -1,8 +1,8 @@
-package banane.io.pdb.auth.service;
+package banane.io.pdb.service;
 
-import banane.io.pdb.auth.model.Role;
-import banane.io.pdb.auth.model.User;
-import banane.io.pdb.auth.repository.UserRepository;
+import banane.io.pdb.model.Role;
+import banane.io.pdb.model.User;
+import banane.io.pdb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

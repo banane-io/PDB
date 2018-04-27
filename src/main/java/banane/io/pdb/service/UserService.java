@@ -1,6 +1,6 @@
-package banane.io.pdb.auth.service;
+package banane.io.pdb.service;
 
-import banane.io.pdb.auth.model.User;
+import banane.io.pdb.model.User;
 
 public interface UserService {
     void save(User user);

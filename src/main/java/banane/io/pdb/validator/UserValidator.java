@@ -1,7 +1,7 @@
-package banane.io.pdb.auth.validator;
+package banane.io.pdb.validator;
 
-import banane.io.pdb.auth.model.User;
-import banane.io.pdb.auth.service.UserService;
+import banane.io.pdb.model.User;
+import banane.io.pdb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

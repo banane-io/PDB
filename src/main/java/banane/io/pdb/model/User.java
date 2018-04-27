@@ -1,4 +1,4 @@
-package banane.io.pdb.auth.model;
+package banane.io.pdb.model;
 
 import javax.persistence.*;
 import java.util.Set;
