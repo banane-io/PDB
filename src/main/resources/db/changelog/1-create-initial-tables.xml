@@ -38,7 +38,7 @@
                 baseTableName="user_role"
                 constraintName="fk_user_role_users"
                 referencedColumnNames="id"
-                referencedTableName="user"
+                referencedTableName="users"
                 baseTableSchemaName="public"
                 referencedTableSchemaName="public"/>
         <addForeignKeyConstraint
