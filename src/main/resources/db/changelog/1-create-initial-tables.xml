@@ -17,13 +17,14 @@
     </changeSet>
 
     <changeSet id="user_table_creation" author="magirard">
-        <createTable tableName="user">
+        <createTable tableName="users">
             <column name="id" autoIncrement="true" type="bigserial">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user"/>
             </column>
             <column name="username" type="varchar(40)">
                 <constraints unique="true" nullable="false"/>
             </column>
+            <column name="password" type="varchar(255)"/>
         </createTable>
     </changeSet>
 
