@@ -50,4 +50,17 @@
                 baseTableSchemaName="public"
                 referencedTableSchemaName="public"/>
     </changeSet>
+
+    <changeSet id="player_table_creation" author="magirard">
+        <createTable tableName="player">
+            <column name="username" type="varchar(40)"/>
+            <column name="user_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="player"
+                baseColumnNames="user_id"
+                constraintName="fk_users_players"
+                referencedTableName="users"
+                referencedColumnNames="id"/>
+    </changeSet>
 </databaseChangeLog>
