@@ -53,6 +53,9 @@
 
     <changeSet id="player_table_creation" author="magirard">
         <createTable tableName="player">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_player"/>
+            </column>
             <column name="username" type="varchar(40)"/>
             <column name="user_id" type="bigint"/>
         </createTable>
