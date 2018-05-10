@@ -1,5 +1,7 @@
 package banane.io.pdb.security;
 
+import banane.io.pdb.model.User;
+import banane.io.pdb.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +21,23 @@ public class SecurityServiceImpl implements SecurityService {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private UserService userService;
+
     private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
 
     @Override
     public String findLoggedInUsername() {
-        Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
+        Object userDetails = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (userDetails instanceof UserDetails) {
             return ((UserDetails) userDetails).getUsername();
         }
         return null;
+    }
+
+    @Override
+    public User findLoggedInUser() {
+        return userService.findByUsername(findLoggedInUsername());
     }
 
     @Override

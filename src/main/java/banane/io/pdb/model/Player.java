@@ -22,7 +22,8 @@ public class Player {
     }
 
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     public User getOwner() {
         return owner;
     }
