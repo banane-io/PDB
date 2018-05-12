@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">layout</title>
     <link rel="stylesheet" type="text/css"
-          href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+          th:href="@{webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
 
     <link rel="stylesheet" th:href="@{/css/main.css}"
           href="../../css/main.css" />
@@ -16,6 +16,6 @@
     <th:block layout:fragment="content"/>
 </div>
 <!--<th:block th:replace="fragments/footer :: footer"/>-->
-<script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"/>
+<script type="text/javascript" th:src="@{webjars/bootstrap/3.3.7/js/bootstrap.min.js}"/>
 </body>
 </html>

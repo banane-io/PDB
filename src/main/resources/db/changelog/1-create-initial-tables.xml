@@ -66,4 +66,15 @@
                 referencedTableName="users"
                 referencedColumnNames="id"/>
     </changeSet>
+
+    <changeSet id="map_point_table_creation" author="magirard">
+        <createTable tableName="map_point">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_map_point"/>
+            </column>
+            <column name="x" type="integer"/>
+            <column name="y" type="integer"/>
+            <column name="zone" type="varchar(80)"/>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
