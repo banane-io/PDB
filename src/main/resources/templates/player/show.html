@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{/fragments/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Creation</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Your character</h1>
+            <div>
+                Name : <span th:text="${name}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

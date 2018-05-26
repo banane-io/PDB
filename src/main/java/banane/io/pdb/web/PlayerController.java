@@ -30,6 +30,12 @@ public class PlayerController {
 
     private static String VIEW_FOLDER = "/player/";
 
+    @GetMapping
+    public String show() {
+
+        return VIEW_FOLDER + "show";
+    }
+
     @GetMapping("/creation")
     public String creation(Model model) {
         model.addAttribute("player", new Player());
