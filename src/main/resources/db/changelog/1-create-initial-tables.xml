@@ -77,4 +77,12 @@
             <column name="zone" type="varchar(80)"/>
         </createTable>
     </changeSet>
+
+    <changeSet id="load_map_point" author="magirard">
+        <loadData encoding="UTF-8" file="db/data/map.csv" schemaName="public" tableName="map_point" separator="," quotchar="&quot;">
+            <column name="x" type="numeric"/>
+            <column name="y" type="numeric"/>
+            <column name="zone" type="string" />
+        </loadData>
+    </changeSet>
 </databaseChangeLog>
