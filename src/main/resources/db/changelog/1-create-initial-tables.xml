@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="role table creation" author="magirard">
+        <createTable tableName="role">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_role"/>
+            </column>
+            <column name="name" type="varchar(40)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="user_table_creation" author="magirard">
+        <createTable tableName="users">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user"/>
+            </column>
+            <column name="username" type="varchar(40)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="user_role_table_creation" author="magirard">
+        <createTable tableName="user_role">
+            <column name="user_id" type="bigint"/>
+            <column name="role_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint
+                baseColumnNames="user_id"
+                baseTableName="user_role"
+                constraintName="fk_user_role_users"
+                referencedColumnNames="id"
+                referencedTableName="users"
+                baseTableSchemaName="public"
+                referencedTableSchemaName="public"/>
+        <addForeignKeyConstraint
+                baseColumnNames="role_id"
+                baseTableName="user_role"
+                constraintName="fk_user_role_role"
+                referencedColumnNames="id"
+                referencedTableName="role"
+                baseTableSchemaName="public"
+                referencedTableSchemaName="public"/>
+    </changeSet>
+
+    <changeSet id="player_table_creation" author="magirard">
+        <createTable tableName="player">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_player"/>
+            </column>
+            <column name="username" type="varchar(40)"/>
+            <column name="user_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="player"
+                baseColumnNames="user_id"
+                constraintName="fk_users_players"
+                referencedTableName="users"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="map_point_table_creation" author="magirard">
+        <createTable tableName="map_point">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_map_point"/>
+            </column>
+            <column name="x" type="integer"/>
+            <column name="y" type="integer"/>
+            <column name="zone" type="varchar(80)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="load_map_point" author="magirard">
+        <loadData encoding="UTF-8" file="db/data/map.csv" schemaName="public" tableName="map_point" separator="," quotchar="&quot;">
+            <column name="x" type="numeric"/>
+            <column name="y" type="numeric"/>
+            <column name="zone" type="string" />
+        </loadData>
+    </changeSet>
+</databaseChangeLog>
