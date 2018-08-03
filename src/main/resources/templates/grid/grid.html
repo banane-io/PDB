@@ -11,56 +11,38 @@
     <h1>Grid system</h1>
     <div class="row">
         <div class="centered">
-            <%= form_tag do %>
+            <form>
             <table class="table-bordered float inline">
-                <% @map_points.each do |key, array| %>
-                <tr>
-                    <% array.each do |map_point| %>
-                    <% if map_point.id == @map_point.id %>
-                    <td class="current_zone" bgcolor="<%= map_point.terrain.colour if !map_point.terrain.nil? %>">
-                        <%= radio_button_tag(:id,map_point.id, true, class: "grid_point") %>
-                    </td>
-                    <% else %>
-                    <td bgcolor="<%= map_point.terrain.colour if !map_point.terrain.nil? %>">
-                        <%= radio_button_tag(:id,map_point.id, false, class: "grid_point") %>
-                    </td>
-                    <% end %>
-                    <% end %>
-                </tr>
-                <% end %>
+                <th:block th:each="mapPoints : ${mapPointsForGrid}">
+                    <tr>
+                        <th:block th:each="mapPoint : ${mapPoints}">
+                            <td>
+                                <input th:id="${mapPoint.id}" th:value="${mapPoint.id}" name="grid" class="grid_point" type="radio"/>
+                            </td>
+                        <th:block/>
+                    </tr>
+                </th:block>
             </table>
-            <% end %>
-            <div class="float inline square border">
-                <div class="row arrow centered">
-                    <% unless @neighbors[Directions::NORTH].nil? %>
-                    <%= link_to '', grid_move_path(@neighbors[Directions::NORTH]), :class => "btn glyphicon
-                    glyphicon-arrow-up centered" %>
-                    <% end %>
-                </div>
-                <div class="row arrow">
-                    <% unless @neighbors[Directions::WEST].nil? %>
-                    <%= link_to '', grid_move_path(@neighbors[Directions::WEST]), :class => "btn glyphicon
-                    glyphicon-arrow-left" %>
-                    <% end %>
-                    <% unless @neighbors[Directions::EAST].nil? %>
-                    <%= link_to '', grid_move_path(@neighbors[Directions::EAST]), :class => "btn glyphicon
-                    glyphicon-arrow-right" %>
-                    <% end %>
-                </div>
-                <div class="row arrow centered">
-                    <% unless @neighbors[Directions::SOUTH].nil? %>
-                    <%= link_to '', grid_move_path(@neighbors[Directions::SOUTH]), :class => "btn glyphicon
-                    glyphicon-arrow-down centered" %>
-                    <% end %>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
-    <div class="row">
+    <div class="float inline square border">
+        <div class="row centered">
+            <a th:if="${neighbors.get(T(banane.io.pdb.model.Direction).NORTH) != null} " th:href="@{/}" class="btn glyphicon glyphicon-arrow-up centered"/> <!-- TODO: Link to move action -->
+        </div>
+        <div class="row">
+            <a th:if="${neighbors.get(T(banane.io.pdb.model.Direction).WEST) != null}" th:href="@{/}" class="btn glyphicon glyphicon-arrow-left"/> <!-- TODO: Link to move action -->
+            <a th:if="${neighbors.get(T(banane.io.pdb.model.Direction).EAST) != null}" th:href="@{/}" class="btn glyphicon glyphicon-arrow-right"/> <!-- TODO: Link to move action -->
+        </div>
+        <div class="row centered">
+            <a th:if="${neighbors.get(T(banane.io.pdb.model.Direction).SOUTH) != null}" th:href="@{/}" class="btn glyphicon glyphicon-arrow-down centered"/> <!-- TODO: Link to move action -->
+        </div>
+    </div>
+<!--    <div class="row">
         <div class="float zone">
             <%= render @map_point ||= MapPoint.new %>
         </div>
-    </div>
+    </div>-->
 </div>
 </body>
 </html>
