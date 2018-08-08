@@ -14,6 +14,7 @@ layout 'layout.tpl', title: 'Login',
                                yield 'You have been logged out.'
                            }
                        }
+                       input (name:'_csrf', value: _csrf.token, type: 'hidden')
 
                        div(class:'form-group') {
                            label (for:'username', 'Username')
