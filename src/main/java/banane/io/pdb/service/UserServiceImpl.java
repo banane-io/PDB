@@ -30,6 +30,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return userRepository.findByUsername(username).orElseThrow(() -> new IllegalStateException("User not found")); //TODO: Throw a better exception
     }
 }
