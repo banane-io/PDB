@@ -12,21 +12,22 @@ layout 'layout.tpl', title: 'Registration',
                           p error.defaultMessage
                         }
                     }
+                    input (name:'_csrf', value: _csrf.token, type: 'hidden')
                     div (class: 'form-group') {
-                       label (for:'user.username', 'Username')
-                       input (name:'user.username', type:'text', value:'',
+                       label (for:'username', 'Username')
+                       input (name:'username', type:'text', value:'',
                                class:'form-control', autofocus:'autofocus',
                                placeholder: 'Username')
                     }
 
                     div (class: 'form-group') {
-                        label (for:'user.password', 'Password')
-                        input (name:'user.password', type:'password', class:'form-control', placeholder: 'Password')
+                        label (for:'password', 'Password')
+                        input (name:'password', type:'password', class:'form-control', placeholder: 'Password')
                     }
 
                     div (class: 'form-group') {
-                        label (for:'user.passwordConfirm', 'Confirm password')
-                        input (name:'user.passwordConfirm', type:'password', class:'form-control', placeholder: 'Confrim password')
+                        label (for:'passwordConfirm', 'Confirm password')
+                        input (name:'passwordConfirm', type:'password', class:'form-control', placeholder: 'Confrim password')
                     }
 
                     div (class: 'form-group') {

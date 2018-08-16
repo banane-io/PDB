@@ -1,4 +1,4 @@
-layout 'layout.tpl', title: 'Login',
+layout 'layout.tpl', true, title: 'Login',
         content: contents {
             div(class: 'row') {
                div (class:'col-md-6 col-md-offset-3') {
@@ -31,8 +31,8 @@ layout 'layout.tpl', title: 'Login',
                        div(class:'form-group') {
                            div (class: 'row') {
                                 div(class:'col-sm-6 col-sm-offset-3') {
-                                    div (class:'form-control btn btn-info') {
-                                       input (type:'submit', value:'Log In')
+                                    div {
+                                       input (type:'submit', value:'Log In', class:'form-control btn btn-info')
                                     }
                                 }
                            }

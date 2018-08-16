@@ -10,29 +10,32 @@ div (class:"container") {
                         yield 'Home'
                     }
                 }
-                li {
-                   // sec:authorize="!isAuthenticated()"
-                    a (href:"/registration") {
-                        yield 'Register'
+                if (__user == null) {
+                    li {
+                        a (href:"/registration") {
+                            yield 'Register'
+                        }
                     }
                 }
-                li {
-                    //sec:authorize="!isAuthenticated()"
-                    a(href:"/login") {
-                        yield 'Login'
+                if (__user == null) {
+                    li {
+                        a(href:"/login") {
+                            yield 'Login'
+                        }
                     }
                 }
-                li {
-
-                //sec:authorize="isAuthenticated()">
-                //<span sec:authentication="name"></span> |
-                                    a (href:"/logout") {
-                                        yield 'Sign Out'
-                                    }
+                if (__user) {
+                    li {
+                        a (href:"/logout") {
+                            yield 'Sign Out'
+                        }
+                    }
                 }
-                li  {
-                    a(href:"/player/creation") {
-                        yield 'Player creation'
+                if (__user) {
+                    li  {
+                        a(href:"/player/creation") {
+                            yield 'Player creation'
+                        }
                     }
                 }
             }

@@ -1,4 +1,4 @@
-layout 'layout.tpl', title: 'Index',
+layout 'layout.tpl', true, title: 'Index',
         content: contents {
             div(class: 'container') {
                 div(class: 'starter-template') {
