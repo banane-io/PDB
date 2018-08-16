@@ -9,9 +9,9 @@ layout 'layout.tpl', true, title: 'Login',
                            }
                        }
 
-                       if(logout) {
+                       if(message) {
                            div(class:'alert alert-info') {
-                               yield 'You have been logged out.'
+                               yield message
                            }
                        }
                        input (name:'_csrf', value: _csrf.token, type: 'hidden')
