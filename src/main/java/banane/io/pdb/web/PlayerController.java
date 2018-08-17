@@ -6,6 +6,7 @@ import banane.io.pdb.repository.PlayerRepository;
 import banane.io.pdb.security.SecurityService;
 import banane.io.pdb.validator.PlayerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +37,9 @@ public class PlayerController {
     private static String VIEW_FOLDER = "player/";
 
     @GetMapping
-    public String show() {
+    public String show(Model model) {
+        final User loggedInUser = securityService.findLoggedInUser();
+        model.addAttribute("player",loggedInUser.getPlayer());
 
         return VIEW_FOLDER + "show";
     }
@@ -61,7 +64,7 @@ public class PlayerController {
         playerRepository.save(player);
 
         return "redirect:/";
-    }
+    }//TODO: Add check for duplicate since player is unique
 
     private Map<String, ObjectError> getFieldErrors(BindingResult result) {
         Map<String, ObjectError> map = new HashMap<>();

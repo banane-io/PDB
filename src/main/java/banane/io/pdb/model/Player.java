@@ -23,7 +23,7 @@ public class Player {
 
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id",unique = true)
     public User getOwner() {
         return owner;
     }

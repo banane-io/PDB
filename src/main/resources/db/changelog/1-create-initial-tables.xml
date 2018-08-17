@@ -65,6 +65,7 @@
                 constraintName="fk_users_players"
                 referencedTableName="users"
                 referencedColumnNames="id"/>
+        <addUniqueConstraint tableName="player" columnNames="user_id" />
     </changeSet>
 
     <changeSet id="map_point_table_creation" author="magirard">
