@@ -36,6 +36,6 @@ public class GridController {
         model.addAttribute("mapPoint", point);
         model.addAttribute("neighbors", mapPointService.neighbors(point));
 
-        return "/grid/grid";
+        return "grid/grid";
     }
 }
