@@ -76,6 +76,7 @@
             <column name="x" type="integer"/>
             <column name="y" type="integer"/>
             <column name="zone" type="varchar(80)"/>
+            <column name="terrain" type="INTEGER"/>
         </createTable>
     </changeSet>
 

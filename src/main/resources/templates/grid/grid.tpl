@@ -8,7 +8,7 @@ layout 'layout.tpl', true, title: 'Grid',
                          mapPointsForGrid.each { mapPoints ->
                             tr {
                                 mapPoints.each { mapPoint ->
-                                    td {
+                                    td(bgcolor:mapPoint.terrain.colour) {
                                         input (id:mapPoint.id, value:mapPoint.id, name:"grid", class:"grid_point", type:"radio")
                                     }
                                 }
