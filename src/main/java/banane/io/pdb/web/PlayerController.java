@@ -2,6 +2,7 @@ package banane.io.pdb.web;
 
 import banane.io.pdb.model.Player;
 import banane.io.pdb.model.User;
+import banane.io.pdb.repository.MapPointRepository;
 import banane.io.pdb.repository.PlayerRepository;
 import banane.io.pdb.security.SecurityService;
 import banane.io.pdb.validator.PlayerValidator;
@@ -33,6 +34,9 @@ public class PlayerController {
     @Autowired
     private SecurityService securityService;
 
+    @Autowired
+    private MapPointRepository mapPointRepository;
+
 
     private static String VIEW_FOLDER = "player/";
 
@@ -61,6 +65,7 @@ public class PlayerController {
         }
         User user = securityService.findLoggedInUser();
         player.setOwner(user);
+        player.setCurrentZone(mapPointRepository.getOne(1L));
         playerRepository.save(player);
 
         return "redirect:/";
