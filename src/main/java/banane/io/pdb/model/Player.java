@@ -44,7 +44,7 @@ public class Player {
         this.username = username;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "map_point_id", nullable = false)
     public MapPoint getCurrentZone() {
         return currentZone;

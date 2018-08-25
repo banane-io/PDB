@@ -21,25 +21,27 @@ layout 'layout.tpl', true, title: 'Grid',
             div(class:"float inline square border") {
                 div(class:"row centered") {
                     if(neighbors.get(banane.io.pdb.model.Direction.NORTH) != null) {
-                        a(href:"/", class:"btn glyphicon glyphicon-arrow-up centered")
+                        mapPoint = neighbors.get(banane.io.pdb.model.Direction.NORTH)
+                        a(href:"/grid/movePlayer?mapPoint=${mapPoint.id}", class:"btn glyphicon glyphicon-arrow-up centered")
                     }
                 }
                 div(class:"row") {
                     if(neighbors.get(banane.io.pdb.model.Direction.WEST) != null) {
-                        a(href:"/", class:"btn glyphicon glyphicon-arrow-left")
+                        mapPoint = neighbors.get(banane.io.pdb.model.Direction.WEST)
+                        a(href:"/grid/movePlayer?mapPoint=${mapPoint.id}", class:"btn glyphicon glyphicon-arrow-left")
                     }
                     if(neighbors.get(banane.io.pdb.model.Direction.EAST) != null) {
-                        a(href:"/", class:"btn glyphicon glyphicon-arrow-right")
+                        mapPoint = neighbors.get(banane.io.pdb.model.Direction.EAST)
+                        a(href:"/grid/movePlayer?mapPoint=${mapPoint.id}", class:"btn glyphicon glyphicon-arrow-right")
                     }
                 }
 
                 div(class:"row centered") {
                     if(neighbors.get(banane.io.pdb.model.Direction.SOUTH) != null) {
-                        a(href:"/", class:"btn glyphicon glyphicon-arrow-down centered")
+                        mapPoint = neighbors.get(banane.io.pdb.model.Direction.SOUTH)
+                        a(href:"/grid/movePlayer?mapPoint=${mapPoint.id}", class:"btn glyphicon glyphicon-arrow-down centered")
                     }
                 }
 
             }
-
-
         }
