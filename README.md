@@ -4,7 +4,7 @@ PDB
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/banane-io/PDB?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Stories in Ready](https://badge.waffle.io/banane-io/PDB.png?label=ready&title=Ready)](https://waffle.io/banane-io/PDB)
 
-This is a small web application to create a web engine for browser games. The goal of the engine is to create games similar to Ogame, in which you can host and create the story by yourself.
+This is a small web application to create a text game for browser The goal of the game is to create something similar to Ogame, but with your own character and an good rpg element to it.
 
 
 How to Help
@@ -12,12 +12,14 @@ How to Help
 
 If you want to help, here's what you can do to contribute to the project :
 
-* Download and install Ruby on Rails here : http://rubyonrails.org/download/
+* Download and install Java and Maven on your machine
 * Clone or fork the project.
-* Go to our Waffle project and assign yourself a task, or create one and work on it.
+* Go check the issue with the label help-wanted and start working.
+
+You can always go the gitter and ask question or give feedback if you want :).
 
 What We Need
 ===
-We currently need someone to tutor us in the best practices for Rails. We are both new to the framework and the language, so our code still isn't clean enough. We do not have good tests and we're still in the learning curve.
+Currently in the project,there is a great need to help with the layout and the aesthetics of the site. Feel free to suggest some improvements design wise.
 
-We will need help with the layout and the aesthetics of the site. We're both programmers so our forte is not design. Feel free to suggest some improvements design wise.
+There is a lot of small easy things to do. Come chat with the team if you have any idea.
