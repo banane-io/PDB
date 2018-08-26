@@ -16,7 +16,6 @@ public class MapPoint {
     @Enumerated(EnumType.STRING)
     private Terrain terrain;
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
