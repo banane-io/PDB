@@ -11,6 +11,8 @@ public class Player {
 
     private User owner;
 
+    private MapPoint currentZone;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
@@ -23,7 +25,7 @@ public class Player {
 
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id",unique = true)
     public User getOwner() {
         return owner;
     }
@@ -40,5 +42,15 @@ public class Player {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "map_point_id", nullable = false)
+    public MapPoint getCurrentZone() {
+        return currentZone;
+    }
+
+    public void setCurrentZone(MapPoint currentZone) {
+        this.currentZone = currentZone;
     }
 }

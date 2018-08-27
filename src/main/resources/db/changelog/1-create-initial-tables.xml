@@ -51,22 +51,6 @@
                 referencedTableSchemaName="public"/>
     </changeSet>
 
-    <changeSet id="player_table_creation" author="magirard">
-        <createTable tableName="player">
-            <column name="id" autoIncrement="true" type="bigserial">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_player"/>
-            </column>
-            <column name="username" type="varchar(40)"/>
-            <column name="user_id" type="bigint"/>
-        </createTable>
-        <addForeignKeyConstraint
-                baseTableName="player"
-                baseColumnNames="user_id"
-                constraintName="fk_users_players"
-                referencedTableName="users"
-                referencedColumnNames="id"/>
-    </changeSet>
-
     <changeSet id="map_point_table_creation" author="magirard">
         <createTable tableName="map_point">
             <column name="id" autoIncrement="true" type="bigserial">
@@ -75,8 +59,35 @@
             <column name="x" type="integer"/>
             <column name="y" type="integer"/>
             <column name="zone" type="varchar(80)"/>
+            <column name="terrain" type="INTEGER"/>
         </createTable>
     </changeSet>
+
+    <changeSet id="player_table_creation" author="magirard">
+        <createTable tableName="player">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_player"/>
+            </column>
+            <column name="username" type="varchar(40)"/>
+            <column name="user_id" type="bigint"/>
+            <column name="map_point_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="player"
+                baseColumnNames="user_id"
+                constraintName="fk_users_players"
+                referencedTableName="users"
+                referencedColumnNames="id"/>
+        <addUniqueConstraint tableName="player" columnNames="user_id" />
+        <addForeignKeyConstraint
+                baseTableName="player"
+                baseColumnNames="map_point_id"
+                constraintName="fk_map_point_players"
+                referencedTableName="map_point"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+
 
     <changeSet id="load_map_point" author="magirard">
         <loadData encoding="UTF-8" file="db/data/map.csv" schemaName="public" tableName="map_point" separator="," quotchar="&quot;">

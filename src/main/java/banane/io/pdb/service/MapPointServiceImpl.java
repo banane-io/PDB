@@ -2,7 +2,9 @@ package banane.io.pdb.service;
 
 import banane.io.pdb.model.Direction;
 import banane.io.pdb.model.MapPoint;
+import banane.io.pdb.model.Player;
 import banane.io.pdb.repository.MapPointRepository;
+import banane.io.pdb.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +15,13 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
-public class MapPointserviceImpl implements MapPointService {
+public class MapPointServiceImpl implements MapPointService {
 
     @Autowired
     private MapPointRepository mapPointRepository;
+
+    @Autowired
+    private PlayerRepository playerRepository;
 
     @Override
     public List<MapPoint> loadGrid(MapPoint origin) {
@@ -35,6 +40,12 @@ public class MapPointserviceImpl implements MapPointService {
             }
         }
         return neighbors;
+    }
+
+    @Override
+    public void movePlayer(Player player, MapPoint newPosition) {
+        player.setCurrentZone(newPosition);
+        playerRepository.save(player);
     }
 
     private int[] calculateMinMax(int rangeMap, int minMap, int maxMap, int position) {

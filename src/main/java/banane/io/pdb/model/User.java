@@ -6,11 +6,18 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User {
+
     private Long id;
+
     private String username;
+
     private String password;
+
     private String passwordConfirm;
+
     private Set<Role> roles;
+    
+    private Player player;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,5 +62,15 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

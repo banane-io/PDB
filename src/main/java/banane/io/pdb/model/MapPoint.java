@@ -1,9 +1,6 @@
 package banane.io.pdb.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class MapPoint {
@@ -16,6 +13,8 @@ public class MapPoint {
 
     private String zone;
 
+    @Enumerated(EnumType.STRING)
+    private Terrain terrain;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,5 +48,13 @@ public class MapPoint {
 
     public void setZone(String zone) {
         this.zone = zone;
+    }
+
+    public Terrain getTerrain() {
+        return terrain;
+    }
+
+    public void setTerrain(Terrain terrain) {
+        this.terrain = terrain;
     }
 }
