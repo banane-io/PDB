@@ -1,0 +1,57 @@
+h1{
+	color:#0000FF;
+}
+
+h2{
+	color:#FF0000;
+}
+
+td {
+  padding: 10px 10px 10px 10px
+}
+.float {
+  float: left;
+}
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.inline {
+  display: inline;
+}
+
+.border {
+    margin: 8px;
+    border: 1px solid silver;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.arrow {
+  height: 35px;
+}
+
+.current_zone {
+  outline: thin solid green;
+}
+
+.clicked_zone {
+  outline: thin solid blue;
+}
+
+.square {
+  width: 10%;
+  height: 0;
+  padding-bottom: 10%;
+}
+
+
+.zone {
+    margin-top: 20px;
+}
+
+#current_map_point {
+  padding: 15px 15px 15px 15px;
+}
