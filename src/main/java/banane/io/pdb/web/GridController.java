@@ -20,7 +20,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/grid")
+@RequestMapping("/grid")
 public class GridController {
 
     @Autowired
