@@ -20,6 +20,6 @@ You can always go the gitter and ask question or give feedback if you want :).
 
 What We Need
 ===
-Currently in the project,there is a great need to help with the layout and the aesthetics of the site. Feel free to suggest some improvements design wise.
+There is a great need to help with the layout and the aesthetics of the site (see the [pdb-frontend](https://github.com/banane-io/pdb-frontend) project for more information).
 
-There is a lot of small easy things to do. Come chat with the team if you have any idea.
+There are also a lot of small easy things to do. Come chat with the team if you have any idea.
