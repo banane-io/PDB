@@ -1,5 +1,6 @@
 package banane.io.pdb.web;
 
+import banane.io.pdb.model.Direction;
 import banane.io.pdb.model.MapPoint;
 import banane.io.pdb.model.Player;
 import banane.io.pdb.repository.MapPointRepository;
@@ -32,18 +33,20 @@ public class GridController {
     //private SecurityService securityService;
 
     @GetMapping
-    public List<List<MapPoint>> grid(Model model) {
+    public List<List<MapPoint>> grid() {
         final MapPoint point = mapPointRepository.findById(1L).get();//TODO Implement the correct way for this securityService.findLoggedInUser().getPlayer().getCurrentZone();
         final List<MapPoint> mapPoints = mapPointService.loadGrid(point);
 
         final Map<Integer, List<MapPoint>> mapPointsGrouped = mapPoints.stream().collect(Collectors.groupingBy(p -> p.getY()));
         final List<List<MapPoint>> mapPointsForGrid = new ArrayList<>(mapPointsGrouped.values());
 
-        model.addAttribute("mapPointsForGrid", mapPointsForGrid);
-        model.addAttribute("mapPoint", point);
-        model.addAttribute("neighbors", mapPointService.neighbors(point));
-
         return mapPointsForGrid;
+    }
+
+    @GetMapping("/neighbors")
+    public Map<Direction, MapPoint> neighbors() {
+        final MapPoint point = mapPointRepository.findById(1L).get();
+        return mapPointService.neighbors(point);
     }
 
     @GetMapping("/movePlayer")

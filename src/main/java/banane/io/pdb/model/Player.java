@@ -34,8 +34,6 @@ public class Player {
         this.owner = owner;
     }
 
-    private User user;
-
     public String getUsername() {
         return username;
     }
