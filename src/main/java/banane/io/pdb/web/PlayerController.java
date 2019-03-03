@@ -4,7 +4,6 @@ import banane.io.pdb.model.Player;
 import banane.io.pdb.model.User;
 import banane.io.pdb.repository.MapPointRepository;
 import banane.io.pdb.repository.PlayerRepository;
-import banane.io.pdb.security.SecurityService;
 import banane.io.pdb.validator.PlayerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -58,7 +57,7 @@ public class PlayerController {
             model.addAttribute("fieldErrors", getFieldErrors(bindingResult));
             //TODO : return the error to the view return VIEW_FOLDER + "creation";
         }
-        User user = securityService.findLoggedInUser();
+        User user = new User();//TODO use a correct service for user securityService.findLoggedInUser();
         player.setOwner(user);
         player.setCurrentZone(mapPointRepository.getOne(1L));
         playerRepository.save(player);

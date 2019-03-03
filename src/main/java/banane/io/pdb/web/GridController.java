@@ -28,12 +28,12 @@ public class GridController {
     @Autowired
     private MapPointService mapPointService;
 
-    @Autowired
-    private SecurityService securityService;
+    //@Autowired
+    //private SecurityService securityService;
 
     @GetMapping
-    public String grid(Model model) {
-        final MapPoint point = securityService.findLoggedInUser().getPlayer().getCurrentZone();
+    public List<List<MapPoint>> grid(Model model) {
+        final MapPoint point = mapPointRepository.findById(1L).get();//TODO Implement the correct way for this securityService.findLoggedInUser().getPlayer().getCurrentZone();
         final List<MapPoint> mapPoints = mapPointService.loadGrid(point);
 
         final Map<Integer, List<MapPoint>> mapPointsGrouped = mapPoints.stream().collect(Collectors.groupingBy(p -> p.getY()));
@@ -43,12 +43,12 @@ public class GridController {
         model.addAttribute("mapPoint", point);
         model.addAttribute("neighbors", mapPointService.neighbors(point));
 
-        return "grid/grid";
+        return mapPointsForGrid;
     }
 
     @GetMapping("/movePlayer")
     public String movePlayer(@RequestParam("mapPoint") Long mapPoint, Model model) {
-        final Player currentPlayer = securityService.findLoggedInUser().getPlayer();
+        final Player currentPlayer = new Player();//TODO Implement the correct way for this securityService.findLoggedInUser().getPlayer();
         final Optional<MapPoint> mapPointToMove = mapPointRepository.findById(mapPoint);
         mapPointService.movePlayer(currentPlayer, mapPointToMove.get());
         return "redirect:/grid";
