@@ -55,14 +55,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable()
-            .authorizeRequests()
-            .and()
             .exceptionHandling()
             .accessDeniedHandler(accessDeniedHandler)
             .authenticationEntryPoint(restAuthenticationEntryPoint)
             .and()
             .authorizeRequests()
-            .antMatchers("/api/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/registration").permitAll()
             .antMatchers("/api/**").authenticated()
             .and()
             .formLogin()
