@@ -20,6 +20,28 @@ You can always go the gitter and ask question or give feedback if you want :).
 
 What We Need
 ===
-There is a great need to help with the layout and the aesthetics of the site (see the [pdb-frontend](https://github.com/banane-io/pdb-frontend) project for more information).
+There is a great need to help with the layout and the aesthetics of the client (see the [pdb-frontend](https://github.com/banane-io/pdb-frontend) project for more information).
 
-There are also a lot of small easy things to do. Come chat with the team if you have any idea.
+There are also a lot of small easy things to do. Come chat with me on Gitter or [this chatroom](https://chat.stackexchange.com/rooms/16134/coding-projects-and-vue-js-heaven) if you have any idea.
+
+How to Setup the Database
+===
+
+You will need a local postgresql10 installation either on your local machine or elsewhere. For window, you can follow this [installation page](https://www.postgresql.org/download/windows/) and for Linux you can follow this [page of instructions](https://websiteforstudents.com/installing-postgresql-10-on-ubuntu-16-04-17-10-18-04/).
+
+Once the installation is complete, you need to create a new db and a new user like so : 
+```sql
+CREATE DATABASE pdb;
+CREATE USER pdb WITH ENCRYPTED PASSWORD 'password1';
+GRANT ALL PRIVILEGES ON DATABASE pdb TO pdb;
+```
+
+This will create a user and database to connect to. Those information can be changed in the `application.properties` file, if you changed any of the provided one :
+
+```
+spring.datasource.url= jdbc:postgresql://localhost:5432/pdb
+spring.datasource.username=pdb
+spring.datasource.password=password1
+```
+
+The table will be created automatticaly by liquibase at the start of the application, so no need of any intervation.
