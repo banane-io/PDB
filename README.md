@@ -2,7 +2,7 @@
 PDB
 ===
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/banane-io/PDB?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Stories in Ready](https://badge.waffle.io/banane-io/PDB.png?label=ready&title=Ready)](https://waffle.io/banane-io/PDB)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/banane-io/PDB?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This is a small web application to create a text game for browser The goal of the game is to create something similar to Ogame, but with your own character and an good rpg element to it.
 
