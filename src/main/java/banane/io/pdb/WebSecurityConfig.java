@@ -66,6 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin()
             .successHandler(mySuccessHandler)
             .failureHandler(myFailureHandler)
+            .loginProcessingUrl("/api/login")
             .and()
             .httpBasic()
             .and()
