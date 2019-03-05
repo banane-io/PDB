@@ -4,7 +4,7 @@ PDB
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/banane-io/PDB?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-This is a small web application to create a text game for browser The goal of the game is to create something similar to Ogame, but with your own character and an good rpg element to it.
+This is a small web application to create a text game for browser. The goal of the game is to create something similar to Ogame, but with your own character and some good rpg elements to it.
 
 
 How to Help
@@ -45,3 +45,13 @@ spring.datasource.password=password1
 ```
 
 The table will be created automatticaly by liquibase at the start of the application, so no need of any intervation.
+
+How to Run the Application
+===
+This is really easy, all you have to do is run the correct mvn goal :
+
+```
+mvn spring-boot:run
+```
+
+If everything is setup correctly, the server should start up :).
