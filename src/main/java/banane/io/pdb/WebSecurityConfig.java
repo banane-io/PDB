@@ -1,5 +1,6 @@
 package banane.io.pdb;
 
+import banane.io.pdb.security.CustomUsernamePasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import banane.io.pdb.security.CustomAccessDeniedHandler;
 import banane.io.pdb.security.MySavedRequestAwareAuthenticationSuccessHandler;
 import banane.io.pdb.security.RestAuthenticationEntryPoint;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -23,7 +25,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
-
 
     @Autowired
     private CustomAccessDeniedHandler accessDeniedHandler;
@@ -55,6 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable()
+                .addFilterBefore(new CustomUsernamePasswordAuthenticationFilter(authenticationManagerBean()), UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling()
             .accessDeniedHandler(accessDeniedHandler)
             .authenticationEntryPoint(restAuthenticationEntryPoint)
@@ -67,8 +69,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .successHandler(mySuccessHandler)
             .failureHandler(myFailureHandler)
             .loginProcessingUrl("/api/login")
-            .and()
-            .httpBasic()
             .and()
             .logout();
 }
