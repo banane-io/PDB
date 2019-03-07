@@ -56,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .addFilterBefore(new CustomUsernamePasswordAuthenticationFilter(authenticationManagerBean()), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(customFilter(), UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling()
             .accessDeniedHandler(accessDeniedHandler)
             .authenticationEntryPoint(restAuthenticationEntryPoint)
@@ -71,11 +71,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .loginProcessingUrl("/api/login")
             .and()
             .logout();
-}
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+    }
+
+    @Autowired
+    public CustomUsernamePasswordAuthenticationFilter customFilter() throws Exception {
+        CustomUsernamePasswordAuthenticationFilter  customFilter = new CustomUsernamePasswordAuthenticationFilter(authenticationManagerBean());
+        customFilter.setAuthenticationFailureHandler(myFailureHandler);
+        customFilter.setAuthenticationSuccessHandler(mySuccessHandler);
+        return customFilter;
     }
 
 }
