@@ -1,9 +1,9 @@
 package banane.io.pdb;
 
-import banane.io.pdb.security.CustomUsernamePasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,11 +13,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
 import banane.io.pdb.security.CustomAccessDeniedHandler;
 import banane.io.pdb.security.MySavedRequestAwareAuthenticationSuccessHandler;
 import banane.io.pdb.security.RestAuthenticationEntryPoint;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -25,6 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
 
     @Autowired
     private CustomAccessDeniedHandler accessDeniedHandler;
@@ -56,7 +57,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .addFilterBefore(customFilter(), UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling()
             .accessDeniedHandler(accessDeniedHandler)
             .authenticationEntryPoint(restAuthenticationEntryPoint)
@@ -70,20 +70,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .failureHandler(myFailureHandler)
             .loginProcessingUrl("/api/login")
             .and()
-            .logout();
-    }
+            .httpBasic()
+            .and()
+            .logout()
+            .logoutUrl("/api/logout")
+            .logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));;
+}
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-    }
-
-    @Autowired
-    public CustomUsernamePasswordAuthenticationFilter customFilter() throws Exception {
-        CustomUsernamePasswordAuthenticationFilter  customFilter = new CustomUsernamePasswordAuthenticationFilter(authenticationManagerBean());
-        customFilter.setAuthenticationFailureHandler(myFailureHandler);
-        customFilter.setAuthenticationSuccessHandler(mySuccessHandler);
-        return customFilter;
     }
 
 }
