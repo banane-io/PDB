@@ -18,7 +18,6 @@ import java.util.Set;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-
     @Autowired
     private UserRepository userRepository;
 
@@ -35,7 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             }
             return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
         } else {
-            throw new IllegalStateException("User not found"); //TODO: Throw a better exception
+            throw new IllegalStateException("User |" + username + "| not found"); //TODO: Throw a better exception
         }
 
     }
