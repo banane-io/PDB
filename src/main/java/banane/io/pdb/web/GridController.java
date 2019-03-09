@@ -43,7 +43,7 @@ public class GridController {
     public List<List<MapPoint>> grid(@PathVariable("id") Long centralMapPointId) {
         checkNotNull(centralMapPointId);
         final MapPoint centralPoint = mapPointRepository.findById(centralMapPointId)
-                                                 .orElseThrow(() -> new IllegalArgumentException("MapPointPassed in parameter does not exist")));
+                                                 .orElseThrow(() -> new IllegalArgumentException("MapPointPassed in parameter does not exist"));
         final List<MapPoint> mapPoints = mapPointService.loadGrid(centralPoint);
 
         final Map<Integer, List<MapPoint>> mapPointsGrouped = mapPoints.stream().collect(Collectors.groupingBy(p -> p.getY()));
