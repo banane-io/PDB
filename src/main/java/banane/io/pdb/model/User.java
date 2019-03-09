@@ -13,8 +13,6 @@ public class User {
 
     private String password;
 
-    private String passwordConfirm;
-
     private Set<Role> roles;
     
     private Player player;
@@ -43,15 +41,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Transient
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
     }
 
     @ManyToMany

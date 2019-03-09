@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/player")
+@RequestMapping("/api/player")
 public class PlayerController {
     @Autowired
     private PlayerValidator playerValidator;

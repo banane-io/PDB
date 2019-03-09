@@ -10,7 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
@@ -22,39 +22,19 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
-    @GetMapping(value = "/registration")
-    public String registration(Model model) {
-        model.addAttribute("user", new User());
-
-        return "registration";
-    }
-
     @PostMapping(value = "/registration")
-    public String registration(@ModelAttribute("user") User userForm, BindingResult bindingResult, Model model) {
+    public User registration(@RequestBody User userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return userForm;
         }
 
-        userService.save(userForm);
+        final User user = userService.save(userForm);
 
         //securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        return "redirect:/";
-    }
-
-    @GetMapping(value = "/login")
-    public String login(Model model, String error, String logout) {
-        if (error != null) {
-            model.addAttribute("error", "Your username and password is invalid.");
-        }
-
-        if (logout != null) {
-            model.addAttribute("message", "You have been logged out successfully.");
-        }
-
-        return "login";
+        return user;
     }
 
 }
