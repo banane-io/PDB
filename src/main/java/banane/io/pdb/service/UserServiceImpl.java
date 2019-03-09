@@ -1,13 +1,15 @@
 package banane.io.pdb.service;
 
-import banane.io.pdb.model.User;
-import banane.io.pdb.repository.RoleRepository;
-import banane.io.pdb.repository.UserRepository;
+import java.util.HashSet;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
+import banane.io.pdb.model.User;
+import banane.io.pdb.repository.RoleRepository;
+import banane.io.pdb.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -29,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username).orElse(null); //TODO: Throw a better exception
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }
