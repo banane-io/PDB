@@ -9,6 +9,7 @@ import banane.io.pdb.service.MapPointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 @RestController
 @RequestMapping("/api/grid")
@@ -32,10 +35,16 @@ public class GridController {
     //@Autowired
     //private SecurityService securityService;
 
-    @GetMapping
-    public List<List<MapPoint>> grid() {
-        final MapPoint point = mapPointRepository.findById(1L).get();//TODO Implement the correct way for this securityService.findLoggedInUser().getPlayer().getCurrentZone();
-        final List<MapPoint> mapPoints = mapPointService.loadGrid(point);
+    /**
+     * Load a grid of point with the center being the mapPoint passed in parameter
+     * 
+     */
+    @GetMapping("/{id}")
+    public List<List<MapPoint>> grid(@PathVariable("id") Long centralMapPointId) {
+        checkNotNull(centralMapPointId);
+        final MapPoint centralPoint = mapPointRepository.findById(centralMapPointId)
+                                                 .orElseThrow(() -> new IllegalArgumentException("MapPointPassed in parameter does not exist")));
+        final List<MapPoint> mapPoints = mapPointService.loadGrid(centralPoint);
 
         final Map<Integer, List<MapPoint>> mapPointsGrouped = mapPoints.stream().collect(Collectors.groupingBy(p -> p.getY()));
         final List<List<MapPoint>> mapPointsForGrid = new ArrayList<>(mapPointsGrouped.values());
@@ -43,14 +52,22 @@ public class GridController {
         return mapPointsForGrid;
     }
 
-    @GetMapping("/neighbors")
-    public Map<Direction, MapPoint> neighbors() {
-        final MapPoint point = mapPointRepository.findById(1L).get();
-        return mapPointService.neighbors(point);
+    /**
+     * Load surrounding mapPoints to a central mapPoints. The data returned is Map of Directions associatied with each point.
+     * 
+     */
+    @GetMapping("/neighbors/{id}")
+    public Map<Direction, MapPoint> neighbors(@PathVariable("id") Long centralMapPointId) {
+        checkNotNull(centralMapPointId);
+        final MapPoint centralPoint = mapPointRepository.findById(centralMapPointId)
+                                                 .orElseThrow(() -> new IllegalArgumentException("MapPointPassed in parameter does not exist"));
+        return mapPointService.neighbors(centralPoint);
     }
 
+
+    //TODO move this to the player controller. This does not belong here since it's strongly tied to the player, not the grid
     @GetMapping("/movePlayer")
-    public String movePlayer(@RequestParam("mapPoint") Long mapPoint, Model model) {
+    public String movePlayer(@RequestParam("mapPoint") Long mapPoint) {
         final Player currentPlayer = new Player();//TODO Implement the correct way for this securityService.findLoggedInUser().getPlayer();
         final Optional<MapPoint> mapPointToMove = mapPointRepository.findById(mapPoint);
         mapPointService.movePlayer(currentPlayer, mapPointToMove.get());
