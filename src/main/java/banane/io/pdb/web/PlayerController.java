@@ -1,10 +1,9 @@
 package banane.io.pdb.web;
 
-import banane.io.pdb.model.Player;
-import banane.io.pdb.model.User;
-import banane.io.pdb.repository.MapPointRepository;
-import banane.io.pdb.repository.PlayerRepository;
-import banane.io.pdb.validator.PlayerValidator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,8 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
+import banane.io.pdb.model.Player;
+import banane.io.pdb.model.User;
+import banane.io.pdb.repository.MapPointRepository;
+import banane.io.pdb.repository.PlayerRepository;
+import banane.io.pdb.security.SecurityService;
+import banane.io.pdb.validator.PlayerValidator;
 
 @RestController
 @RequestMapping("/api/player")
@@ -31,15 +34,16 @@ public class PlayerController {
     @Autowired
     private MapPointRepository mapPointRepository;
 
+    @Autowired
+    private SecurityService securityService;
+
 
     private static String VIEW_FOLDER = "player/";
 
     @GetMapping
-    public String show(Model model) {
-        final User loggedInUser = new User();//securityService.findLoggedInUser();
-        model.addAttribute("player", loggedInUser.getPlayer());
-
-        return VIEW_FOLDER + "show";
+    public Player currentUserPlayer() {
+        final User loggedInUser = securityService.findLoggedInUser();
+        return loggedInUser.getPlayer();
     }
 
     @GetMapping("/creation")
