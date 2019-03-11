@@ -1,19 +1,16 @@
 package banane.io.pdb.web;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import banane.io.pdb.model.Player;
 import banane.io.pdb.model.User;
@@ -46,28 +43,24 @@ public class PlayerController {
         return loggedInUser.getPlayer();
     }
 
-    @GetMapping("/creation")
-    public String creation(Model model) {
-        model.addAttribute("player", new Player());
-        return VIEW_FOLDER + "creation";
-    }
+    @PostMapping("/create")
+    public Player create(@RequestBody Player player, BindingResult bindingResult) {
+        User user = securityService.findLoggedInUser();
+        checkArgument(user.getPlayer() == null, "The user already have have a player");
+        checkNotNull(player);
 
-    @PostMapping("/creation")
-    public Player creation(@ModelAttribute("player") Player player, BindingResult bindingResult, Model model) {
         playerValidator.validate(player, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("formErrors", bindingResult.getAllErrors());
-            model.addAttribute("fieldErrors", getFieldErrors(bindingResult));
-            //TODO : return the error to the view return VIEW_FOLDER + "creation";
+            //TODO : Should return error here
         }
-        User user = new User();//TODO use a correct service for user securityService.findLoggedInUser();
+
         player.setOwner(user);
         player.setCurrentZone(mapPointRepository.getOne(1L));
         playerRepository.save(player);
 
         return player;
-    }//TODO: Add check for duplicate since player is unique
+    }
 
     private Map<String, ObjectError> getFieldErrors(BindingResult result) {
         Map<String, ObjectError> map = new HashMap<>();

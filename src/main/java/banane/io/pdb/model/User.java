@@ -1,5 +1,7 @@
 package banane.io.pdb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,10 +13,12 @@ public class User {
 
     private String username;
 
+    @JsonIgnore
     private String password;
 
     private Set<Role> roles;
-    
+
+    @JsonIgnore
     private Player player;
 
     @Id

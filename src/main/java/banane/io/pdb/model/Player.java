@@ -1,5 +1,8 @@
 package banane.io.pdb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,8 +12,10 @@ public class Player {
 
     private String username;
 
+    @JsonIgnore
     private User owner;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private MapPoint currentZone;
 
     @Id
