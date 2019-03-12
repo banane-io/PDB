@@ -1,12 +1,12 @@
 package banane.io.pdb.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 @Entity
-public class Player {
+public class Hero {
 
     private Long id;
 
@@ -15,7 +15,6 @@ public class Player {
     @JsonIgnore
     private User owner;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private MapPoint currentZone;
 
     @Id
@@ -55,5 +54,11 @@ public class Player {
 
     public void setCurrentZone(MapPoint currentZone) {
         this.currentZone = currentZone;
+    }
+
+    @Transient
+    @JsonGetter("currentZone")
+    public Long getCurrentzoneJson() {
+        return currentZone.getId();
     }
 }

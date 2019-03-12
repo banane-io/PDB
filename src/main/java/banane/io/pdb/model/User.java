@@ -19,7 +19,7 @@ public class User {
     private Set<Role> roles;
 
     @JsonIgnore
-    private Player player;
+    private Hero hero;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,11 +59,11 @@ public class User {
 
     @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
-    public Player getPlayer() {
-        return player;
+    public Hero getHero() {
+        return hero;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setHero(Hero hero) {
+        this.hero = hero;
     }
 }

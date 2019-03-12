@@ -12,21 +12,21 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
-import banane.io.pdb.model.Player;
+import banane.io.pdb.model.Hero;
 import banane.io.pdb.model.User;
 import banane.io.pdb.repository.MapPointRepository;
-import banane.io.pdb.repository.PlayerRepository;
+import banane.io.pdb.repository.HeroRepository;
 import banane.io.pdb.security.SecurityService;
-import banane.io.pdb.validator.PlayerValidator;
+import banane.io.pdb.validator.HeroValidator;
 
 @RestController
-@RequestMapping("/api/player")
-public class PlayerController {
+@RequestMapping("/api/hero")
+public class HeroController {
     @Autowired
-    private PlayerValidator playerValidator;
+    private HeroValidator heroValidator;
 
     @Autowired
-    private PlayerRepository playerRepository;
+    private HeroRepository heroRepository;
 
     @Autowired
     private MapPointRepository mapPointRepository;
@@ -38,28 +38,28 @@ public class PlayerController {
     private static String VIEW_FOLDER = "player/";
 
     @GetMapping
-    public Player currentUserPlayer() {
+    public Hero currentUserPlayer() {
         final User loggedInUser = securityService.findLoggedInUser();
-        return loggedInUser.getPlayer();
+        return loggedInUser.getHero();
     }
 
-    @PostMapping("/create")
-    public Player create(@RequestBody Player player, BindingResult bindingResult) {
+    @PostMapping
+    public Hero create(@RequestBody Hero hero, BindingResult bindingResult) {
         User user = securityService.findLoggedInUser();
-        checkArgument(user.getPlayer() == null, "The user already have have a player");
-        checkNotNull(player);
+        checkArgument(user.getHero() == null, "The user already have have a hero");
+        checkNotNull(hero);
 
-        playerValidator.validate(player, bindingResult);
+        heroValidator.validate(hero, bindingResult);
 
         if (bindingResult.hasErrors()) {
             //TODO : Should return error here
         }
 
-        player.setOwner(user);
-        player.setCurrentZone(mapPointRepository.getOne(1L));
-        playerRepository.save(player);
+        hero.setOwner(user);
+        hero.setCurrentZone(mapPointRepository.getOne(1L));
+        heroRepository.save(hero);
 
-        return player;
+        return hero;
     }
 
     private Map<String, ObjectError> getFieldErrors(BindingResult result) {
