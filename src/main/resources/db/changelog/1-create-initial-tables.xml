@@ -94,6 +94,7 @@
             <column name="x" type="numeric"/>
             <column name="y" type="numeric"/>
             <column name="zone" type="string" />
+            <column name="terrain" type="numeric" />
         </loadData>
     </changeSet>
 </databaseChangeLog>
