@@ -17,6 +17,16 @@ public class Hero {
 
     private MapPoint currentZone;
 
+    private Integer strength;
+
+    private Integer agility;
+
+    private Integer intelligence;
+
+    private Integer hp;
+
+    private Integer mana;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
@@ -60,5 +70,45 @@ public class Hero {
     @JsonGetter("currentZone")
     public Long getCurrentzoneJson() {
         return currentZone.getId();
+    }
+
+    public Integer getStrength() {
+        return strength;
+    }
+
+    public void setStrength(Integer strength) {
+        this.strength = strength;
+    }
+
+    public Integer getAgility() {
+        return agility;
+    }
+
+    public void setAgility(Integer agility) {
+        this.agility = agility;
+    }
+
+    public Integer getIntelligence() {
+        return intelligence;
+    }
+
+    public void setIntelligence(Integer intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public Integer getHp() {
+        return hp;
+    }
+
+    public void setHp(Integer hp) {
+        this.hp = hp;
+    }
+
+    public Integer getMana() {
+        return mana;
+    }
+
+    public void setMana(Integer mana) {
+        this.mana = mana;
     }
 }
