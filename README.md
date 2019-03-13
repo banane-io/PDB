@@ -24,6 +24,13 @@ There is a great need to help with the layout and the aesthetics of the client (
 
 There are also a lot of small easy things to do. Come chat with me on Gitter or [this chatroom](https://chat.stackexchange.com/rooms/16134/coding-projects-and-vue-js-heaven) if you have any idea.
 
+Running Database + PDB in Docker
+===
+
+    docker run --name pdb-db -e POSTGRES_USER=pdb -e POSTGRES_PASSWORD=password1 postgres
+    docker build . -t pdb
+    docker run --name pdb-app -v $PWD/target/pdb-0.0.3-SNAPSHOT.war:/pdb-data/pdb.war --link pdb-db:postgres pdb
+
 How to Setup the Database
 ===
 
