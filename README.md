@@ -27,9 +27,9 @@ There are also a lot of small easy things to do. Come chat with me on Gitter or 
 Running Database + PDB in Docker
 ===
 
-    docker run --name pdb-db -e POSTGRES_USER=pdb -e POSTGRES_PASSWORD=password1 postgres
+    docker run --name pdb-db -p 5432:5432 -e POSTGRES_USER=pdb -e POSTGRES_PASSWORD=password1 postgres
     docker build . -t pdb
-    docker run --name pdb-app -v $PWD/target/pdb-0.0.3-SNAPSHOT.war:/pdb-data/pdb.war --link pdb-db:postgres pdb
+    docker run --name pdb-app  -p 3000:3000 -v $PWD/target/pdb-0.0.3-SNAPSHOT.war:/pdb-data/pdb.war --link pdb-db:postgres pdb
 
 How to Setup the Database
 ===
