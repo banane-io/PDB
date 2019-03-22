@@ -24,7 +24,7 @@ public class HeroValidator implements Validator {
         }
 
         if(hero.getAgility() + hero.getIntelligence() + hero.getStrength() != 15) {
-            //errors.rejectValue("stats", "Size.userForm.username"); TODO implement validation for stats
+            errors.rejectValue("agility", "Size.userForm.username");
         }
     }
 }

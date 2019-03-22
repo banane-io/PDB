@@ -1,10 +1,5 @@
 package banane.io.pdb.security;
 
-import banane.io.pdb.model.User;
-import banane.io.pdb.service.UserService;
-
-import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +9,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+
+import banane.io.pdb.model.User;
+import banane.io.pdb.service.UserService;
 
 @Service
 public class SecurityServiceImpl implements SecurityService {
