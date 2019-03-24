@@ -34,7 +34,7 @@ Running Database + PDB in Docker
 How to Setup the Database
 ===
 
-You will need a local postgresql10 installation either on your local machine or elsewhere. For window, you can follow this [installation page](https://www.postgresql.org/download/windows/) and for Linux you can follow this [page of instructions](https://websiteforstudents.com/installing-postgresql-10-on-ubuntu-16-04-17-10-18-04/).
+If you didn't use the docker instance, you will need a postgresql10 installation either on your local machine or elsewhere. For Windows, you can follow this [installation page](https://www.postgresql.org/download/windows/) and for Linux you can follow this [page of instructions](https://websiteforstudents.com/installing-postgresql-10-on-ubuntu-16-04-17-10-18-04/).
 
 Once the installation is complete, you need to create a new db and a new user like so : 
 ```sql
