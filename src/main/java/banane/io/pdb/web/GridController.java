@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,8 @@ public class GridController {
     @Autowired
     private MapPointService mapPointService;
 
+    private static final Logger logger = LoggerFactory.getLogger(GridController.class);
+
     /**
      * Load a grid of point with the center being the mapPoint passed in parameter
      * 
@@ -37,6 +41,7 @@ public class GridController {
     @GetMapping("/{id}")
     public ResponseEntity<List<List<MapPoint>>> grid(@PathVariable("id") Long centralMapPointId) {
         checkNotNull(centralMapPointId);
+        logger.info("Fetching grid aroung mapPoint : " + centralMapPointId.toString());
         final MapPoint centralPoint = mapPointRepository.findById(centralMapPointId)
                                                  .orElseThrow(() -> new IllegalArgumentException("MapPointPassed in parameter does not exist"));
         final List<MapPoint> mapPoints = mapPointService.loadGrid(centralPoint);
@@ -54,6 +59,7 @@ public class GridController {
     @GetMapping("/neighbors/{id}")
     public ResponseEntity<Map<Direction, MapPoint>> neighbors(@PathVariable("id") Long centralMapPointId) {
         checkNotNull(centralMapPointId);
+        logger.info("Fetching neighbors aroung mapPoint : " + centralMapPointId.toString());
         final MapPoint centralPoint = mapPointRepository.findById(centralMapPointId)
                                                  .orElseThrow(() -> new IllegalArgumentException("MapPointPassed in parameter does not exist"));
         return ResponseEntity.status(HttpStatus.OK).body(mapPointService.neighbors(centralPoint));

@@ -29,15 +29,20 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public String findLoggedInUsername() {
+        logger.debug("Finding logged in user");
         Object userDetails = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (userDetails instanceof UserDetails) {
-            return ((UserDetails) userDetails).getUsername();
+            final String username = ((UserDetails) userDetails).getUsername();
+            logger.debug("Find logged in user with username : " + username);
+            return username;
         }
+        logger.debug("No user found");
         return null;
     }
 
     @Override
     public User findLoggedInUser() {
+        logger.debug("Trying to find current logged in user");
         return userService.findByUsername(findLoggedInUsername()).orElseThrow(() -> new IllegalStateException("A logged in user should have a User of the same name"));
     }
 

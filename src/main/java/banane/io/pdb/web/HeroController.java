@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +44,8 @@ public class HeroController {
     @Autowired
     private MapPointService mapPointService;
 
+    private static final Logger logger = LoggerFactory.getLogger(HeroController.class);
+
     @GetMapping
     public Hero currentUserPlayer() {
         final User loggedInUser = securityService.findLoggedInUser();
@@ -53,26 +57,31 @@ public class HeroController {
         User user = securityService.findLoggedInUser();
         checkArgument(user.getHero() == null, "The user already have have a hero");
         checkNotNull(hero);
-
+        
+        logger.debug("Validating hero");
         heroValidator.validate(hero, bindingResult);
 
         if (bindingResult.hasErrors()) {
+            logger.debug("Hero is not valid, returning BAD_REQUEST");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getFieldErrors(bindingResult));
         }
 
         hero.setOwner(user);
         hero.setCurrentZone(mapPointRepository.getOne(1L));
         heroRepository.save(hero);
-
+        logger.info("Creation of hero : " + hero.getUsername() + " successful");
         return ResponseEntity.status(HttpStatus.OK).body(hero);
     }
 
     @PostMapping("/movePlayer/{id}")
-    public String movePlayer(@PathVariable("id") Long mapPoint) {
+    public MapPoint movePlayer(@PathVariable("id") Long mapPointId) {
+        logger.debug("Starting to move hero to the zone with id : " + mapPointId.toString());
         final Hero currentHero = securityService.findLoggedInUser().getHero();
-        final Optional<MapPoint> mapPointToMove = mapPointRepository.findById(mapPoint);
-        mapPointService.movePlayer(currentHero, mapPointToMove.get());
-        return "redirect:/grid";
+        final Optional<MapPoint> mapPointToMove = mapPointRepository.findById(mapPointId);
+        MapPoint newMapPoint = mapPointToMove.get();
+        logger.info("Moving hero " + currentHero.getUsername() + " to the zone with id : " + mapPointId.toString());
+        mapPointService.movePlayer(currentHero, newMapPoint);
+        return newMapPoint;
     }
 
     private Map<String, ObjectError> getFieldErrors(BindingResult result) {
