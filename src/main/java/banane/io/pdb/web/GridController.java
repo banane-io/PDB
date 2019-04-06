@@ -41,7 +41,7 @@ public class GridController {
     @GetMapping("/{id}")
     public ResponseEntity<List<List<MapPoint>>> grid(@PathVariable("id") Long centralMapPointId) {
         checkNotNull(centralMapPointId);
-        logger.info("Fetching grid aroung mapPoint : " + centralMapPointId.toString());
+        logger.info("Fetching grid aroung mapPoint : {}", centralMapPointId.toString());
         final MapPoint centralPoint = mapPointRepository.findById(centralMapPointId)
                                                  .orElseThrow(() -> new IllegalArgumentException("MapPointPassed in parameter does not exist"));
         final List<MapPoint> mapPoints = mapPointService.loadGrid(centralPoint);
@@ -59,7 +59,7 @@ public class GridController {
     @GetMapping("/neighbors/{id}")
     public ResponseEntity<Map<Direction, MapPoint>> neighbors(@PathVariable("id") Long centralMapPointId) {
         checkNotNull(centralMapPointId);
-        logger.info("Fetching neighbors aroung mapPoint : " + centralMapPointId.toString());
+        logger.info("Fetching neighbors aroung mapPoint : {}", centralMapPointId.toString());
         final MapPoint centralPoint = mapPointRepository.findById(centralMapPointId)
                                                  .orElseThrow(() -> new IllegalArgumentException("MapPointPassed in parameter does not exist"));
         return ResponseEntity.status(HttpStatus.OK).body(mapPointService.neighbors(centralPoint));

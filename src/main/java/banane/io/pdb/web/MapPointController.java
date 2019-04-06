@@ -22,8 +22,10 @@ public class MapPointController {
 
     @GetMapping("/{id}")
     public MapPoint getZone(@PathVariable("id") Long zoneId) {
-        logger.info("Fetching data for mapPoint: " + zoneId.toString());
-        return mapPointRepository.findById(zoneId).get();
+        logger.info("Fetching data for mapPoint: {}", zoneId.toString());
+        MapPoint mapPoint = mapPointRepository.findById(zoneId).get();
+        logger.info("Fetched mapPoint: {} with x: {} and y: {}", zoneId.toString(), mapPoint.getX(), mapPoint.getY());
+        return mapPoint;
     }
 
 }

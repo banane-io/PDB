@@ -69,17 +69,17 @@ public class HeroController {
         hero.setOwner(user);
         hero.setCurrentZone(mapPointRepository.getOne(1L));
         heroRepository.save(hero);
-        logger.info("Creation of hero : " + hero.getUsername() + " successful");
+        logger.info("Creation of hero : {} successful", hero.getUsername());
         return ResponseEntity.status(HttpStatus.OK).body(hero);
     }
 
     @PostMapping("/movePlayer/{id}")
     public MapPoint movePlayer(@PathVariable("id") Long mapPointId) {
-        logger.debug("Starting to move hero to the zone with id : " + mapPointId.toString());
+        logger.debug("Starting to move hero to the zone with id : {}", mapPointId.toString());
         final Hero currentHero = securityService.findLoggedInUser().getHero();
         final Optional<MapPoint> mapPointToMove = mapPointRepository.findById(mapPointId);
         MapPoint newMapPoint = mapPointToMove.get();
-        logger.info("Moving hero " + currentHero.getUsername() + " to the zone with id : " + mapPointId.toString());
+        logger.info("Moving hero {} to the zone with id : {}", currentHero.getUsername(), mapPointId.toString());
         mapPointService.movePlayer(currentHero, newMapPoint);
         return newMapPoint;
     }
