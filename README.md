@@ -24,10 +24,17 @@ There is a great need to help with the layout and the aesthetics of the client (
 
 There are also a lot of small easy things to do. Come chat with me on Gitter or [this chatroom](https://chat.stackexchange.com/rooms/16134/coding-projects-and-vue-js-heaven) if you have any idea.
 
+Running Database + PDB in Docker
+===
+
+    docker run --name pdb-db -p 5432:5432 -e POSTGRES_USER=pdb -e POSTGRES_PASSWORD=password1 postgres
+    docker build . -t pdb
+    docker run --name pdb-app  -p 3000:3000 -v $PWD/target/pdb-0.0.3-SNAPSHOT.war:/pdb-data/pdb.war --link pdb-db:postgres pdb
+
 How to Setup the Database
 ===
 
-You will need a local postgresql10 installation either on your local machine or elsewhere. For window, you can follow this [installation page](https://www.postgresql.org/download/windows/) and for Linux you can follow this [page of instructions](https://websiteforstudents.com/installing-postgresql-10-on-ubuntu-16-04-17-10-18-04/).
+If you didn't use the docker instance, you will need a postgresql10 installation either on your local machine or elsewhere. For Windows, you can follow this [installation page](https://www.postgresql.org/download/windows/) and for Linux you can follow this [page of instructions](https://websiteforstudents.com/installing-postgresql-10-on-ubuntu-16-04-17-10-18-04/).
 
 Once the installation is complete, you need to create a new db and a new user like so : 
 ```sql
@@ -55,3 +62,5 @@ mvn spring-boot:run
 ```
 
 If everything is setup correctly, the server should start up :).
+
+There is 4 users account included in the seed data testtest, testtest2, testtest3 and testtest4 (all the passsword are testtest).

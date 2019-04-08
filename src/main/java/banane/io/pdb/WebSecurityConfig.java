@@ -1,27 +1,47 @@
 package banane.io.pdb;
 
-import banane.io.pdb.security.LoggingAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+
+import banane.io.pdb.security.CustomAccessDeniedHandler;
+import banane.io.pdb.security.MySavedRequestAwareAuthenticationSuccessHandler;
+import banane.io.pdb.security.RestAuthenticationEntryPoint;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     private UserDetailsService userDetailsService;
 
+
     @Autowired
-    private LoggingAccessDeniedHandler accessDeniedHandler;
+    private CustomAccessDeniedHandler accessDeniedHandler;
+
+    @Autowired
+    private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+
+    @Autowired
+    private MySavedRequestAwareAuthenticationSuccessHandler mySuccessHandler;
+
+    private SimpleUrlAuthenticationFailureHandler myFailureHandler = new SimpleUrlAuthenticationFailureHandler();
+
+    public WebSecurityConfig() {
+        super();
+        SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
+}
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -35,35 +55,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity security) throws Exception {
-        security
-                    .authorizeRequests()
-                        .antMatchers("/",
-                                "/js/**",
-                                "/css/**",
-                                "/img/**",
-                                "/webjars/**",
-                                "/registration").permitAll()
-                        .anyRequest().authenticated()
-                        .and()
-                    .formLogin()
-                        .loginPage("/login")
-                        .permitAll()
-                        .and()
-                    .logout()
-                        .invalidateHttpSession(true)
-                        .clearAuthentication(true)
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/login?logout")
-                        .permitAll()
-                        .and()
-                    .exceptionHandling()
-                        .accessDeniedHandler(accessDeniedHandler);
-        security.csrf().csrfTokenRepository(new HttpSessionCsrfTokenRepository());
-    }
+    protected void configure(final HttpSecurity http) throws Exception {
+        http.csrf().disable()
+            .exceptionHandling()
+            .accessDeniedHandler(accessDeniedHandler)
+            .authenticationEntryPoint(restAuthenticationEntryPoint)
+            .and()
+            .authorizeRequests()
+                .antMatchers("/api/registration").permitAll()
+            .antMatchers("/api/**").authenticated()
+            .and()
+            .formLogin()
+            .successHandler(mySuccessHandler)
+            .failureHandler(myFailureHandler)
+            .loginProcessingUrl("/api/login")
+            .and()
+            .httpBasic()
+            .and()
+            .logout()
+            .logoutUrl("/api/logout")
+            .logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));;
+}
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
+
 }

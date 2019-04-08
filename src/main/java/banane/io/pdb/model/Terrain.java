@@ -1,16 +1,12 @@
 package banane.io.pdb.model;
 
 public enum Terrain {
-    PLAIN("green"),
-    SWAMP("DarkGreen"),
-    BEACH("yellow"),
-    MOUNTAIN("gray"),
-    WATER("blue"),
-    BRIDGE("SaddleBrown");
+    PLAIN,
+    SWAMP,
+    BEACH,
+    MOUNTAIN,
+    WATER,
+    BRIDGE;
 
-    private String colour;
-
-    private Terrain(String colour) {
-        this.colour = colour;
-    }
+    private Terrain() {}
 }

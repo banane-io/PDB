@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="adding_default_accounts" author="marcandregirard">
+        <insert tableName="users">
+            <column name="username" value="testtest"/>
+            <column name="password" value ="$2a$10$T22w8QZ7cbYYv0FMK9GyhuSfPsUbcqb.kk.jPk/lhzTsPYUV5bsLq"/> 
+        </insert>
+        <insert tableName="users">
+            <column name="username" value="testtest2"/>
+            <column name="password" value ="$2a$10$T22w8QZ7cbYYv0FMK9GyhuSfPsUbcqb.kk.jPk/lhzTsPYUV5bsLq"/> 
+        </insert>
+        <insert tableName="users">
+            <column name="username" value="testtest3"/>
+            <column name="password" value ="$2a$10$T22w8QZ7cbYYv0FMK9GyhuSfPsUbcqb.kk.jPk/lhzTsPYUV5bsLq"/> 
+        </insert>
+        <insert tableName="users">
+            <column name="username" value="testtest4"/>
+            <column name="password" value ="$2a$10$T22w8QZ7cbYYv0FMK9GyhuSfPsUbcqb.kk.jPk/lhzTsPYUV5bsLq"/> 
+        </insert>
+    </changeSet>
+    <changeSet id="adding_heroes_to_account" author="marcandregirard">
+        <insert tableName="hero">
+            <column name="username" value="test_hero"/>
+            <column name="user_id" valueComputed="(SELECT id FROM users WHERE username = 'testtest')"/>
+            <column name="map_point_id" value="1"/>
+            <column name="strength" value="5"/>
+            <column name="agility" value="5"/>
+            <column name="intelligence" value="5"/>
+            <column name="hp" value="50"/>
+            <column name="mana" value="50"/>
+        </insert>
+        <insert tableName="hero">
+            <column name="username" value="test_hero2"/>
+            <column name="user_id" valueComputed="(SELECT id FROM users WHERE username = 'testtest2')"/>
+            <column name="map_point_id" value="1"/>
+            <column name="strength" value="5"/>
+            <column name="agility" value="5"/>
+            <column name="intelligence" value="5"/>
+            <column name="hp" value="50"/>
+            <column name="mana" value="50"/>
+        </insert>
+        <insert tableName="hero">
+            <column name="username" value="test_hero3"/>
+            <column name="user_id" valueComputed="(SELECT id FROM users WHERE username = 'testtest3')"/>
+            <column name="map_point_id" value="1"/>
+            <column name="strength" value="5"/>
+            <column name="agility" value="5"/>
+            <column name="intelligence" value="5"/>
+            <column name="hp" value="50"/>
+            <column name="mana" value="50"/>
+        </insert>
+        <insert tableName="hero">
+            <column name="username" value="test_hero4"/>
+            <column name="user_id" valueComputed="(SELECT id FROM users WHERE username = 'testtest4')"/>
+            <column name="map_point_id" value="1"/>
+            <column name="strength" value="5"/>
+            <column name="agility" value="5"/>
+            <column name="intelligence" value="5"/>
+            <column name="hp" value="50"/>
+            <column name="mana" value="50"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

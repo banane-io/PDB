@@ -25,3 +25,5 @@
 /.nb-gradle/
 
 .env
+.vscode/launch.json
+.vscode/settings.json

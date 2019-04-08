@@ -1,5 +1,7 @@
 package banane.io.pdb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,13 +13,13 @@ public class User {
 
     private String username;
 
+    //@JsonIgnore
     private String password;
 
-    private String passwordConfirm;
-
     private Set<Role> roles;
-    
-    private Player player;
+
+    @JsonIgnore
+    private Hero hero;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,15 +47,6 @@ public class User {
         this.password = password;
     }
 
-    @Transient
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
-
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     public Set<Role> getRoles() {
@@ -66,11 +59,11 @@ public class User {
 
     @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
-    public Player getPlayer() {
-        return player;
+    public Hero getHero() {
+        return hero;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setHero(Hero hero) {
+        this.hero = hero;
     }
 }
