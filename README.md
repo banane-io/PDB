@@ -62,3 +62,5 @@ mvn spring-boot:run
 ```
 
 If everything is setup correctly, the server should start up :).
+
+There is 4 users account included in the seed data testtest, testtest2, testtest3 and testtest4 (all the passsword are testtest).
