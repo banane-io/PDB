@@ -1,5 +1,8 @@
 package banane.io.pdb.web;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import banane.io.pdb.model.MapPoint;
+import banane.io.pdb.model.Terrain;
 import banane.io.pdb.repository.MapPointRepository;
 
 @RestController
@@ -27,5 +31,23 @@ public class MapPointController {
         logger.info("Fetched mapPoint: {} with x: {} and y: {}", zoneId.toString(), mapPoint.getX(), mapPoint.getY());
         return mapPoint;
     }
+
+    @GetMapping("/{id}/actions")
+    public List<String> getActions(@PathVariable("id") Long zoneId) {
+        logger.info("Fetching data for loading actions of mapPoint: {}", zoneId.toString());
+        MapPoint mapPoint = mapPointRepository.findById(zoneId).get();
+        logger.info("Fetched mapPoint: {} with x: {} and y: {}", zoneId.toString(), mapPoint.getX(), mapPoint.getY());
+        Terrain terrain = mapPoint.getTerrain();
+        List<String> actions = new LinkedList<>();
+        if(Terrain.MOUNTAIN.equals(terrain)) {
+            actions.add("MINE");
+        } else if (Terrain.FOREST.equals(terrain) ){
+            actions.add("LOGGING");
+            actions.add("MINE");
+        }
+        
+        return actions;
+    }
+    
 
 }

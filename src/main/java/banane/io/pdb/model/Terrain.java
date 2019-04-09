@@ -2,7 +2,7 @@ package banane.io.pdb.model;
 
 public enum Terrain {
     PLAIN,
-    SWAMP,
+    FOREST,
     BEACH,
     MOUNTAIN,
     WATER,
