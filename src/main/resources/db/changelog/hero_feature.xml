@@ -15,4 +15,10 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="adding_stone_log_resources" author="marcandregirard">
+        <addColumn tableName="hero">
+            <column name="stone" type="integer"/>
+            <column name="wood" type="integer"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

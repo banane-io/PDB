@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import banane.io.pdb.model.Action;
 import banane.io.pdb.model.MapPoint;
 import banane.io.pdb.model.Terrain;
 import banane.io.pdb.repository.MapPointRepository;
 import banane.io.pdb.security.SecurityService;
+import banane.io.pdb.service.ActionService;
 
 @RestController
 @RequestMapping("/api/mapPoint")
@@ -34,6 +36,9 @@ public class MapPointController {
 
     @Autowired
     private SecurityService securityService;
+
+    @Autowired
+    private ActionService actionService;
 
     private static final Logger logger = LoggerFactory.getLogger(MapPointController.class);
 
@@ -53,10 +58,10 @@ public class MapPointController {
         Terrain terrain = mapPoint.getTerrain();
         List<String> actions = new LinkedList<>();
         if (Terrain.MOUNTAIN.equals(terrain)) {
-            actions.add("MINE");
+            actions.add(Action.MINE.getName());
         } else if (Terrain.FOREST.equals(terrain)) {
-            actions.add("LOGGING");
-            actions.add("MINE");
+            actions.add(Action.LOGGING.getName());
+            actions.add(Action.MINE.getName());
         }
 
         return actions;
@@ -72,10 +77,12 @@ public class MapPointController {
         JsonParser jsonParser = new BasicJsonParser();
         Map<String, Object> parseMap = jsonParser.parseMap(action);
         String object = (String) parseMap.get("action");
-        if (object.equalsIgnoreCase("MINE")) {
+        if (object.equalsIgnoreCase(Action.MINE.getName())) {
             logger.info("Procressing MINE ACTION for zone: {} player : {}", zoneId, securityService.findLoggedInUsername());
-        } else if (object.equalsIgnoreCase("LOGGING")) {
+            actionService.executeAction(Action.MINE);
+        } else if (object.equalsIgnoreCase(Action.LOGGING.getName())) {
             logger.info("Procressing LOGGING ACTION for zone: {} player : {}", zoneId, securityService.findLoggedInUsername());
+            actionService.executeAction(Action.LOGGING);
         }
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("");
     }
