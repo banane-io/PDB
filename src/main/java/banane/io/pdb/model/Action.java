@@ -7,7 +7,8 @@ public enum Action {
 
     MINE("MINE"),
     LOGGING("LOGGING"),
-    CREATE_BASE("CREATE_BASE");
+    CREATE_BASE("CREATE_BASE"),
+    VISIT_BASE("VISIT_BASE");
 
     private String name;
 

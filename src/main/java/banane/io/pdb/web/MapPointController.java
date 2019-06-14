@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import banane.io.pdb.model.User;
 import com.google.common.base.Strings;
 
 import org.slf4j.Logger;
@@ -56,16 +57,7 @@ public class MapPointController {
         logger.info("Fetching data for loading actions of mapPoint: {}", zoneId.toString());
         MapPoint mapPoint = mapPointRepository.findById(zoneId).get();
         logger.info("Fetched mapPoint: {} with x: {} and y: {}", zoneId.toString(), mapPoint.getX(), mapPoint.getY());
-        Terrain terrain = mapPoint.getTerrain();
-        List<String> actions = new LinkedList<>();
-        if (Terrain.MOUNTAIN.equals(terrain)) {
-            actions.add(Action.MINE.getName());
-        } else if (Terrain.FOREST.equals(terrain)) {
-            actions.add(Action.LOGGING.getName());
-            actions.add(Action.MINE.getName());
-        } else if (Terrain.PLAIN.equals(terrain)) {
-            actions.add(Action.CREATE_BASE.getName());
-        }
+        List<String> actions = actionService.getAvailablesActionsFromMapPoint(mapPoint);
 
         return actions;
     }

@@ -31,6 +31,9 @@ public class Hero {
 
     private Integer stone;
 
+    @JsonIgnore
+    private Base base;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
@@ -130,5 +133,15 @@ public class Hero {
 
     public void setStone(Integer stone) {
         this.stone = stone;
+    }
+
+    @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    public Base getBase() {
+        return base;
+    }
+
+    public void setBase(Base base) {
+        this.base = base;
     }
 }
