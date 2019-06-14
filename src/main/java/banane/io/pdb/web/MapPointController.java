@@ -3,6 +3,7 @@ package banane.io.pdb.web;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.google.common.base.Strings;
 
@@ -62,6 +63,8 @@ public class MapPointController {
         } else if (Terrain.FOREST.equals(terrain)) {
             actions.add(Action.LOGGING.getName());
             actions.add(Action.MINE.getName());
+        } else if (Terrain.PLAIN.equals(terrain)) {
+            actions.add(Action.CREATE_BASE.getName());
         }
 
         return actions;
@@ -77,13 +80,16 @@ public class MapPointController {
         JsonParser jsonParser = new BasicJsonParser();
         Map<String, Object> parseMap = jsonParser.parseMap(action);
         String object = (String) parseMap.get("action");
-        if (object.equalsIgnoreCase(Action.MINE.getName())) {
-            logger.info("Procressing MINE ACTION for zone: {} player : {}", zoneId, securityService.findLoggedInUsername());
-            actionService.executeAction(Action.MINE);
-        } else if (object.equalsIgnoreCase(Action.LOGGING.getName())) {
-            logger.info("Procressing LOGGING ACTION for zone: {} player : {}", zoneId, securityService.findLoggedInUsername());
-            actionService.executeAction(Action.LOGGING);
+        Optional<Action> parsedValue = Action.parse(object);
+
+        if(!parsedValue.isPresent()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid action value");
         }
+
+        Action actionToExecute = parsedValue.get();
+        logger.info("Processing {} for zone: {} player : {}", actionToExecute, zoneId, securityService.findLoggedInUsername());
+        actionService.executeAction(actionToExecute);
+        
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("");
     }
 }

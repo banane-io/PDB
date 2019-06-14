@@ -1,9 +1,13 @@
 package banane.io.pdb.model;
 
+import javax.validation.constraints.NotNull;
+import java.util.Optional;
+
 public enum Action {
 
     MINE("MINE"),
-    LOGGING("LOGGING");
+    LOGGING("LOGGING"),
+    CREATE_BASE("CREATE_BASE");
 
     private String name;
 
@@ -13,6 +17,15 @@ public enum Action {
 
     public String getName() {
         return this.name;
+    }
+
+    public static Optional<Action> parse(@NotNull String rawAction) {
+        for (Action action : Action.values()) {
+            if (action.name.equalsIgnoreCase(rawAction)) {
+                return Optional.of(action);
+            }
+        }
+        return Optional.empty();
     }
 
 }
