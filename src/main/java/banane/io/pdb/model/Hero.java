@@ -72,7 +72,7 @@ public class Hero {
 
     @Transient
     @JsonGetter("currentZone")
-    public Long getCurrentzoneJson() {
+    public Long getCurrentZoneJson() {
         return currentZone.getId();
     }
 
