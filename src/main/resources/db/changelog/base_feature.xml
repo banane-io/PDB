@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="base_table_creation" author="magirard">
+        <createTable tableName="base">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_base"/>
+            </column>
+            <column name="hero_id" type="bigint"/>
+            <column name="map_point_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="base"
+                baseColumnNames="hero_id"
+                constraintName="fk_heros_bases"
+                referencedTableName="hero"
+                referencedColumnNames="id"/>
+        <addUniqueConstraint tableName="base" columnNames="hero_id" />
+        <addForeignKeyConstraint
+                baseTableName="base"
+                baseColumnNames="map_point_id"
+                constraintName="fk_map_point_base"
+                referencedTableName="map_point"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

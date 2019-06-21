@@ -22,15 +22,7 @@ public enum Direction {
         return dx;
     }
 
-    public void setDx(Integer dx) {
-        this.dx = dx;
-    }
-
     public Integer getDy() {
         return dy;
-    }
-
-    public void setDy(Integer dy) {
-        this.dy = dy;
     }
 }

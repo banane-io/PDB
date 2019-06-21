@@ -6,6 +6,9 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <include file="changelog/1-create-initial-tables.xml" relativeToChangelogFile="true"/>
     <include file="changelog/hero_feature.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/base_feature.xml" relativeToChangelogFile="true"/>
+
+    <!-- This should be executed last since we need the database setuped before running those scripts. -->
     <include file="changelog/seed_data.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

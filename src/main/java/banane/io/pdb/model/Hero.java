@@ -27,6 +27,13 @@ public class Hero {
 
     private Integer mana;
 
+    private Integer wood;
+
+    private Integer stone;
+
+    @JsonIgnore
+    private Base base;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
@@ -68,7 +75,7 @@ public class Hero {
 
     @Transient
     @JsonGetter("currentZone")
-    public Long getCurrentzoneJson() {
+    public Long getCurrentZoneJson() {
         return currentZone.getId();
     }
 
@@ -110,5 +117,31 @@ public class Hero {
 
     public void setMana(Integer mana) {
         this.mana = mana;
+    }
+
+    public Integer getWood() {
+        return wood;
+    }
+
+    public void setWood(Integer wood) {
+        this.wood = wood;
+    }
+
+    public Integer getStone() {
+        return stone;
+    }
+
+    public void setStone(Integer stone) {
+        this.stone = stone;
+    }
+
+    @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    public Base getBase() {
+        return base;
+    }
+
+    public void setBase(Base base) {
+        this.base = base;
     }
 }
