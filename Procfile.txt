@@ -1,0 +1,1 @@
+web: java -jar target/pdb-0.0.3-SNAPSHOT.war

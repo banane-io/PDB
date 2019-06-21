@@ -62,7 +62,6 @@ public class ActionServiceImpl implements ActionService {
             actions.add(Action.MINE.getName());
         } else if (Terrain.PLAIN.equals(terrain)) {
             User loggedInUser = securityService.findLoggedInUser();
-
             if(loggedInUser.getHero().getBase() == null ) {
                 actions.add(Action.CREATE_BASE.getName());
             } else if(loggedInUser.getHero().getBase().getLocation().equals(mapPoint)) {
