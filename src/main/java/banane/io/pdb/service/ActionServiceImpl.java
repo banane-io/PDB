@@ -45,6 +45,7 @@ public class ActionServiceImpl implements ActionService {
                 baseRepository.save(newBase);
                 hero.setStone(hero.getStone() - 50);
                 hero.setWood(hero.getWood() - 50);
+                heroRepository.save(hero);
                 return true;
             }
         }
