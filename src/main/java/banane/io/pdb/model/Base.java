@@ -12,6 +12,10 @@ public class Base {
 
     private MapPoint location;
 
+    private Integer wood;
+
+    private Integer stone;
+
     @JsonIgnore
     private Hero owner;
 
@@ -49,6 +53,22 @@ public class Base {
 
     public void setOwner(Hero owner) {
         this.owner = owner;
+    }
+
+    public Integer getWood() {
+        return wood;
+    }
+
+    public void setWood(Integer wood) {
+        this.wood = wood;
+    }
+
+    public Integer getStone() {
+        return stone;
+    }
+
+    public void setStone(Integer stone) {
+        this.stone = stone;
     }
 
 }
