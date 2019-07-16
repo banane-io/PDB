@@ -3,6 +3,7 @@ package banane.io.pdb.web;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -46,8 +47,9 @@ public class GridController {
                                                  .orElseThrow(() -> new IllegalArgumentException("MapPointPassed in parameter does not exist"));
         final List<MapPoint> mapPoints = mapPointService.loadGrid(centralPoint);
 
-        final Map<Integer, List<MapPoint>> mapPointsGrouped = mapPoints.stream().collect(Collectors.groupingBy(p -> p.getY()));
+        final Map<Integer, List<MapPoint>> mapPointsGrouped = mapPoints.stream().collect(Collectors.groupingBy(MapPoint::getY));
         final List<List<MapPoint>> mapPointsForGrid = new ArrayList<>(mapPointsGrouped.values());
+        mapPointsForGrid.sort((list1, list2) -> Integer.compare(list1.get(0).getY(), list2.get(0).getY()));
 
         return ResponseEntity.status(HttpStatus.OK).body(mapPointsForGrid);
     }
