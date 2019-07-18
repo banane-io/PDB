@@ -45,11 +45,7 @@ public class GridController {
         logger.info("Fetching grid aroung mapPoint : {}", centralMapPointId.toString());
         final MapPoint centralPoint = mapPointRepository.findById(centralMapPointId)
                                                  .orElseThrow(() -> new IllegalArgumentException("MapPointPassed in parameter does not exist"));
-        final List<MapPoint> mapPoints = mapPointService.loadGrid(centralPoint);
-
-        final Map<Integer, List<MapPoint>> mapPointsGrouped = mapPoints.stream().collect(Collectors.groupingBy(MapPoint::getY));
-        final List<List<MapPoint>> mapPointsForGrid = new ArrayList<>(mapPointsGrouped.values());
-        mapPointsForGrid.sort((list1, list2) -> Integer.compare(list1.get(0).getY(), list2.get(0).getY()));
+        final List<List<MapPoint>> mapPointsForGrid = mapPointService.loadGrid(centralPoint);
 
         return ResponseEntity.status(HttpStatus.OK).body(mapPointsForGrid);
     }
