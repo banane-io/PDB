@@ -17,8 +17,8 @@
 
     <changeSet id="adding_stone_log_resources" author="marcandregirard">
         <addColumn tableName="hero">
-            <column name="stone" type="integer"/>
-            <column name="wood" type="integer"/>
+            <column name="stone" type="integer" defaultValue="0"/>
+            <column name="wood" type="integer" defaultValue="0"/>
         </addColumn>
     </changeSet>
 </databaseChangeLog>
