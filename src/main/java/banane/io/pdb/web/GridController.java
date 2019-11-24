@@ -2,10 +2,8 @@ package banane.io.pdb.web;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,10 +42,7 @@ public class GridController {
         logger.info("Fetching grid aroung mapPoint : {}", centralMapPointId.toString());
         final MapPoint centralPoint = mapPointRepository.findById(centralMapPointId)
                                                  .orElseThrow(() -> new IllegalArgumentException("MapPointPassed in parameter does not exist"));
-        final List<MapPoint> mapPoints = mapPointService.loadGrid(centralPoint);
-
-        final Map<Integer, List<MapPoint>> mapPointsGrouped = mapPoints.stream().collect(Collectors.groupingBy(p -> p.getY()));
-        final List<List<MapPoint>> mapPointsForGrid = new ArrayList<>(mapPointsGrouped.values());
+        final List<List<MapPoint>> mapPointsForGrid = mapPointService.loadGrid(centralPoint);
 
         return ResponseEntity.status(HttpStatus.OK).body(mapPointsForGrid);
     }

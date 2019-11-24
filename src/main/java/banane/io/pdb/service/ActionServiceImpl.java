@@ -45,6 +45,7 @@ public class ActionServiceImpl implements ActionService {
                 baseRepository.save(newBase);
                 hero.setStone(hero.getStone() - 50);
                 hero.setWood(hero.getWood() - 50);
+                heroRepository.save(hero);
                 return true;
             }
         }
@@ -52,20 +53,20 @@ public class ActionServiceImpl implements ActionService {
     }
 
     @Override
-    public List<String> getAvailablesActionsFromMapPoint(MapPoint mapPoint) {
+    public List<Action> getAvailablesActionsFromMapPoint(MapPoint mapPoint) {
         Terrain terrain = mapPoint.getTerrain();
-        List<String> actions = new LinkedList<>();
+        List<Action> actions = new LinkedList<>();
         if (Terrain.MOUNTAIN.equals(terrain)) {
-            actions.add(Action.MINE.getName());
+            actions.add(Action.MINE);
         } else if (Terrain.FOREST.equals(terrain)) {
-            actions.add(Action.LOGGING.getName());
-            actions.add(Action.MINE.getName());
+            actions.add(Action.LOGGING);
+            actions.add(Action.MINE);
         } else if (Terrain.PLAIN.equals(terrain)) {
             User loggedInUser = securityService.findLoggedInUser();
             if(loggedInUser.getHero().getBase() == null ) {
-                actions.add(Action.CREATE_BASE.getName());
+                actions.add(Action.CREATE_BASE);
             } else if(loggedInUser.getHero().getBase().getLocation().equals(mapPoint)) {
-                actions.add(Action.VISIT_BASE.getName());
+                actions.add(Action.VISIT_BASE);
             }
         }
         return actions;

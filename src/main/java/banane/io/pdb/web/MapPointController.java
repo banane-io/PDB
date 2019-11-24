@@ -1,11 +1,10 @@
 package banane.io.pdb.web;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-import banane.io.pdb.model.User;
 import com.google.common.base.Strings;
 
 import org.slf4j.Logger;
@@ -24,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import banane.io.pdb.model.Action;
 import banane.io.pdb.model.MapPoint;
-import banane.io.pdb.model.Terrain;
 import banane.io.pdb.repository.MapPointRepository;
 import banane.io.pdb.security.SecurityService;
 import banane.io.pdb.service.ActionService;
@@ -57,9 +55,9 @@ public class MapPointController {
         logger.info("Fetching data for loading actions of mapPoint: {}", zoneId.toString());
         MapPoint mapPoint = mapPointRepository.findById(zoneId).get();
         logger.info("Fetched mapPoint: {} with x: {} and y: {}", zoneId.toString(), mapPoint.getX(), mapPoint.getY());
-        List<String> actions = actionService.getAvailablesActionsFromMapPoint(mapPoint);
+        List<Action> actions = actionService.getAvailablesActionsFromMapPoint(mapPoint);
 
-        return actions;
+        return actions.stream().map(Action::getName).collect(Collectors.toList());
     }
 
     @PostMapping("/{id}/action")

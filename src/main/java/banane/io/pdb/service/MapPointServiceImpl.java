@@ -8,10 +8,7 @@ import banane.io.pdb.repository.HeroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 @Service
@@ -23,11 +20,27 @@ public class MapPointServiceImpl implements MapPointService {
     @Autowired
     private HeroRepository heroRepository;
 
+    private final int X_MINIMUM_VALUE = 0;
+    private final int Y_MINIMUM_VALUE = 0;
+    private final int X_MAXIMUM_VALUE = 25;
+    private final int Y_MAXIMUM_VALUE = 25;
+    private final int GRID_RADIUS = 5;
+
     @Override
-    public List<MapPoint> loadGrid(MapPoint origin) {
-        int[] xValues = calculateMinMax(5, 0, 25, origin.getX());
-        int[] yValues = calculateMinMax(5, 0, 25, origin.getY());
-        return mapPointRepository.loadGrid(xValues[0], xValues[1], yValues[0], yValues[1]);
+    public List<List<MapPoint>> loadGrid(MapPoint origin) {
+        int[] xValues = calculateMinMax(GRID_RADIUS, X_MINIMUM_VALUE, X_MAXIMUM_VALUE, origin.getX());
+        int[] yValues = calculateMinMax(GRID_RADIUS, Y_MINIMUM_VALUE, Y_MAXIMUM_VALUE, origin.getY());
+        
+        final List<MapPoint> mapPoints = mapPointRepository.loadGrid(xValues[0], xValues[1], yValues[0], yValues[1]);
+        final List<List<MapPoint>> mapPointsForGrid = new ArrayList<>();
+        for (int i = 0; i < 11; i++) {
+            List<MapPoint> row = new ArrayList<>();
+            for (int j = 0; j < 11; j++) {
+                row.add(mapPoints.get((i * 11) + j));
+            }
+            mapPointsForGrid.add(row);
+        }
+        return mapPointsForGrid;
     }
 
     @Override
