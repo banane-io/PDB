@@ -11,7 +11,7 @@ import java.util.*
 import java.util.stream.Stream
 
 @Service
-class MapPointServiceImpl : MapPointService {
+open class MapPointServiceImpl : MapPointService {
     @Autowired
     private val mapPointRepository: MapPointRepository? = null
     @Autowired

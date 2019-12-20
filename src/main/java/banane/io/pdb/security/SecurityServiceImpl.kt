@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service
 
 @Service
-class SecurityServiceImpl : SecurityService {
+open class SecurityServiceImpl : SecurityService {
     @Autowired
     private val authenticationManager: AuthenticationManager? = null
     @Autowired

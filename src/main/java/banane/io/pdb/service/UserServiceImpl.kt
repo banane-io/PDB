@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class UserServiceImpl : UserService {
+open class UserServiceImpl : UserService {
     @Autowired
     private val userRepository: UserRepository? = null
     @Autowired

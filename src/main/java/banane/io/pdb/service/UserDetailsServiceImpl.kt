@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @Service
-class UserDetailsServiceImpl : UserDetailsService {
+open class UserDetailsServiceImpl : UserDetailsService {
     @Autowired
     private val userRepository: UserRepository? = null
 

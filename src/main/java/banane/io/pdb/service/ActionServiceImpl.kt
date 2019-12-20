@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class ActionServiceImpl : ActionService {
+open class ActionServiceImpl : ActionService {
     @Autowired
     private val securityService: SecurityService? = null
     @Autowired
