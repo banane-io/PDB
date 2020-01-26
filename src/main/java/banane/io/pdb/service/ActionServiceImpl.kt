@@ -38,6 +38,8 @@ open class ActionServiceImpl : ActionService {
                 val newBase = Base()
                 newBase.location = hero.currentZone
                 newBase.owner = hero
+                newBase.stone = 0
+                newBase.wood = 0
                 baseRepository!!.save(newBase)
                 hero.stone = hero.stone!! - 50
                 hero.wood = hero.wood!! - 50
