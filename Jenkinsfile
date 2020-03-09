@@ -35,13 +35,13 @@ pipeline {
             junit allowEmptyResults: true, testResults: '**/build/test-results/junit-platform/TEST-*.xml'
         }
         success {
-            zpost(0)
+            //zpost(0)
         }
         unstable {
-            zpost(1)
+            //zpost(1)
         }
         failure {
-            zpost(2)
+            //zpost(2)
         }
     }
     }
