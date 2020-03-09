@@ -28,7 +28,6 @@ pipeline {
                     }
                 }
             }
-        }
     }
 
     post {
@@ -45,4 +44,4 @@ pipeline {
             zpost(2)
         }
     }
-}
+    }
