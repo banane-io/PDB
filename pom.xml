@@ -5,7 +5,7 @@
 
 	<groupId>banane.io</groupId>
 	<artifactId>pdb</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.4</version>
 	<packaging>war</packaging>
 
 	<name>pdb</name>
