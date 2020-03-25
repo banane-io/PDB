@@ -4,12 +4,24 @@ pipeline {
     agent any
 
     stages {
+        stage('Test and Build') {
+            when {
+                not {
+                    branch 'master'
+                }
+            }
+            
+            steps {
+                sh 'mvn clean package'
+            }
+        }
         stage('Docker Image') {
             when {
                 branch 'master'
             }
             steps {
                 script {
+                    sh 'docker ps -q --filter name="pdb-app" | xargs -r docker stop'
                     // Deploy server
                     sh 'docker build . -t pdb'
                     
