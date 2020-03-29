@@ -37,7 +37,7 @@ pipeline {
             }
         }
 
-        stage('Docker Image Master') {
+        stage('Docker Image develop') {
             when {
                 branch 'develop'
             }
