@@ -48,7 +48,7 @@ pipeline {
                     sh 'docker build . -t pdb-dev'
 
                     def result = sh(script: """docker run -d --rm --name pdb-dev-app -p 4000:3000 \
-                        -e "SPRING_PROFILES_ACTIVE=docker_dev" \
+                        -e "SPRING_PROFILES_ACTIVE=docker" \
                         --link pdb-dev-db:postgres pdb-dev""",
                             returnStdout: true)
                     println(result)
