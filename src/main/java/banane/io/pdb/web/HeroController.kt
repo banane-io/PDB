@@ -50,6 +50,8 @@ class HeroController {
         }
         hero.owner = user
         hero.currentZone = mapPointRepository!!.getOne(1L)
+        hero.stone = 0
+        hero.wood = 0
         heroRepository!!.save(hero)
         logger.info("Creation of hero : {} successful", hero.username)
         return ResponseEntity.status(HttpStatus.OK).body(hero)
