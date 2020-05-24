@@ -22,15 +22,15 @@ open class ActionServiceImpl : ActionService {
             val hero = heroFromSession
             if (hero != null) {
                 hero.wood = hero.wood?.plus(10)
+                heroRepository!!.save<Hero>(hero)
             }
-            heroRepository!!.save<Hero>(hero)
             return true
         } else if (action == Action.MINE) {
             val hero = heroFromSession
             if (hero != null) {
                 hero?.stone = hero.stone?.plus(10)
+                heroRepository!!.save<Hero>(hero)
             }
-            heroRepository!!.save<Hero>(hero)
             return true
         } else if (action == Action.CREATE_BASE) {
             val hero = heroFromSession
