@@ -18,18 +18,18 @@ open class ActionServiceImpl(private val securityService: SecurityService, priva
             if (hero != null) {
                 hero.wood = hero.wood?.plus(10)
                 heroRepository.save<Hero>(hero)
+                return true
             }
-            return true
         } else if (action == Action.MINE) {
             val hero = heroFromSession
             if (hero != null) {
                 hero?.stone = hero.stone?.plus(10)
                 heroRepository.save<Hero>(hero)
+                return true
             }
-            return true
         } else if (action == Action.CREATE_BASE) {
             val hero = heroFromSession
-            if (hero?.base == null && hero?.wood!! >= 50 && hero?.stone!! >= 50) {
+            if (hero != null && hero.base == null && hero.wood!! >= 50 && hero.stone!! >= 50) {
                 val newBase = Base()
                 newBase.location = hero.currentZone
                 newBase.owner = hero
