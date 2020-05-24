@@ -9,44 +9,52 @@ import banane.io.pdb.repository.HeroRepository
 import banane.io.pdb.security.SecurityService
 import io.mockk.every
 import io.mockk.mockk
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 internal class ActionServiceImplTest {
 
+    lateinit var serviceToTest: ActionServiceImpl
+    lateinit var securityService: SecurityService
+    lateinit var heroRepository: HeroRepository
+    lateinit var baseRepository: BaseRepository
+
+    @BeforeEach
+    fun setup() {
+        securityService = mockk<SecurityService>()
+        heroRepository = mockk<HeroRepository>()
+        baseRepository = mockk<BaseRepository>()
+
+        serviceToTest = ActionServiceImpl(securityService, heroRepository, baseRepository)
+    }
+
+    fun createMapPointWith(terrain: Terrain): MapPoint {
+        var mapPoint = MapPoint()
+        mapPoint.id = 1;
+        mapPoint.terrain = terrain
+        mapPoint.x = 1
+        mapPoint.y = 1
+        mapPoint.zone = "This is a description"
+        return mapPoint
+    }
+
     @Test
     fun `Verify that Mountains return Mine action`() {
-        val securityService = mockk<SecurityService>()
-        val heroRepository = mockk<HeroRepository>()
-        val baseRepository = mockk<BaseRepository>()
+        val mountainPoint = createMapPointWith(Terrain.MOUNTAIN)
 
-        val serviceToTest = ActionServiceImpl(securityService, heroRepository, baseRepository)
-
-        val mountainPoint = MapPoint()
-        mountainPoint.id = 1;
-        mountainPoint.terrain = Terrain.MOUNTAIN
-        mountainPoint.x = 1
-        mountainPoint.y = 1
-        mountainPoint.zone = "This is a description"
         val availableActionsFromMapPoint = serviceToTest.getAvailablesActionsFromMapPoint(mountainPoint)
+
         assertEquals(1, availableActionsFromMapPoint.size, "There's should only be one action available")
         assert(availableActionsFromMapPoint.contains(Action.MINE))
     }
 
     @Test
     fun `Verify that Forest return both Logging and Miening actions`() {
-        val securityService = mockk<SecurityService>()
-        val heroRepository = mockk<HeroRepository>()
-        val baseRepository = mockk<BaseRepository>()
+        val forestMapPoint = createMapPointWith(Terrain.FOREST)
 
-        val serviceToTest = ActionServiceImpl(securityService, heroRepository, baseRepository)
-        val forestMapPoint = MapPoint()
-        forestMapPoint.id = 1;
-        forestMapPoint.terrain = Terrain.FOREST
-        forestMapPoint.x = 1
-        forestMapPoint.y = 1
-        forestMapPoint.zone = "This is a description"
         val availableActionsFromMapPoint = serviceToTest.getAvailablesActionsFromMapPoint(forestMapPoint)
+
         assertEquals(2, availableActionsFromMapPoint.size, "There's should only be two actions availables")
         assert(availableActionsFromMapPoint.contains(Action.MINE))
         assert(availableActionsFromMapPoint.contains(Action.LOGGING))
@@ -54,20 +62,10 @@ internal class ActionServiceImplTest {
 
     @Test
     fun `No action on plains when User is null`() {
-        val securityService = mockk<SecurityService>()
         every { securityService.findLoggedInUser()} returns null
-        val heroRepository = mockk<HeroRepository>()
-        val baseRepository = mockk<BaseRepository>()
 
-        val serviceToTest = ActionServiceImpl(securityService, heroRepository, baseRepository)
-
-        val plainMapPoint = MapPoint()
-        plainMapPoint.id = 1;
-        plainMapPoint.terrain = Terrain.PLAIN
-        plainMapPoint.x = 1
-        plainMapPoint.y = 1
-        plainMapPoint.zone = "This is a description"
-
+        val plainMapPoint = createMapPointWith(Terrain.PLAIN)
+        
         val availableActionsFromMapPoint = serviceToTest.getAvailablesActionsFromMapPoint(plainMapPoint)
         assert(availableActionsFromMapPoint.isEmpty())
     }
