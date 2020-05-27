@@ -3,14 +3,13 @@ package banane.io.pdb.model
 import javax.persistence.*
 
 @Entity
-class MapPoint {
+data class MapPoint(
     @get:GeneratedValue(strategy = GenerationType.IDENTITY)
     @get:Id
-    var id: Long? = null
-    var x = 0
-    var y = 0
-    var zone: String? = null
+    var id: Long,
+    var x: Int,
+    var y: Int,
+    var zone: String?,
     @Enumerated(EnumType.STRING)
-    var terrain: Terrain? = null
-
-}
+    var terrain: Terrain?
+)

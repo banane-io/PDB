@@ -9,41 +9,36 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-open class ActionServiceImpl : ActionService {
-    @Autowired
-    private val securityService: SecurityService? = null
-    @Autowired
-    private val heroRepository: HeroRepository? = null
-    @Autowired
-    private val baseRepository: BaseRepository? = null
+open class ActionServiceImpl(private val securityService: SecurityService, private val heroRepository: HeroRepository, private val baseRepository: BaseRepository ) : ActionService {
+
 
     override fun executeAction(action: Action): Boolean {
         if (action == Action.LOGGING) {
             val hero = heroFromSession
             if (hero != null) {
                 hero.wood = hero.wood?.plus(10)
+                heroRepository.save<Hero>(hero)
+                return true
             }
-            heroRepository!!.save<Hero>(hero)
-            return true
         } else if (action == Action.MINE) {
             val hero = heroFromSession
             if (hero != null) {
                 hero?.stone = hero.stone?.plus(10)
+                heroRepository.save<Hero>(hero)
+                return true
             }
-            heroRepository!!.save<Hero>(hero)
-            return true
         } else if (action == Action.CREATE_BASE) {
             val hero = heroFromSession
-            if (hero?.base == null && hero?.wood!! >= 50 && hero?.stone!! >= 50) {
+            if (hero != null && hero.base == null && hero.wood!! >= 50 && hero.stone!! >= 50) {
                 val newBase = Base()
                 newBase.location = hero.currentZone
                 newBase.owner = hero
                 newBase.stone = 0
                 newBase.wood = 0
-                baseRepository!!.save(newBase)
+                baseRepository.save(newBase)
                 hero.stone = hero.stone!! - 50
                 hero.wood = hero.wood!! - 50
-                heroRepository!!.save<Hero>(hero)
+                heroRepository.save<Hero>(hero)
                 return true
             }
         }
@@ -59,11 +54,11 @@ open class ActionServiceImpl : ActionService {
             actions.add(Action.LOGGING)
             actions.add(Action.MINE)
         } else if (Terrain.PLAIN == terrain) {
-            val loggedInUser = securityService!!.findLoggedInUser()
+            val loggedInUser = securityService.findLoggedInUser()
             if (loggedInUser != null) {
                 if (loggedInUser.hero?.base == null) {
                     actions.add(Action.CREATE_BASE)
-                } else if (loggedInUser != null) {
+                } else {
                     if (loggedInUser.hero?.base!!.location == mapPoint) {
                         actions.add(Action.VISIT_BASE)
                     }
@@ -75,7 +70,7 @@ open class ActionServiceImpl : ActionService {
 
     private val heroFromSession: Hero?
         private get() {
-            val findLoggedInUser = securityService!!.findLoggedInUser()
+            val findLoggedInUser = securityService.findLoggedInUser()
             if (findLoggedInUser != null) {
                 return findLoggedInUser.hero
             }
