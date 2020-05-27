@@ -33,7 +33,7 @@ internal class ActionServiceImplTest {
     }
 
     @Test
-    fun `Verify that Mountains return Mine action`() {
+    fun `Verify that Mountain MapPoint should return Mine action`() {
         val mountainPoint = createMapPointWith(Terrain.MOUNTAIN)
 
         val availableActionsFromMapPoint = serviceToTest.getAvailablesActionsFromMapPoint(mountainPoint)
@@ -43,7 +43,7 @@ internal class ActionServiceImplTest {
     }
 
     @Test
-    fun `Verify that Forest return both Logging and Miening actions`() {
+    fun `Verify that Forest MapPoint should return both Logging and Mining actions`() {
         val forestMapPoint = createMapPointWith(Terrain.FOREST)
 
         val availableActionsFromMapPoint = serviceToTest.getAvailablesActionsFromMapPoint(forestMapPoint)
@@ -54,7 +54,7 @@ internal class ActionServiceImplTest {
     }
 
     @Test
-    fun `No action on plains when User is null`() {
+    fun `Verify that on Plain MapPoint when User is null should return no action`() {
         every { securityService.findLoggedInUser()} returns null
 
         val plainMapPoint = createMapPointWith(Terrain.PLAIN)
@@ -112,7 +112,7 @@ internal class ActionServiceImplTest {
     }
 
     @Test
-    fun `Execute Action return false with actions not present in the else if`() {
+    fun `Execute Action return false if the action is not present in the else if`() {
         assertFalse(serviceToTest.executeAction(Action.VISIT_BASE))
     }
 
@@ -179,7 +179,7 @@ internal class ActionServiceImplTest {
     }
 
     @Test
-    fun `Executing CREATE_BASE action returns false if there the hero doesn't have enough wood`() {
+    fun `Executing CREATE_BASE action returns false if the hero doesn't have enough wood`() {
         var user = User()
         user.hero = Hero()
         user.hero?.wood = 0
@@ -190,7 +190,7 @@ internal class ActionServiceImplTest {
     }
 
     @Test
-    fun `Executing CREATE_BASE action returns false if there the hero doesn't have enough stone`() {
+    fun `Executing CREATE_BASE action returns false if the hero doesn't have enough stone`() {
         var user = User()
         user.hero = Hero()
         user.hero?.wood = 50
