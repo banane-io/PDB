@@ -19,5 +19,5 @@ interface MapPointService {
     /**
      * Change the MapPoint on which the Hero is located.
      */
-    fun movePlayer(hero: Hero?, newPosition: MapPoint?)
+    fun movePlayer(hero: Hero, newPosition: MapPoint?)
 }
