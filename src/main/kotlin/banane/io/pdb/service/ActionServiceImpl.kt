@@ -23,7 +23,7 @@ open class ActionServiceImpl(private val securityService: SecurityService, priva
         } else if (action == Action.MINE) {
             val hero = heroFromSession
             if (hero != null) {
-                hero?.stone = hero.stone?.plus(10)
+                hero.stone = hero.stone?.plus(10)
                 heroRepository.save<Hero>(hero)
                 return true
             }
@@ -69,7 +69,7 @@ open class ActionServiceImpl(private val securityService: SecurityService, priva
     }
 
     private val heroFromSession: Hero?
-        private get() {
+         get() {
             val findLoggedInUser = securityService.findLoggedInUser()
             if (findLoggedInUser != null) {
                 return findLoggedInUser.hero
