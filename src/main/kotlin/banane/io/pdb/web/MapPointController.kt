@@ -40,7 +40,7 @@ class MapPointController {
         val mapPoint = mapPointRepository!!.findById(zoneId).get()
         logger.info("Fetched mapPoint: {} with x: {} and y: {}", zoneId.toString(), mapPoint.x, mapPoint.y)
         val actions = actionService!!.getAvailablesActionsFromMapPoint(mapPoint)
-        return actions!!.stream().map { obj: Action -> obj.nameOfAction }.collect(Collectors.toList())
+        return actions.stream().map { obj: Action -> obj.nameOfAction }.collect(Collectors.toList())
     }
 
     @PostMapping("/{id}/action")
