@@ -11,7 +11,6 @@ import java.util.*
 @Service
 open class ActionServiceImpl(private val securityService: SecurityService, private val heroRepository: HeroRepository, private val baseRepository: BaseRepository ) : ActionService {
 
-
     override fun executeAction(action: Action): Boolean {
         if (action == Action.LOGGING) {
             val hero = heroFromSession

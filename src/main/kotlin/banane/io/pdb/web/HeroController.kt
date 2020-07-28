@@ -64,8 +64,8 @@ class HeroController {
         val mapPointToMove = mapPointRepository!!.findById(mapPointId)
         val newMapPoint = mapPointToMove.get()
         logger.info("Moving hero {} to the zone with id : {}", currentHero.username, mapPointId.toString())
-        mapPointService!!.movePlayer(currentHero, newMapPoint)
-        return ResponseEntity.status(HttpStatus.OK).body(newMapPoint)
+        mapPointService!!.moveHero(currentHero, newMapPoint)
+        return ResponseEntity.status(HttpStatus.OK).body(newMapPoint) //FIXME Maybe change to hero currentzone or something? since it could have failed I guess?
     }
 
     private fun getFieldErrors(result: BindingResult): Map<String, ObjectError> {
