@@ -7,6 +7,7 @@ import banane.io.pdb.repository.HeroRepository
 import banane.io.pdb.repository.MapPointRepository
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.slot
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
@@ -19,8 +20,8 @@ internal class MapPointServiceImplTest {
 
     @BeforeEach
     fun setup() {
-        heroRepository = mockk<HeroRepository>()
-        mapPointRepository = mockk<MapPointRepository>()
+        heroRepository = mockk()
+        mapPointRepository = mockk()
 
         serviceToTest = MapPointServiceImpl(mapPointRepository, heroRepository)
     }
@@ -31,7 +32,8 @@ internal class MapPointServiceImplTest {
 
     @Test
     fun `Verify that move Player should return the new MapPoint`() {
-        //every { heroRepository.save()} returns null
+        val captureData = slot<Hero>()
+        every { heroRepository.save(capture(captureData))} answers { captureData.captured }
         val mountainPoint = createMapPointWith(Terrain.MOUNTAIN)
         val hero = Hero()
         hero.currentZone = mountainPoint
@@ -40,7 +42,6 @@ internal class MapPointServiceImplTest {
 
         val returnedHero = serviceToTest.moveHero(hero, forestPoint)
         assertEquals(Terrain.FOREST, returnedHero.currentZone?.terrain, "Terrain should be the one passed in parameter")
-
     }
 
 }
