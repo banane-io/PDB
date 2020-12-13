@@ -2,8 +2,6 @@
 PDB
 ===
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/banane-io/PDB?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 This is a small web application to create a text game for browser. The goal of the game is to create something similar to Ogame, but with your own character and some good rpg elements to it.
 
 
@@ -18,11 +16,12 @@ If you want to help, here's what you can do to contribute to the project :
 
 You can always go the gitter and ask question or give feedback if you want :).
 
+
 What We Need
 ===
 There is a great need to help with the layout and the aesthetics of the client (see the [pdb-frontend](https://github.com/banane-io/pdb-frontend) project for more information).
 
-There are also a lot of small easy things to do. Come chat with me on Gitter or [this chatroom](https://chat.stackexchange.com/rooms/16134/coding-projects-and-vue-js-heaven) if you have any idea.
+There are also a lot of small easy things to do. Come chat with me in [this chatroom](https://chat.stackexchange.com/rooms/16134/coding-projects-and-vue-js-heaven) if you have any idea or just create an issue here!
 
 Running Database + PDB in Docker
 ===

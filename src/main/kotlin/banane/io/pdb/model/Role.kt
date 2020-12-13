@@ -4,12 +4,12 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "role")
-class Role {
+data class Role (
     @get:GeneratedValue(strategy = GenerationType.IDENTITY)
     @get:Id
-    var id: Long? = null
-    var name: String? = null
+    var id: Long? = null,
+    var name: String? = null,
     @get:ManyToMany(mappedBy = "roles")
     var users: Set<User>? = null
 
-}
+)

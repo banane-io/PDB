@@ -7,7 +7,10 @@ pipeline {
         stage('Test and Build') {
             when {
                 not {
-                    branch 'master'
+                    anyOf {
+                        branch 'master';
+                        branch 'develop'
+                    }
                 }
             }
             
@@ -15,7 +18,7 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage('Docker Image') {
+        stage('Docker Image Master') {
             when {
                 branch 'master'
             }
@@ -30,9 +33,28 @@ pipeline {
                         --link pdb-db:postgres pdb""",
                         returnStdout: true)
                     println(result)
-                    }
                 }
             }
+        }
+
+        stage('Docker Image develop') {
+            when {
+                branch 'develop'
+            }
+            steps {
+                script {
+                    sh 'docker ps -q --filter name="pdb-dev-app" | xargs -r docker stop'
+                    // Deploy server
+                    sh 'docker build . -t pdb-dev'
+
+                    def result = sh(script: """docker run -d --rm --name pdb-dev-app -p 4000:3000 \
+                        -e "SPRING_PROFILES_ACTIVE=docker" \
+                        --link pdb-dev-db:postgres pdb-dev""",
+                            returnStdout: true)
+                    println(result)
+                }
+            }
+        }
     }
 
     post {

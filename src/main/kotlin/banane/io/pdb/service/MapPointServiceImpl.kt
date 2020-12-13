@@ -14,6 +14,7 @@ import java.util.stream.Stream
 open class MapPointServiceImpl : MapPointService {
     @Autowired
     private val mapPointRepository: MapPointRepository? = null
+
     @Autowired
     private val heroRepository: HeroRepository? = null
     private val X_MINIMUM_VALUE = 0
@@ -29,7 +30,7 @@ open class MapPointServiceImpl : MapPointService {
         for (i in 0..10) {
             val row: MutableList<MapPoint?> = ArrayList()
             for (j in 0..10) {
-                row.add(mapPoints!![i * 11 + j])
+                row.add(mapPoints[i * 11 + j])
             }
             mapPointsForGrid.add(row)
         }
@@ -40,17 +41,15 @@ open class MapPointServiceImpl : MapPointService {
         val neighbors: MutableMap<Direction, MapPoint> = HashMap()
         for (direction in Direction.values()) {
             val result = mapPointRepository!!.findMapPointByXAndY(origin.x + direction.dx, origin.y + direction.dy)
-            if (result!!.isPresent) {
+            if (result.isPresent) {
                 neighbors[direction] = result.get()
             }
         }
         return neighbors
     }
 
-    override fun movePlayer(hero: Hero?, newPosition: MapPoint?) {
-        if (hero != null) {
-            hero.currentZone = newPosition
-        }
+    override fun movePlayer(hero: Hero, newPosition: MapPoint?) {
+        hero.currentZone = newPosition
         heroRepository!!.save(hero)
     }
 

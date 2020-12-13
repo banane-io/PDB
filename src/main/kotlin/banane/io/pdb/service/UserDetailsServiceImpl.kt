@@ -22,12 +22,12 @@ open class UserDetailsServiceImpl : UserDetailsService {
     override fun loadUserByUsername(username: String): UserDetails {
         val optionalUser = userRepository!!.findByUsername(username)
         val grantedAuthorities: MutableSet<GrantedAuthority> = HashSet()
-        return if (optionalUser!!.isPresent) {
+        if (optionalUser.isPresent) {
             val user = optionalUser.get()
             for (role in user.roles!!) {
                 grantedAuthorities.add(SimpleGrantedAuthority(role?.name))
             }
-            User(user.username, user.password, grantedAuthorities)
+            return User(user.username, user.password, grantedAuthorities)
         } else {
             throw UsernameNotFoundException("User |$username| not found")
         }
