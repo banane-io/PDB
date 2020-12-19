@@ -1,7 +1,7 @@
 package banane.io.pdb.model
 
 import javax.persistence.*
-
+@Entity
 data class Battle(
     @get:GeneratedValue(strategy = GenerationType.IDENTITY)
     @get:Id

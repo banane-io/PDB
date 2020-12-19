@@ -42,10 +42,10 @@ open class ActionServiceImpl(private val securityService: SecurityService, priva
                 return true
             }
         } else if (action == Action.SEARCH){
-            var monster = Monster("Normal", 50, 5, 5)
+            var monster = Monster(null,"Normal", 50, 5, 5)
             val hero = heroFromSession ?: return false
             val currentZone = hero.currentZone?: return false
-            var newBattle = Battle(hero, monster, currentZone)
+            var newBattle = Battle(null, hero, monster, currentZone)
         }
         return false
     }
