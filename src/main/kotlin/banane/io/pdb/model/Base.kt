@@ -22,6 +22,6 @@ data class Base (
 {
     @get:JsonGetter("location")
     @get:Transient
-    val locationeJson: Long?
+    val locationJson: Long?
         get() = location?.id
 }

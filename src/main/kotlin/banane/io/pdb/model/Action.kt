@@ -4,7 +4,7 @@ import java.util.*
 import javax.validation.constraints.NotNull
 
 enum class Action(val nameOfAction: String) {
-    MINE("MINE"), LOGGING("LOGGING"), CREATE_BASE("CREATE_BASE"), VISIT_BASE("VISIT_BASE");
+    MINE("MINE"), LOGGING("LOGGING"), CREATE_BASE("CREATE_BASE"), VISIT_BASE("VISIT_BASE"),SEARCH("SEARCH"), BATTLE("BATTLE");
 
     companion object {
         fun parse(rawAction: @NotNull String?): Optional<Action> {

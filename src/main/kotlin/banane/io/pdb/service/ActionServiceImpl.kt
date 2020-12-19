@@ -41,6 +41,11 @@ open class ActionServiceImpl(private val securityService: SecurityService, priva
                 heroRepository.save<Hero>(hero)
                 return true
             }
+        } else if (action == Action.SEARCH){
+            var monster = Monster("Normal", 50, 5, 5)
+            val hero = heroFromSession ?: return false
+            val currentZone = hero.currentZone?: return false
+            var newBattle = Battle(hero, monster, currentZone)
         }
         return false
     }
@@ -64,6 +69,7 @@ open class ActionServiceImpl(private val securityService: SecurityService, priva
                     }
                 }
             }
+            actions.add(Action.SEARCH)
         }
         return actions
     }

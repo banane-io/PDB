@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="monster_table_creation" author="magirard">
+        <createTable tableName="monster">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_base"/>
+            </column>
+            <column name="name" type="varchar(40)"/>
+            <column name="hp" type="integer"/>
+            <column name="attack" type="integer"/>
+            <column name="defense" type="integer"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="battle_table_creation" author="magirard">
+        <createTable tableName="battle">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_base"/>
+            </column>
+            <column name="hero_id" type="bigint"/>
+            <column name="monster_id" type="bigint"/>
+            <column name="map_point_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="battle"
+                baseColumnNames="map_point_id"
+                constraintName="fk_map_point_base"
+                referencedTableName="map_point"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="battle"
+                baseColumnNames="hero_id"
+                constraintName="fk_hero_base"
+                referencedTableName="hero"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="battle"
+                baseColumnNames="monster_id"
+                constraintName="fk_monster_base"
+                referencedTableName="monster"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
