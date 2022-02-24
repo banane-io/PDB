@@ -49,7 +49,7 @@ class HeroController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getFieldErrors(bindingResult))
         }
         hero.owner = user
-        hero.currentZone = mapPointRepository!!.getOne(1L)
+        hero.currentZone = mapPointRepository!!.getById(1L)
         hero.stone = 0
         hero.wood = 0
         heroRepository!!.save(hero)

@@ -20,7 +20,7 @@ class UserController {
     private val userValidator: UserValidator? = null
 
     @PostMapping(value = ["/registration"])
-    fun registration(@RequestBody userForm: User, bindingResult: BindingResult, model: Model?): User? {
+    fun registration(@RequestBody userForm: User, bindingResult: BindingResult): User {
         userValidator!!.validate(userForm, bindingResult)
         return if (bindingResult.hasErrors()) {
             userForm
