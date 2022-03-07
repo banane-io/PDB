@@ -1,11 +1,11 @@
-﻿namespace PDB.Data;
+﻿namespace PDB.Models;
 
 public enum Terrain
 {
     Plain,
     Forest,
     Beach,
-    Mountain,
+    Mountain, 
     Water,
-    Bridge
+    Bridge,
 }
