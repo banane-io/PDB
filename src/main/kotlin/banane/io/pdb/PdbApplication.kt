@@ -2,10 +2,11 @@ package banane.io.pdb
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
 import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
-@SpringBootApplication
+@SpringBootApplication(exclude = [SecurityAutoConfiguration::class]  )
 open class PdbApplication : SpringBootServletInitializer() {
     override fun configure(application: SpringApplicationBuilder): SpringApplicationBuilder {
         return application.sources(PdbApplication::class.java)
