@@ -5,8 +5,7 @@ using PDB;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var builderConfiguration = new ConfigurationBuilder()
-        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+var builderConfiguration = new ConfigurationBuilder().AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 IConfiguration config = builderConfiguration.Build();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

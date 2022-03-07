@@ -1,7 +1,12 @@
-﻿namespace PDB.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace PDB.Models;
 
 public class Hero
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
     //public string Username { get; set; }
     //public User owner { get; set; }
