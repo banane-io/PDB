@@ -11,12 +11,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-var connectionString = config["PostgreSql:ConnectionString"];
-var dbPassword = config["PostgreSql:DbPassword"];
-var builderDbConnection = new NpgsqlConnectionStringBuilder(connectionString)
-{
-    Password = dbPassword
-};
+var connectionString = config["ConnectionStrings:DefaultConnection"];
+
+var builderDbConnection = new NpgsqlConnectionStringBuilder(connectionString);
+
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(builderDbConnection.ConnectionString));
 
 var app = builder.Build();
