@@ -46,7 +46,7 @@ This will create a user and database to connect to. Those information can be cha
 
 ```
 "ConnectionStrings": {
-    "DefaultConnection": "host=localhost;database=postgres;user id=pdb;password=password1;"
+    "DefaultConnection": "host=localhost;database=pdb;user id=pdb;password=password1;"
 }
 ```
 
