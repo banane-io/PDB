@@ -7,7 +7,7 @@ public class Base
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; set; }
+    public long Id { get; set; }
     public MapPoint Location { get; set; }
     public int Wood { get; set; }
     public int Stone { get; set; }

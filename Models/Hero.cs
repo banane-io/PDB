@@ -7,7 +7,7 @@ public class Hero
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; set; }
+    public long Id { get; set; }
     //public string Username { get; set; }
     //public User owner { get; set; }
     public MapPoint CurrentZone { get; set; }
