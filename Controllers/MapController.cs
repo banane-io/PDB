@@ -9,9 +9,9 @@ namespace PDB.Controllers
     [ApiController]
     public class MapController : ControllerBase
     {
-        private readonly MapPointService _mapPointService;
+        private readonly IMapPointService _mapPointService;
 
-        public MapController(MapPointService mapPointService)
+        public MapController(IMapPointService mapPointService)
         {
             _mapPointService = mapPointService;
         }

@@ -17,7 +17,7 @@ var connectionString = config["ConnectionStrings:DefaultConnection"];
 var builderDbConnection = new NpgsqlConnectionStringBuilder(connectionString);
 
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(builderDbConnection.ConnectionString));
-builder.Services.AddTransient<MapPointService>();
+builder.Services.AddTransient<IMapPointService, MapPointService>();
 
 var app = builder.Build();
 
