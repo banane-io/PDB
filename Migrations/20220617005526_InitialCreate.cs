@@ -1,11 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace PDB.Migrations
 {
-    public partial class InitialEntities : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,8 @@ namespace PDB.Migrations
                 name: "MapPoints",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     X = table.Column<int>(type: "integer", nullable: false),
                     Y = table.Column<int>(type: "integer", nullable: false),
                     Zone = table.Column<string>(type: "text", nullable: false),
@@ -28,8 +29,9 @@ namespace PDB.Migrations
                 name: "Heroes",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    CurrentZoneId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CurrentZoneId = table.Column<long>(type: "bigint", nullable: false),
                     Strength = table.Column<int>(type: "integer", nullable: false),
                     Agility = table.Column<int>(type: "integer", nullable: false),
                     Intelligence = table.Column<int>(type: "integer", nullable: false),
@@ -53,11 +55,12 @@ namespace PDB.Migrations
                 name: "Bases",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    LocationId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    LocationId = table.Column<long>(type: "bigint", nullable: false),
                     Wood = table.Column<int>(type: "integer", nullable: false),
                     Stone = table.Column<int>(type: "integer", nullable: false),
-                    OwnerId = table.Column<Guid>(type: "uuid", nullable: false)
+                    OwnerId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
