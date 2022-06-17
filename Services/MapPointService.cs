@@ -4,12 +4,18 @@ namespace PDB.Services
 {
     public class MapPointService : IMapPointService
     {
-        public MapPoint? GetMapPoint(int id)
+        private readonly ApplicationContext _context;
+
+        public MapPointService(ApplicationContext context)
         {
-           /* using var context = new ApplicationContext();
-            MapPoint? mapPoint = context.Find<MapPoint>(id);*/
+            _context = context;
+        }
+
+        public MapPoint? GetMapPoint(long id)
+        {
+            MapPoint? mapPoint = _context.Find<MapPoint>(id);
             
-            return new MapPoint();
+            return mapPoint;
         }
     }
 }

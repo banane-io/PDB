@@ -9,15 +9,15 @@ namespace PDB.Controllers
     [ApiController]
     public class MapController : ControllerBase
     {
-        private readonly IMapPointService _mapPointService;
+        private readonly MapPointService _mapPointService;
 
-        public MapController(IMapPointService mapPointService)
+        public MapController(MapPointService mapPointService)
         {
             _mapPointService = mapPointService;
         }
 
-        [HttpGet("{id:int}")]
-        public ActionResult<MapPoint> GetZone(int id)
+        [HttpGet("{id:long}")]
+        public ActionResult<MapPoint> GetZone(long id)
         {
             MapPoint? mapPoint = _mapPointService.GetMapPoint(id);
             if (mapPoint == null)

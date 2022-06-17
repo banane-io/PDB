@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using PDB;
+using PDB.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ var connectionString = config["ConnectionStrings:DefaultConnection"];
 var builderDbConnection = new NpgsqlConnectionStringBuilder(connectionString);
 
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(builderDbConnection.ConnectionString));
+builder.Services.AddTransient<MapPointService>();
 
 var app = builder.Build();
 

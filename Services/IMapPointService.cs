@@ -4,6 +4,6 @@ namespace PDB.Services
 {
     public interface IMapPointService
     {
-        MapPoint? GetMapPoint(int id);
+        MapPoint? GetMapPoint(long id);
     }
 }
