@@ -1,0 +1,4 @@
+﻿insert into "Heroes"("Name","CurrentZoneId", "Strength", "Intelligence", "Agility", "Hp", "Mana","Wood", "Stone") values ('test_hero',2,5,5,5,50,50,50,50);
+insert into "Heroes"("Name","CurrentZoneId", "Strength", "Intelligence", "Agility", "Hp", "Mana","Wood", "Stone") values ('test_hero2',2,5,5,5,50,50,50,50);
+insert into "Heroes"("Name","CurrentZoneId", "Strength", "Intelligence", "Agility", "Hp", "Mana","Wood", "Stone") values ('test_hero3',2,5,5,5,50,50,50,50);
+insert into "Heroes"("Name","CurrentZoneId", "Strength", "Intelligence", "Agility", "Hp", "Mana","Wood", "Stone") values ('test_hero4',2,5,5,5,50,50,50,50);

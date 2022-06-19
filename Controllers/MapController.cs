@@ -24,5 +24,11 @@ namespace PDB.Controllers
                 return NotFound();
             return Ok(mapPoint);
         }
+
+        [HttpGet]
+        public ActionResult<IList<MapPoint>> LoadGrid()
+        {
+            return Ok(_mapPointService.LoadGrid());
+        }
     }
 }
