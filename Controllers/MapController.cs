@@ -17,18 +17,18 @@ namespace PDB.Controllers
         }
 
         [HttpGet("{id:long}")]
-        public ActionResult<MapPoint> GetZone(long id)
+        public async Task<ActionResult<MapPoint>> GetZone(long id)
         {
-            MapPoint? mapPoint = _mapPointService.GetMapPoint(id);
+            MapPoint? mapPoint = await _mapPointService.GetMapPoint(id);
             if (mapPoint == null)
                 return NotFound();
             return Ok(mapPoint);
         }
 
         [HttpGet]
-        public ActionResult<IList<MapPoint>> LoadGrid()
+        public async Task<ActionResult<IList<MapPoint>>> LoadGrid()
         {
-            return Ok(_mapPointService.LoadGrid());
+            return Ok(await _mapPointService.LoadGrid(new MapPoint() { X = 0, Y = 0}));
         }
     }
 }
