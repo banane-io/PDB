@@ -35,7 +35,7 @@ namespace PDB.Services
             return grid.GroupBy(x => x.X);
         }
 
-        private (int, int) calculateMinMax(int radius, int min, int max, int center)
+        private (int, int) calculateMinMax(int radius, int minMap, int maxMap, int center)
         {
 
             var overflow = 0;
@@ -43,20 +43,20 @@ namespace PDB.Services
             var borderLeft = center - radius;
             var borderRight = center + radius;
 
-            if (borderLeft < min)
+            if (borderLeft < minMap)
             {
                 overflow = Math.Abs(borderLeft); //This works only because the min is 0, otherwise I would have to calculate it
             }
 
-            if (borderRight > max)
+            if (borderRight > maxMap)
             {
-                underflow = borderRight - max;
+                underflow = borderRight - maxMap;
             }
 
-            var absMin = Math.Max(borderLeft, min);
+            var absMin = Math.Max(borderLeft, minMap);
             absMin -= underflow;
 
-            var absMax = Math.Min(borderRight, max);
+            var absMax = Math.Min(borderRight, maxMap);
             absMax += overflow;
 
             return (absMin, absMax);
