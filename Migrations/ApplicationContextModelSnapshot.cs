@@ -73,6 +73,10 @@ namespace PDB.Migrations
                     b.Property<int>("Mana")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("Stone")
                         .HasColumnType("integer");
 
