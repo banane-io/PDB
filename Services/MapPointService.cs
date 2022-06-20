@@ -61,5 +61,21 @@ namespace PDB.Services
 
             return (absMin, absMax);
         }
+
+        public async Task<IDictionary<Direction, MapPoint>> Neighbors(MapPoint center)
+        {
+            var neighbors = new Dictionary<Direction, MapPoint>();
+
+            foreach(var direction in Direction.AllDirections)
+            {
+                var mapPoint = await _context.MapPoints.Where(point => point.X == center.X + direction.DeltaX && point.Y == center.Y + direction.DeltaY).SingleOrDefaultAsync();
+                if(mapPoint != null)
+                {
+                    neighbors.Add(direction, mapPoint);
+                }
+            }
+
+            return neighbors;
+        }
     }
 }

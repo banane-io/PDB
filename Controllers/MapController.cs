@@ -30,5 +30,11 @@ namespace PDB.Controllers
         {
             return Ok(await _mapPointService.LoadGrid(new MapPoint() { X = 0, Y = 0}));
         }
+
+        [HttpGet("neighbors")]
+        public async Task<ActionResult<IDictionary<Direction, MapPoint>>> Neighbors()
+        {
+            return Ok(await _mapPointService.Neighbors(new MapPoint() { X = 0, Y = 0 }));
+        }
     }
 }

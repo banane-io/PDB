@@ -19,4 +19,9 @@ public class Direction
     public static readonly Direction South = new Direction(0, -1);
     public static readonly Direction SouthWest = new Direction(-1, -1);
     public static readonly Direction West = new Direction(-1, 0);
+
+    public static readonly IList<Direction> AllDirections = new List<Direction>()
+    {
+        NorthWest, North, NorthEast, East, South, SouthEast, SouthWest, West
+    };
 }
