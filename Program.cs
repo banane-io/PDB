@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using PDB;
@@ -21,6 +22,7 @@ var builderDbConnection = new NpgsqlConnectionStringBuilder(connectionString);
 
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(builderDbConnection.ConnectionString));
 builder.Services.AddTransient<IMapPointService, MapPointService>();
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -36,7 +38,17 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.MapIdentityApi<IdentityUser>();
 app.MapControllers();
-
+app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager,
+        [FromBody] object empty) =>
+    {
+        if (empty != null)
+        {
+            await signInManager.SignOutAsync();
+            return Results.Ok();
+        }
+        return Results.Unauthorized();
+    }).RequireAuthorization();
 
 app.Run();
