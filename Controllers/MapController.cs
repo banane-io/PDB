@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PDB.Models;
 using PDB.Services;
@@ -7,6 +8,7 @@ namespace PDB.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MapController : ControllerBase
     {
         private readonly IMapPointService _mapPointService;
