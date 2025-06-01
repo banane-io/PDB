@@ -6,6 +6,6 @@ namespace PDB.Services
     {
         Task<MapPoint?> GetMapPoint(long id);
         Task<IEnumerable<IEnumerable<MapPoint>>> LoadGrid(MapPoint center);
-        Task<IDictionary<Direction, MapPoint>> Neighbors(MapPoint center);
+        Task<List<(Direction, MapPoint)>> Neighbors(MapPoint center);
     }
 }

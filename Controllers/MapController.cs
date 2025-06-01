@@ -34,7 +34,7 @@ namespace PDB.Controllers
         }
 
         [HttpGet("neighbors")]
-        public async Task<ActionResult<IDictionary<Direction, MapPoint>>> Neighbors()
+        public async Task<ActionResult<List<(Direction, MapPoint)>>> Neighbors()
         {
             return Ok(await _mapPointService.Neighbors(new MapPoint() { X = 0, Y = 0 }));
         }
