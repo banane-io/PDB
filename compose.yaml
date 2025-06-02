@@ -1,0 +1,29 @@
+﻿services:
+  pdb:
+    image: pdb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"           # Maps container port 80 (your app) to host port 5000
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      # Adjust the connection string to point to the 'db' service
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=pdb;Username=postgres;Password=secret
+    depends_on:
+      - db
+    command: sh -c "dotnet ef database update && dotnet PDB.dll"
+  db:
+    image: postgres:17
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: pdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
