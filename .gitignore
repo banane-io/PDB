@@ -391,3 +391,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/docker-compose.development.env
+/appsettings.local.json
