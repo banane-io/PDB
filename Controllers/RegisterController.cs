@@ -1,4 +1,5 @@
-﻿using io.fusionauth;
+﻿using System.Text.Json;
+using io.fusionauth;
 using io.fusionauth.domain;
 using io.fusionauth.domain.api.user;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace PDB.Controllers;
 public class RegisterController : ControllerBase
 {
     private readonly FusionAuthClient _fusionAuthClient;
+    private readonly ILogger<RegisterController> _logger;
 
-    public RegisterController(FusionAuthClient fusionAuthClient)
+    public RegisterController(FusionAuthClient fusionAuthClient, ILogger<RegisterController> logger)
     {
         _fusionAuthClient = fusionAuthClient;
+        _logger = logger;
     }
 
     /// <summary>
@@ -59,6 +62,9 @@ public class RegisterController : ControllerBase
                 message = "Registration successful.",
                 userId = response.successResponse.user?.id
             });
+
+        _logger.LogError("Failed to register user with this response {response}", JsonSerializer.Serialize(new { StatusCode = response.statusCode, Error = response.errorResponse, Exception = response.exception }));
+
 
         // Log errors in your logging system as needed.
         return BadRequest(response.errorResponse);

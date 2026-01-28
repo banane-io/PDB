@@ -1,7 +1,5 @@
 using io.fusionauth;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Npgsql;
 using PDB;
 using PDB.Services;
@@ -9,33 +7,33 @@ using PDB.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var builderConfiguration = new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true);
+var builderConfiguration = new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true).AddJsonFile("appsettings.local.json", true, true);
 IConfiguration config = builderConfiguration.Build();
-builder.Services.AddSingleton(new FusionAuthClient(config["FusionAuth:Secret"],
-    config["FusionAuth:Authority"]));
+builder.Services.AddSingleton(new FusionAuthClient("_a9Ff6mbvdvtHjYfs66yOI9qHrtfBAH9_B_hhztuMx0",
+    "http://localhost:9011/"));
 // Configure JWT authentication using FusionAuth settings.
-builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
-    .AddJwtBearer(options =>
-    {
-        // Set this to the FusionAuth URL where your tenant is configured.
-        options.Authority = config["FusionAuth:Authority"];
-
-        // These settings are usually configured in your FusionAuth tenant/application.
-        // Replace values with your own issuer and audience.
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidIssuer = config["FusionAuth:Authority"],
-            ValidateAudience = true,
-            ValidAudience = config["FusionAuth:ClientId"],
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true
-        };
-    });
+// builder.Services.AddAuthentication(options =>
+//     {
+//         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//     })
+//     .AddJwtBearer(options =>
+//     {
+//         // Set this to the FusionAuth URL where your tenant is configured.
+//         options.Authority = config["FusionAuth:Authority"];
+//
+//         // These settings are usually configured in your FusionAuth tenant/application.
+//         // Replace values with your own issuer and audience.
+//         options.TokenValidationParameters = new TokenValidationParameters
+//         {
+//             ValidateIssuer = true,
+//             ValidIssuer = config["FusionAuth:Authority"],
+//             ValidateAudience = true,
+//             ValidAudience = config["FusionAuth:ClientId"],
+//             ValidateLifetime = true,
+//             ValidateIssuerSigningKey = true
+//         };
+//     });
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",
