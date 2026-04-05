@@ -1,4 +1,3 @@
-using io.fusionauth;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using PDB;
@@ -9,31 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var builderConfiguration = new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true).AddJsonFile("appsettings.local.json", true, true);
 IConfiguration config = builderConfiguration.Build();
-builder.Services.AddSingleton(new FusionAuthClient("_a9Ff6mbvdvtHjYfs66yOI9qHrtfBAH9_B_hhztuMx0",
-    "http://localhost:9011/"));
-// Configure JWT authentication using FusionAuth settings.
-// builder.Services.AddAuthentication(options =>
-//     {
-//         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-//         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//     })
-//     .AddJwtBearer(options =>
-//     {
-//         // Set this to the FusionAuth URL where your tenant is configured.
-//         options.Authority = config["FusionAuth:Authority"];
-//
-//         // These settings are usually configured in your FusionAuth tenant/application.
-//         // Replace values with your own issuer and audience.
-//         options.TokenValidationParameters = new TokenValidationParameters
-//         {
-//             ValidateIssuer = true,
-//             ValidIssuer = config["FusionAuth:Authority"],
-//             ValidateAudience = true,
-//             ValidAudience = config["FusionAuth:ClientId"],
-//             ValidateLifetime = true,
-//             ValidateIssuerSigningKey = true
-//         };
-//     });
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",
@@ -42,7 +17,6 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader());
 });
 
-builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -54,23 +28,26 @@ var builderDbConnection = new NpgsqlConnectionStringBuilder(connectionString);
 
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(builderDbConnection.ConnectionString));
 builder.Services.AddTransient<IMapPointService, MapPointService>();
-builder.Services.AddAuthorization();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+    db.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.MapSwagger().RequireAuthorization();
+    app.MapSwagger();
     app.UseCors();
 }
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
-app.UseAuthorization();
 app.MapControllers();
 
 app.Run();

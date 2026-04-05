@@ -12,7 +12,6 @@
       - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=pdb;Username=postgres;Password=secret
     depends_on:
       - db
-    command: sh -c "dotnet ef database update && dotnet PDB.dll"
   db:
     image: postgres:17
     restart: always
