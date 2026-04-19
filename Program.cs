@@ -3,10 +3,12 @@ using Npgsql;
 using PDB;
 using PDB.Services;
 
+Console.WriteLine($"[DEBUG] Starting PDB server");
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var builderConfiguration = new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true).AddJsonFile("appsettings.local.json", true, true);
+var builderConfiguration = new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true).AddJsonFile("appsettings.local.json", true, true).AddEnvironmentVariables();
 IConfiguration config = builderConfiguration.Build();
 
 builder.Services.AddCors(options =>
@@ -22,6 +24,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 var connectionString = config["ConnectionStrings:DefaultConnection"];
 
 var builderDbConnection = new NpgsqlConnectionStringBuilder(connectionString);

@@ -44,6 +44,4 @@ Connection string is in `appsettings.json`. Local secrets/overrides go in `appse
 
 ## Docker
 
-`compose.yaml` runs both the app (port 5000) and PostgreSQL (port 5432). The compose entrypoint runs `dotnet ef database update` before starting the app.
-
-Note: the `Dockerfile` ENTRYPOINT currently references `DotNet.Docker.dll` — it should be `PDB.dll`.
+`compose.yaml` runs both the app (port 5001) and PostgreSQL (port 5432). Migrations are applied automatically at startup via `db.Database.Migrate()` in `Program.cs`.
