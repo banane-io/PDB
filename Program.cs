@@ -34,8 +34,9 @@ builder.Services.AddTransient<IMapPointService, MapPointService>();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+if (!app.Environment.IsEnvironment("Testing"))
 {
+    using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
     db.Database.Migrate();
 }
@@ -54,3 +55,5 @@ app.UseHttpsRedirection();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program {}
