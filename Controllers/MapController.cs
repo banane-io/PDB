@@ -30,9 +30,15 @@ public class MapController : ControllerBase
         return Ok(await _mapPointService.LoadGrid(new MapPoint { X = 0, Y = 0 }));
     }
 
-    [HttpGet("neighbors")]
-    public async Task<ActionResult<List<(Direction, MapPoint)>>> Neighbors()
+    [HttpGet("{id:long}/neighbors")]
+    public async Task<ActionResult<List<NeighborResponse>>> Neighbors(long id)
     {
-        return Ok(await _mapPointService.Neighbors(new MapPoint { X = 0, Y = 0 }));
+        var mapPoint = await _mapPointService.GetMapPoint(id);
+        if (mapPoint == null)
+            return NotFound();
+        var neighbors = await _mapPointService.Neighbors(mapPoint);
+        return Ok(neighbors.Select(n => new NeighborResponse(n.Item1, n.Item2)).ToList());
     }
 }
+
+public record NeighborResponse(Direction Direction, MapPoint MapPoint);

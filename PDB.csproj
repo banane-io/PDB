@@ -20,6 +20,9 @@
 
     <ItemGroup>
         <Folder Include="Migrations\"/>
+        <Compile Remove="PDB.Tests\**"/>
+        <EmbeddedResource Remove="PDB.Tests\**"/>
+        <None Remove="PDB.Tests\**"/>
     </ItemGroup>
 
     <ItemGroup>
