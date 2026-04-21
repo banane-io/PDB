@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -9,19 +9,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FusionAuth.Client" Version="1.57.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.5"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.5">
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.6"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.6">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4"/>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.1"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.2"/>
     </ItemGroup>
 
     <ItemGroup>
         <Folder Include="Migrations\"/>
+        <Compile Remove="PDB.Tests\**"/>
+        <EmbeddedResource Remove="PDB.Tests\**"/>
+        <None Remove="PDB.Tests\**"/>
     </ItemGroup>
 
     <ItemGroup>
