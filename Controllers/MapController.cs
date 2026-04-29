@@ -4,6 +4,8 @@ using PDB.Services;
 
 namespace PDB.Controllers;
 
+public record NeighborResponse(Direction Direction, MapPoint MapPoint);
+
 [Route("api/[controller]")]
 [ApiController]
 public class MapController : ControllerBase
@@ -40,5 +42,3 @@ public class MapController : ControllerBase
         return Ok(neighbors.Select(n => new NeighborResponse(n.Item1, n.Item2)).ToList());
     }
 }
-
-public record NeighborResponse(Direction Direction, MapPoint MapPoint);
